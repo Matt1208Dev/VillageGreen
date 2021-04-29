@@ -4,6 +4,8 @@
 
 Village Green is a fictive project of e-commerce website of musical instruments
 
+Lien vers le projet : https://trello.com/b/hndRHBtJ
+
 
 Projet fil rouge Titre professionnel DWWM
 
