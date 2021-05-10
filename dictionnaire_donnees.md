@@ -30,26 +30,26 @@ sup_contact VARCHAR(30)     // nom du contact
 sup_phone INT(10)           // téléphone du contact
 sup_mail  VARCHAR(255)      // email du contact
 
-## Clients
-cli_id  INT                        // Id client
-cli_lastname   VARCHAR(50)         // Nom
-cli_firstname   VARCHAR(30)        // Prénom
-cli_sex   BOOLEAN                  // sexe
-cli_bil_address VARCHAR(255)       // Adresse de facturation
-cli_bil_postalcode INT(6)          // code postal de facturation
-cli_bil_city  VARCHAR(30)          // ville de facturation
-cli_del_address VARCHAR(255)       // Adresse de livraison
-cli_del_postalcode INT(6)          // code postal de livraison
-cli_del_city  VARCHAR(30)          // ville de livraison
-cli_phone   INT(10)                // téléphone
-cli_mail   VARCHAR(255)            // email
-cli_type   VARCHAR(15)             // typologie (particulier/professionnel)
-cli_coef   DECIMAL (3,2)           // coefficient tarifaire
+## Customers
+cus_id  INT                        // Id client
+cus_lastname   VARCHAR(50)         // Nom
+cus_firstname   VARCHAR(30)        // Prénom
+cus_sex   BOOLEAN                  // sexe
+cus_bil_address VARCHAR(255)       // Adresse de facturation
+cus_bil_postalcode INT(6)          // code postal de facturation
+cus_bil_city  VARCHAR(30)          // ville de facturation
+cus_del_address VARCHAR(255)       // Adresse de livraison
+cus_del_postalcode INT(6)          // code postal de livraison
+cus_del_city  VARCHAR(30)          // ville de livraison
+cus_phone   INT(10)                // téléphone
+cus_mail   VARCHAR(255)            // email
+cus_type   VARCHAR(15)             // typologie (particulier/professionnel)
+cus_coef   DECIMAL (3,2)           // coefficient tarifaire
 
-## Commerciaux
-com_id    INT                  // Id commercial
-com_lastname   VARCHAR(50)     // nom
-com_firstname  VARCHAR(30)     // prénom
+## Sales_representants
+rep_id    INT                  // Id commercial
+rep_lastname   VARCHAR(50)     // nom
+rep_firstname  VARCHAR(30)     // prénom
 
 ## Orders
 ord_id    INT                   // Id commande
@@ -58,8 +58,8 @@ ord_discount   DECIMAL(4,2)     // remise exceptionnelle
 ord_pay_method    VARCHAR(10)   // modalité de paiement (comptant/différé)
 
 ## Order_status
-sta_id    INT            // Id statut
-sta_label VARCHAR(20)    // libelle
+ost_id    INT            // Id statut
+ost_label VARCHAR(20)    // libelle
 
 ## Order_details
 ode_id    INT                       // Id ligne de commande
@@ -71,6 +71,10 @@ ode_tot_all_tax_inc   DECIMAL(7,2)  // total ligne TTC
 ## Deliveries
 del_id  INT              // Id livraison
 del_date  DATE           // date livraison
+
+## Delivery_details
+del_id  INT              // Id ligne de livraison
+del_qte  INT             // quantité
 
 ## Bills
 bil_id    INT            // Id facture
