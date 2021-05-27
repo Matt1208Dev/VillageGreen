@@ -3,18 +3,19 @@
 
 -- CREATION DE LA BASE --
 
-DROP DATABASE IF EXISTS villagegreen;
+DROP DATABASE IF EXISTS village_green;
 
-CREATE DATABASE villagegreen CHARACTER SET 'utf8mb4';
+CREATE DATABASE village_green CHARACTER SET 'utf8mb4';
 
-USE villagegreen;
+USE village_green;
 
 -- CREATION DE LA TABLE categories --
 
 CREATE TABLE `categories` (
      `cat_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
      `cat_name` VARCHAR(50) NOT NULL,
-     `cat_parent` INT UNSIGNED
+     `cat_parent_id` INT UNSIGNED,
+     KEY `cat_parent_id` (`cat_id`)
 )
 ENGINE = innoDB;
 
@@ -23,6 +24,7 @@ ENGINE = innoDB;
 CREATE TABLE `suppliers` (
      `sup_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
      `sup_type` VARCHAR(15),
+     `sup_name` VARCHAR(50),
      `sup_address` VARCHAR(255) NOT NULL,
      `sup_postalcode` INT NOT NULL,
      `sup_city` VARCHAR(30) NOT NULL,
@@ -37,7 +39,7 @@ ENGINE = innoDB;
 CREATE TABLE `products` (
      `pro_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
      `pro_ref` VARCHAR(15) NOT NULL,
-     `pro_label` VARCHAR(30) NOT NULL,
+     `pro_label` VARCHAR(50) NOT NULL,
      `pro_desc` VARCHAR(255) NOT NULL,
      `pro_ppet` DECIMAL(7,2) NOT NULL,
      `pro_spet` DECIMAL(7,2) NOT NULL,
@@ -55,10 +57,11 @@ ENGINE = innoDB;
 
 -- CREATION DE LA TABLE sales_representants --
 
-CREATE TABLE `sales_representants` (
-    `rep_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `rep_lastname` varchar(50) NOT NULL,
-    `rep_firstname` varchar(50) NOT NULL
+CREATE TABLE `commercials` (
+    `com_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+    `com_lastname` varchar(50) NOT NULL,
+    `com_firstname` varchar(50) NOT NULL,
+    `com_type` VARCHAR(15) NOT NULL
 )
 ENGINE = innoDB;
 
@@ -78,9 +81,9 @@ CREATE TABLE `customers` (
      `cus_phone`   INT NOT NULL,         
      `cus_mail`   VARCHAR(255) NOT NULL,          
      `cus_type`   VARCHAR(15) NOT NULL,            
-     `cus_coef`   DECIMAL (3,2) NOT NULL,
+     `cus_coef`   INT(3) NOT NULL,
      `cus_rep_id` INT NOT NULL,
-     FOREIGN KEY (`cus_rep_id`) REFERENCES `sales_representants`(`rep_id`)
+     FOREIGN KEY (`cus_rep_id`) REFERENCES `commercials`(`com_id`)
 )
 ENGINE = innoDB;
 
@@ -101,28 +104,9 @@ CREATE TABLE `orders` (
     `ord_pay_method` VARCHAR(10) NOT NULL,
     `ord_ost_id` INT NOT NULL,
     `ord_cus_id` INT NOT NULL,
+    `ord_bil_date` DATE,
      FOREIGN KEY (`ord_ost_id`) REFERENCES `order_status`(`ost_id`),
      FOREIGN KEY (`ord_cus_id`) REFERENCES `customers`(`cus_id`)
-)
-ENGINE = innoDB;
-
--- CREATION DE LA TABLE bills --
-
-CREATE TABLE `bills` (
-     `bil_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-     `bil_date` INT NOT NULL,
-     `bil_ord_id` INT NOT NULL,
-     FOREIGN KEY (`bil_ord_id`) REFERENCES `orders`(`ord_id`)
-)
-ENGINE = innoDB;
-
--- CREATION DE LA TABLE deliveries --
-
-CREATE TABLE `deliveries` (
-     `del_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-     `del_date` DATE NOT NULL,
-     `del_ord_id` INT NOT NULL,
-     FOREIGN KEY (`del_ord_id`) REFERENCES `orders`(`ord_id`)
 )
 ENGINE = innoDB;
 
@@ -146,7 +130,8 @@ ENGINE = innoDB;
 CREATE TABLE `delivery_details` (
      `dde_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
      `dde_qty` INT NOT NULL,
-     `ode_del_id` INT NOT NULL,
-     FOREIGN KEY (`ode_del_id`) REFERENCES `order_details`(`ode_id`)
+     `dde_ode_id` INT NOT NULL,
+     `dde_del_date` DATE NOT NULL,
+     FOREIGN KEY (`dde_ode_id`) REFERENCES `order_details`(`ode_id`)
 )
 ENGINE = innoDB;
