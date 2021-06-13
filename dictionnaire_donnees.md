@@ -46,16 +46,18 @@ cus_mail   VARCHAR(255)            // email
 cus_type   VARCHAR(15)             // typologie (particulier/professionnel)
 cus_coef   DECIMAL (3,2)           // coefficient tarifaire
 
-## Sales_representants
-rep_id    INT                  // Id commercial
-rep_lastname   VARCHAR(50)     // nom
-rep_firstname  VARCHAR(30)     // prénom
+## Commercials
+com_id    INT                  // Id commercial
+com_lastname   VARCHAR(50)     // nom
+com_firstname  VARCHAR(30)     // prénom
+com_type VARCHAR(15)          // Type de clients du commercial
 
 ## Orders
 ord_id    INT                   // Id commande
 ord_date  DATE                  // date commande
 ord_discount   DECIMAL(4,2)     // remise exceptionnelle
 ord_pay_method    VARCHAR(10)   // modalité de paiement (comptant/différé)
+ord_bil_date  DATE           // date de facturation
 
 ## Order_status
 ost_id    INT            // Id statut
@@ -68,17 +70,10 @@ ode_tot_exc_tax     DECIMAL(7,2)    // total ligne HT
 ode_tax_rate   DECIMAL(4,2)
 ode_tot_all_tax_inc   DECIMAL(7,2)  // total ligne TTC
 
-## Deliveries
-del_id  INT              // Id livraison
-del_date  DATE           // date livraison
-
 ## Delivery_details
 del_id  INT              // Id ligne de livraison
 del_qte  INT             // quantité
-
-## Bills
-bil_id    INT            // Id facture
-bil_date  DATE           // date de facturation
+del_date  DATE           // date livraison
 
 ### Equipe gestion produits/fournisseurs
 GRANT CRU sur categories, produits

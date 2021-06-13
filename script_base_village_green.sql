@@ -58,10 +58,10 @@ ENGINE = innoDB;
 -- CREATION DE LA TABLE sales_representants --
 
 CREATE TABLE `commercials` (
-    `com_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `com_lastname` varchar(50) NOT NULL,
-    `com_firstname` varchar(50) NOT NULL,
-    `com_type` VARCHAR(15) NOT NULL
+     `com_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     `com_lastname` varchar(50) NOT NULL,
+     `com_firstname` varchar(50) NOT NULL,
+     `com_type` VARCHAR(15) NOT NULL
 )
 ENGINE = innoDB;
 
@@ -90,21 +90,22 @@ ENGINE = innoDB;
 -- CREATION DE LA TABLE order_status --
 
 CREATE TABLE `order_status` (
-    `ost_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `ost_label` varchar(20) NOT NULL
+     `ost_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     `ost_label` varchar(25) NOT NULL
 )
 ENGINE = innoDB;
 
 -- CREATION DE LA TABLE orders --
 
 CREATE TABLE `orders` (
-    `ord_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-    `ord_date` DATE NOT NULL,
-    `ord_discount` DECIMAL(4,2),
-    `ord_pay_method` VARCHAR(10) NOT NULL,
-    `ord_ost_id` INT NOT NULL,
-    `ord_cus_id` INT NOT NULL,
-    `ord_bil_date` DATE,
+     `ord_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     `ord_date` DATE NOT NULL,
+     `ord_discount` DECIMAL(4,2),
+     `ord_pay_method` VARCHAR(10) NOT NULL,
+     `ord_ost_id` INT NOT NULL,
+     `ord_cus_id` INT NOT NULL,
+     `ord_del_time` DATE NOT NULL,
+     `ord_bil_date` DATE,
      FOREIGN KEY (`ord_ost_id`) REFERENCES `order_status`(`ost_id`),
      FOREIGN KEY (`ord_cus_id`) REFERENCES `customers`(`cus_id`)
 )
