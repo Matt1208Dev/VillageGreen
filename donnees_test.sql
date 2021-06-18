@@ -34,7 +34,7 @@ INSERT INTO `order_status`(`ost_label`) VALUES ("En cours de traitement"), ("En 
 
 -- Table orders --
 
-INSERT INTO `orders`(`ord_date`, `ord_discount`, `ord_pay_method`, `ord_ost_id`, `ord_cus_id`, `ord_del_time`, `ord_bil_date`) VALUES ("2021-01-20", 5, "Comptant", 5, 5, "2021-01-23", "2021-01-23"), ("2021-02-10", 0, "Comptant", 5, 8, "2021-02-15", "2021-02-15"), ("2021-03-14", 0, "Comptant", 5, 39, "2021-03-19", "2021-03-20"), ("2021-04-17", 10, "Différé", 5, 14, "2021-04-21", "2021-04-25"), ("2021-04-10", 10, "Différé", 5, 25, "2021-04-19", "2021-04-20"), ("2021-05-04", 0, "Différé", 5, 17, "2021-02-15", "2021-02-15"), ("2021-06-14", 0, "Différé", 3, 29, "2021-06-18", null);
+INSERT INTO `orders`(`ord_date`, `ord_discount`, `ord_pay_method`, `ord_ost_id`, `ord_cus_id`, `ord_del_time`, `ord_bil_date`) VALUES ("2021-01-20", 5, "Comptant", 5, 5, "2021-01-23", "2021-01-23"), ("2021-02-10", 0, "Comptant", 5, 8, "2021-02-15", "2021-02-15"), ("2021-03-14", 0, "Comptant", 5, 39, "2021-03-19", "2021-03-20"), ("2021-04-17", 10, "Différé", 5, 14, "2021-04-21", "2021-04-25"), ("2021-04-10", 10, "Différé", 5, 25, "2021-04-19", "2021-04-20"), ("2021-02-04", 0, "Différé", 5, 17, "2021-02-15", "2021-02-15"), ("2021-06-14", 0, "Différé", 3, 29, "2021-06-18", null);
 
 -- Table order details --
 
