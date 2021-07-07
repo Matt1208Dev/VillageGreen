@@ -1,0 +1,37 @@
+body
+{
+    font-size: 100%;
+}
+
+#nav-first-row a
+{
+    color: black;
+    font-weight: 500;
+    font-size: 0.8rem;
+}
+
+#nav-first-row a img
+{
+    overflow: hidden;
+}
+
+#nav-second-row
+{
+    background-color: dimgrey;
+}
+
+#nav-second-row a
+{
+    color: white;
+}
+
+#nav-third-row
+{
+    background-color: rgb(55, 55, 55);
+    overflow: hidden;
+}
+
+#nav-third-row a
+{
+    color: white;
+}
