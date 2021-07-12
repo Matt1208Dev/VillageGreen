@@ -1,23 +1,25 @@
 body
 {
     font-size: 100%;
+    background-image: url("http://localhost/ci_village_green/assets/images/BACKGROUND/background village.png");
+}
+
+.main-container 
+{
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 #nav-first-row a
 {
     color: black;
     font-weight: 500;
-    font-size: 0.8rem;
-}
-
-#nav-first-row a img
-{
-    overflow: hidden;
+    font-size: 1rem;
 }
 
 #nav-second-row
 {
     background-color: dimgrey;
+    font-size: 1.2rem;
 }
 
 #nav-second-row a
@@ -28,10 +30,30 @@ body
 #nav-third-row
 {
     background-color: rgb(55, 55, 55);
-    overflow: hidden;
+    font-weight: 500;
 }
 
 #nav-third-row a
 {
     color: white;
+}
+
+#navlogo
+{
+    z-index: 1;
+}
+
+.catImg
+{
+    display: inline-block;
+}
+
+#header-categories
+{
+    padding-left: 5% !important;
+}
+
+#best-sellers header
+{
+    padding-left: 5% !important;
 }

@@ -5,24 +5,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <link rel="stylesheet" href="<?php echo base_url('assets/css/style.css')?>">
+    <link rel="stylesheet" href="http://localhost/ci_village_green/assets/css/style.css">
     <title>Village Green, des musiciens au service des musiciens</title>
 </head>
 <body>
     
-<div class="container"> <!-- Ouverture du container principal -->
+<div class="main-container container p-0"> <!-- Ouverture du container principal -->
 
-    <nav class="navbar p-0">
-        <div class="container-fluid navbar p-0">
-            <div class="row">
-                <div class="col-md-4">
-                    <a class="navbar-brand" href="<?php echo site_url('Produits/accueil');?>">
-                        <img src="<?php echo base_url('assets/images/HEADER/logo village green.png');?>" alt="Logo Village Green" title="Logo Village Green">
-                    </a>
+    <nav class="container-fluid p-0">
+        <!-- <div class="container-fluid navbar navbar-expand p-0"> -->
+            <div class="row container-fluid p-0 m-0 overflow-hidden">
+                <div id="navlogo" class="col-md-3 p-0">
+                    <!-- <a class="navbar-brand" href="<?php echo site_url('Produits/accueil');?>"> -->
+                        <img id="logo" src="<?php echo base_url('assets/images/HEADER/logo village green.png');?>" alt="Logo Village Green" title="Logo Village Green">
+                    <!-- </a> -->
                 </div>
 
-                <div class="col-md-8">
+                <div id="navbar" class="col-md-9 p-0">
                     <div class="row" id="nav-first-row">
                         <div class="container navbar d-flex justify-content-end p-0" id="nav-first-row-div">
                                 <a class="nav-link" href="#">Infos</a>
@@ -60,5 +59,5 @@
                     </div>
                 </div>
             </div>
-        </div>
+        <!-- </div> -->
     </nav>
