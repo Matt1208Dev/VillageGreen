@@ -2,17 +2,20 @@
 
     <!-- Bannière promotionnelle -->
     <header id="banner" class="d-flex justify-content-center">
-        <div>
+        <div id="banner-gibson">
             <img class="img-fluid" src="<?php echo base_url('assets/images/BODY/pub guitare.png');?>" alt="Remise jusqu'à 15% sur Gibson et Ibanez" title="Remise jusqu'à 15% sur Gibson et Ibanez">
+            <img id="banner-gibson-button" class="img-fluid" src="<?php echo base_url('assets/images/BODY/pub guitare bouton blanc.png');?>" alt="bouton en savoir plus" title="En savoir plus">
+
+        
         </div>
-        <div>
+        <div id="banner-delivery">
             <img class="img-fluid" src="<?php echo base_url('assets/images/BODY/banniere droite prix.png');?>" alt="image livraison gratuite à partir de 19€ d'achats" title="Livraison gratuite à partir de 19€ d'achats">
         </div>
     </header>
 
     <!-- Bannière services -->
     <section id="banner-services">
-    <img class="img-fluid w-100 pt-5 pb-2" src="<?php echo base_url('assets/images/BODY/banniere centre 4 pictos.png');?>" alt="Remise jusqu'à 15% sur Gibson et Ibanez" title="Remise jusqu'à 15% sur Gibson et Ibanez">
+    <img class="img-fluid w-100 pt-5 pb-2" src="<?php echo base_url('assets/images/BODY/banniere centre 4 pictos.png');?>" alt="Livraison gratuite à parti de 19€ d'achats" title="Remise jusqu'à 15% sur Gibson et Ibanez">
     </section>
 
     <!-- Raccourcis catégories -->
@@ -23,59 +26,75 @@
 
         <!-- 1ère ligne -->
         <div class="d-flex flex-row justify-content-center">
-            <div>
+            <div class="item-categories">
                 <img class=" img-fluid" src="<?php echo base_url('assets/images/BODY/CATEGORIES guitare.png');?>" alt="photo de la catégorie guitare" title="catégorie guitare">
+                <img class=" img-fluid rollover" src="<?php echo base_url('assets/images/BODY/CATEGORIES ROLL OVER guitare.png');?>" alt="photo de la catégorie guitare" title="catégorie guitare">
             </div>
-            <div>
+            <div class="item-categories">
                 <img class=" img-fluid" src="<?php echo base_url('assets/images/BODY/CATEGORIES batterie.png');?>" alt="photo de la catégorie batterie" title="catégorie batterie">
+                <img class=" img-fluid rollover" src="<?php echo base_url('assets/images/BODY/CATEGORIES ROLL OVER batterie.png');?>" alt="photo de la catégorie batterie" title="catégorie batterie">
+
             </div>
-            <div>
-                <img class=" img-fluid" src="<?php echo base_url('assets/images/BODY/CATEGORIES piano.png');?>" alt="photo de la catégorie piano" title="catégorie piano">
+            <div class="item-categories">
+                <img class=" img-fluid" src="<?php echo base_url('assets/images/BODY/CATEGORIES piano.png');?>" alt="photo de la catégorie piano" title="catégorie piano">           
+                <img class=" img-fluid rollover" src="<?php echo base_url('assets/images/BODY/CATEGORIES ROLL OVER piano.png');?>" alt="photo de la catégorie piano" title="catégorie piano">
             </div>
-            <div>
+            <div class="item-categories">
                 <img class=" img-fluid" src="<?php echo base_url('assets/images/BODY/CATEGORIES micro.png');?>" alt="photo de la catégorie micro" title="catégorie micro">
+                <img class=" img-fluid rollover" src="<?php echo base_url('assets/images/BODY/CATEGORIES ROLL OVER micro.png');?>" alt="photo de la catégorie micro" title="catégorie micro">
             </div>
         </div>
 
         <!-- 2eme ligne -->
-        <div class="d-flex flex-row justify-content-center">
-            <div>
+        <div id="categories-sec-line" class="d-flex flex-row justify-content-center">
+            <div class="item-categories">
                 <img class=" img-fluid" src="<?php echo base_url('assets/images/BODY/CATEGORIES sono.png');?>" alt="photo de la catégorie sono" title="catégorie sono">
+                <img class=" img-fluid rollover" src="<?php echo base_url('assets/images/BODY/CATEGORIES ROLL OVER sono.png');?>" alt="photo de la catégorie sono" title="catégorie sono">
             </div>
-            <div>
+            <div class="item-categories">
                 <img class=" img-fluid" src="<?php echo base_url('assets/images/BODY/CATEGORIES cases.png');?>" alt="photo de la catégorie cases" title="catégorie cases">
+                <img class=" img-fluid rollover" src="<?php echo base_url('assets/images/BODY/CATEGORIES ROLL OVER cases.png');?>" alt="photo de la catégorie cases" title="catégorie cases">
             </div>
-            <div>
+            <div class="item-categories">
                 <img class=" img-fluid" src="<?php echo base_url('assets/images/BODY/CATEGORIES cable.png');?>" alt="photo de la catégorie cable" title="catégorie cable">
+                <img class=" img-fluid rollover" src="<?php echo base_url('assets/images/BODY/CATEGORIES ROLL OVER access.png');?>" alt="photo de la catégorie cable" title="catégorie cable">
+
             </div>
-            <div>
-                <img class=" img-fluid w-auto" src="<?php echo base_url('assets/images/BODY/CATEGORIES saxo.png');?>" alt="photo de la catégorie saxo" title="catégorie saxo">
+            <div class="item-categories">
+                <img class=" img-fluid" src="<?php echo base_url('assets/images/BODY/CATEGORIES saxo.png');?>" alt="photo de la catégorie saxo" title="catégorie saxo">
+                <img class=" img-fluid rollover" src="<?php echo base_url('assets/images/BODY/CATEGORIES ROLL OVER saxo.png');?>" alt="photo de la catégorie saxo" title="catégorie saxo">
+
             </div>
         </div>
 
     </section>
 
-    <!-- Best sellers et fournisseurs -->
-    <section class="row">
+    <!-- Best sellers et partenaires -->
+    <section id="best-sellers-partners" class="row">
 
+        <!-- Best Sellers -->
         <section id="best-sellers" class="d-flex flex-column col-lg-7">
             <header>
                 <h1>Nos meilleures ventes</h1>
             </header>
 
             <div class="d-flex flex-row justify-content-center">
-                <div>
+                <div class="item-categories">
                     <img class=" img-fluid px-1" src="<?php echo base_url('assets/images/BODY/TOP VENTES guitare.png');?>" alt="photo de la catégorie TOP VENTES guitare" title="TOP VENTES guitare"> 
+                    <img class=" img-fluid px-1 rollover" src="<?php echo base_url('assets/images/BODY/TOP VENTES ROLL OVER guitare.png');?>" alt="photo de la catégorie TOP VENTES guitare" title="TOP VENTES guitare"> 
                 </div>
-                <div>
+                <div class="item-categories">
                     <img class=" img-fluid px-1" src="<?php echo base_url('assets/images/BODY/TOP VENTES saxo.png');?>" alt="photo de la catégorie TOP VENTES saxo" title="TOP VENTES saxo"> 
+                    <img class=" img-fluid px-1 rollover" src="<?php echo base_url('assets/images/BODY/TOP VENTES ROLL OVER saxo.png');?>" alt="photo de la catégorie TOP VENTES saxo" title="TOP VENTES saxo"> 
                 </div>
-                <div>
+                <div class="item-categories">
                     <img class=" img-fluid px-1" src="<?php echo base_url('assets/images/BODY/TOP VENTES piano.png');?>" alt="photo de la catégorie TOP VENTES piano" title="TOP VENTES piano"> 
+                    <img class=" img-fluid px-1 rollover" src="<?php echo base_url('assets/images/BODY/TOP VENTES ROLL OVER piano.png');?>" alt="photo de la catégorie TOP VENTES piano" title="TOP VENTES piano"> 
                 </div>
             </div>
         </section>
 
+        <!-- Partenaires -->
         <section id="partners" class="d-flex flex-column col-lg-5">
             <header>
                 <h1>Nos partenaires</h1>

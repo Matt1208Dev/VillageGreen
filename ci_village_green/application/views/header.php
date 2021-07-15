@@ -10,24 +10,25 @@
 </head>
 <body>
     
-<div class="main-container container p-0"> <!-- Ouverture du container principal -->
-
-    <nav class="container-fluid p-0">
+<div class="main-container container justify-content-between p-0"> <!-- Ouverture du container principal -->
+<div class="row g-0 d-flex justify-content-between ">
+    <nav class="navbar navbar-expand-lg container-fluid p-0">
         <!-- <div class="container-fluid navbar navbar-expand p-0"> -->
             <div class="row container-fluid p-0 m-0 overflow-hidden">
-                <div id="navlogo" class="col-md-3 p-0">
+                <div id="navlogo" class="p-0">
                     <!-- <a class="navbar-brand" href="<?php echo site_url('Produits/accueil');?>"> -->
                         <img id="logo" src="<?php echo base_url('assets/images/HEADER/logo village green.png');?>" alt="Logo Village Green" title="Logo Village Green">
                     <!-- </a> -->
                 </div>
 
-                <div id="navbar" class="col-md-9 p-0">
+                <div id="navbar" class="p-0">
+
                     <div class="row" id="nav-first-row">
                         <div class="container navbar d-flex justify-content-end p-0" id="nav-first-row-div">
                                 <a class="nav-link" href="#">Infos</a>
                                 <a class="nav-link" href="#">Espace Client</a>
                                 <a class="nav-link" href="#">
-                                    <img class="img-fluid" src="<?php echo base_url('assets/images/HEADER/picto panier.png');?> " alt="pictogramme panier d'achat" title="Panier d'achat">
+                                    <img class="img-fluid" src="<?php echo base_url('assets/images/HEADER/picto panier.png');?> " alt="pictogramme panier d'achat" title="Votre panier">
                                 </a>
                                 <a class="nav-link" href="#">
                                     <img src="<?php echo base_url('assets/images/HEADER/picto pays.png');?> " alt="pictogramme pays" title="Langue de navigation">
@@ -46,7 +47,19 @@
 
                     <div class="row" id="nav-third-row">
                         <div class="container navbar d-flex justify-content-around p-1">
-                            <a class="nav-link pr-1 py-1" href="#">Guit/Bass</a>
+                            <a class="nav-link pr-1 py-1 guit-cat" href="#">Guit/Bass</a>   
+                                <!-- <div class="guitar-submenu">
+                                    <ul>
+                                        <li>Guitares Electriques</li>
+                                        <li>Guitares Classiques</li>
+                                        <li>Guitares Acoustiques & Electro-acoustiques</li>
+                                        <li>Basses Electriques</li>
+                                        <li>Basses Acoustiques</li>
+                                        <li>Basses Semi-Acoustiques</li>
+                                        <li>Ukulélés</li>
+                                        <li>Autres instruments à cordes pincées</li>
+                                    </ul>
+                                </div> -->
                             <a class="nav-link px-1 py-1" href="#">Batteries</a>
                             <a class="nav-link px-1 py-1" href="#">Clavier</a>
                             <a class="nav-link px-1 py-1" href="#">Studio</a>
@@ -56,8 +69,11 @@
                             <a class="nav-link px-1 py-1" href="#">Cases</a>
                             <a class="nav-link px-1 py-1" href="#">Accessoires</a>
                         </div>
+
+                            
                     </div>
                 </div>
             </div>
         <!-- </div> -->
     </nav>
+</div>
