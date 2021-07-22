@@ -70,15 +70,16 @@
     </section>
 
     <!-- Best sellers et partenaires -->
-    <section id="best-sellers-partners" class="row">
+    <section class="row">
 
         <!-- Best Sellers -->
-        <section id="best-sellers" class="d-flex flex-column col-lg-7">
+    <div id="best-sellers-partners">
+        <section id="best-sellers" class="d-flex flex-column">
             <header>
                 <h1>Nos meilleures ventes</h1>
             </header>
 
-            <div class="d-flex flex-row justify-content-center">
+            <div id="group-items-categories" class="d-flex flex-row justify-content-center">
                 <div class="item-categories">
                     <img class=" img-fluid px-1" src="<?php echo base_url('assets/images/BODY/TOP VENTES guitare.png');?>" alt="photo de la catégorie TOP VENTES guitare" title="TOP VENTES guitare"> 
                     <img class=" img-fluid px-1 rollover" src="<?php echo base_url('assets/images/BODY/TOP VENTES ROLL OVER guitare.png');?>" alt="photo de la catégorie TOP VENTES guitare" title="TOP VENTES guitare"> 
@@ -95,18 +96,19 @@
         </section>
 
         <!-- Partenaires -->
-        <section id="partners" class="d-flex flex-column col-lg-5">
+        <section id="partners" class="d-flex flex-column">
             <header>
                 <h1>Nos partenaires</h1>
             </header>
 
             <div class="d-flex flex-row">
                 <div>
-                    <img class=" img-fluid" src="<?php echo base_url('assets/images/BODY/partenaires 4 logos.png');?>" alt="photo de la catégorie TOP VENTES guitare" title="TOP VENTES guitare"> 
+                    <img class=" img-fluid" src="<?php echo base_url('assets/images/BODY/partenaires 4 logos.png');?>" alt="Logos partenaires Roland, Sennheiser, Yamaha, Behringer" title="Nos partenaires"> 
                 </div>
             </div>
         </section>
 
+    </div>
     </section>
 
 </section>

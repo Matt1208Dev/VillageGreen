@@ -10,15 +10,15 @@ class Produits extends CI_Controller {
         $this->load->view('footer');
     }
 
-    public function listGuitar()
+    public function list($catId)
     {
         $this->load->model('ProduitsModel');
-        $aProduits = $this->ProduitsModel->listGuitar();
+        $aProduits = $this->ProduitsModel->list($catId);
 
         $aView["liste"] = $aProduits;
 
         $this->load->view('header');
-        $this->load->view('listGuitar', $aView);
+        $this->load->view('list', $aView);
         $this->load->view('footer');
     }
 

@@ -33,7 +33,8 @@ h4
 .main-container 
 {
     background-color: rgba(255, 255, 255, 0.8);
-    overflow: hidden;
+    overflow: visible;
+    max-width: 1200px;
 }
 
 /* HEADER */
@@ -70,7 +71,6 @@ h4
 
 #nav-third-row
 {
-    position: relative;
     background-color: rgb(55, 55, 55);
     font-weight: 500;
 }
@@ -80,32 +80,64 @@ h4
     color: #fff;
 }
 
-.guitar-submenu
+#nav-third-row-item-guitar, #nav-third-row-item-drums, #nav-third-row-item-keyboard, #nav-third-row-item-studio, #nav-third-row-item-sono, #nav-third-row-item-lights, #nav-third-row-item-dj, #nav-third-row-item-cases, #nav-third-row-item-accessories
 {
-    position: absolute;
-    top: 0;
-    left: 0;
-    opacity: 0;
+    position: relative;
+    overflow: visible;
 }
 
-.guitar-submenu li
+#item-guitar-submenu, #item-drums-submenu, #item-keyboard-submenu, #item-studio-submenu, #item-sono-submenu, #item-lights-submenu, #item-dj-submenu, #item-cases-submenu, #item-accessories-submenu
 {
+    display: none;
+    z-index: 1;
+    position: absolute;
+    top: 100%;
+    left: 0%;
+    opacity: 1;
+    background-color: #fff;
+    border-radius: 10px;
+    padding-left: 20%;
+    padding-right: 20%;
+    width: 250%;
+}
+
+#item-guitar-submenu ul, #item-drums-submenu ul, #item-keyboard-submenu ul, #item-studio-submenu ul, #item-sono-submenu ul, #item-lights-submenu ul, #item-dj-submenu ul, #item-cases-submenu ul, #item-accessories-submenu ul
+{
+    padding: 0;
+    margin: 0;
+}
+
+#item-guitar-submenu li, #item-drums-submenu li, #item-keyboard-submenu li, #item-studio-submenu li, #item-sono-submenu li, #item-lights-submenu li, #item-dj-submenu li, #item-cases-submenu li, #item-accessories-submenu li
+{
+    position: relative;
+    z-index: 1;
     list-style-type: none;
-    color: #fff;
+}
+
+#nav-third-row #item-guitar-submenu li a, #item-drums-submenu li a, #item-keyboard-submenu li a, #item-studio-submenu li a, #item-sono-submenu li a, #item-lights-submenu li a, #item-dj-submenu li a, #item-cases-submenu li a, #item-accessories-submenu li a
+{
+    color: #000;
+}
+
+#nav-third-row #item-guitar-submenu li a:hover, #item-drums-submenu li a:hover, #item-keyboard-submenu li a:hover, #item-studio-submenu li a:hover, #item-sono-submenu li a:hover, #item-lights-submenu li a:hover, #item-dj-submenu li a:hover, #item-cases-submenu li a:hover, #item-accessories-submenu li a:hover
+{
+    color: rgb(237, 146, 35);
+    transition: all 400ms ease-out;
 }
 
 #navlogo
 {
 
-    z-index: 1;
+    z-index: 2;
     width: 20%;
 }
 
 #navlogo img
 {
-    z-index: 1;
+    z-index: 2;
     width: 125%;
 }
+
 
 /* FOOTER */
 
@@ -281,6 +313,17 @@ h4
 /* Page Accueil */
 /* Bannière promotionnelle accueil */
 
+#mainContent
+{
+    position: relative;
+    z-index: 0;
+}
+
+#banner
+{
+    margin-top: 2rem;
+}
+
 #banner-gibson
 {
     position: relative;
@@ -307,6 +350,9 @@ h4
 .item-categories
 {
     position: relative;
+    width: 25%;
+    height: auto;
+    background-color: #fff;
 }
 
 .rollover
@@ -344,6 +390,21 @@ h4
 #best-sellers header
 {
     padding-left: 5%;
+}
+
+#group-items-categories
+{
+    display: flex;
+    flex-direction: row;
+    background-color: transparent;
+}
+
+#best-sellers-partners
+{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: stretch;
 }
 
 /* Page listGuitar.php 

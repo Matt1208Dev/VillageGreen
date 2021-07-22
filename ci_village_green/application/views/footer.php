@@ -13,8 +13,12 @@
         <div id="social-networks">
             <h5><span class="orange">Suivez-nous</span> par ici !</h5>
             <div id="social-picto">
+            <a class="link" href="http://www.facebook.com">
                 <img src="<?php echo base_url("assets/images/FOOTER/picto facebook.png"); ?>" alt="pictogramme facebook" title="Facebook">
+            </a>    
+            <a class="link" href="http://www.twitter.com">    
                 <img src="<?php echo base_url("assets/images/FOOTER/picto twitter.png"); ?>" alt="pictogramme twitter" title="Twitter">
+            </a>
             </div>
         </div>
         <div id="financial-partners">
@@ -86,7 +90,7 @@
             <p><a class="link" href="#">Plan du site</a></p>
             <p><a class="link" href="#">Parrainage</a></p>
             <p><a class="link" href="#">Nouveautés</a></p>
-            <p><a class="link" href="#">Assurane Village Green</a></p>
+            <p><a class="link" href="#">Assurance Village Green</a></p>
             <p><a class="link" href="#">Location d'instruments de musique</a></p>
 
         </div>
@@ -186,6 +190,8 @@
 
 </div> <!-- Fermeture du container principal -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="<?php echo base_url('assets/js/script.js');?>"></script>
 </body>
 
 </html>
