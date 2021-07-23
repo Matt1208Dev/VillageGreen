@@ -19,7 +19,8 @@ class Admin extends CI_Controller {
             }
             else
             {
-                $this->load->view('admin/home');
+                $this->session->set_userdata('userId', 'Admin');
+                redirect('Admin/home');
             }
         }
         else
@@ -27,9 +28,39 @@ class Admin extends CI_Controller {
             $this->load->view('admin/login'); 
         }
     }
+    
+    public function sessionDestroy()
+    {
+        session_destroy();
+        redirect('Produits/accueil');
+    }
 
     public function home()
     {
-        
+        if(isset($this->session->userId) && $this->session->userId == 'Admin')
+        {
+            $this->load->view('admin/header');
+            $this->load->view('admin/home');
+            $this->load->view('admin/footer');
+        }
+        else
+        {
+            redirect('Produits/accueil');
+        }
     }
+
+    public function productList()
+    {
+        if(isset($this->session->userId) && $this->session->userId == 'Admin')
+        {
+            $this->load->view('admin/header');
+            $this->load->view('admin/productlist');
+            $this->load->view('admin/footer');
+        }
+        else
+        {
+            redirect('Produits/accueil');
+        }
+    }
+
 }
