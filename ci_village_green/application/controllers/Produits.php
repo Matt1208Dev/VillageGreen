@@ -13,24 +13,26 @@ class Produits extends CI_Controller {
     public function list($catId)
     {
         $this->load->model('ProduitsModel');
-        $aProduits = $this->ProduitsModel->list($catId);
+        $list = $this->ProduitsModel->list($catId);
 
-        $aView["liste"] = $aProduits;
+        $View["liste"] = $list;
 
         $this->load->view('header');
-        $this->load->view('list', $aView);
+        $this->load->view('list', $View);
         $this->load->view('footer');
     }
 
     public function productDetails($id)
     {
         $this->load->model('ProduitsModel');
-        $aProduits = $this->ProduitsModel->productDetails($id);
+        $product = $this->ProduitsModel->productDetails($id);
 
-        $aView["product"] = $aProduits;
+        $View["product"] = $product;
 
         $this->load->view('header');
-        $this->load->view('productDetails', $aView);
+        $this->load->view('productDetails', $View);
         $this->load->view('footer');
     }
+
+    
 }

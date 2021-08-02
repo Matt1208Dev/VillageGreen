@@ -5,16 +5,77 @@ body
     font-size: 100%;
     color: #fff;
     font-family: Helvetica, Arial, sans-serif;
-    background-color: #002B53;
+    background-image: url("http://localhost/ci_village_green/assets/images/BACKGROUND/background village.png");
+    /* background-color: #002B53; */
 }
 
 #navbar
 {
-    background-color: #00023C;
+    background-color: #fff;
 }
 
 #navbar-logo, #navbar-logo img
 {
     max-height: 4rem;
     width: auto;
+}
+
+#navbar .text-deco-hover:hover
+{
+    text-decoration: underline;
+    transition: all 1000ms ease-out;
+}
+
+#product-card
+{
+    background-color: rgb(255, 255, 255, 0.5);
+    backdrop-filter: blur(2px);
+}
+
+.blue-link
+{
+    background-color: #002B53; 
+}
+
+.blue-link:hover
+{
+    background-color: rgb(237, 146, 35, 0.9);
+    transition: all 200ms ease-out;
+}
+
+.product-card-title
+{
+    font-size: 0.8rem;
+}
+
+#product-card-sec-row
+{
+    min-height: 6.5rem;
+}
+
+@media screen and (max-width: 1024px) {
+    
+    #submit
+    {
+        font-size: 0.8rem;
+    } 
+}
+
+@media screen and (max-width: 576px) {
+
+    #product-card
+    {
+        margin-top: 0 !important;
+    }
+    
+    #product-card-sec-row div.bord-cus
+    {
+        border-top: none !important;
+    } 
+
+    #buttons .bord-cus
+    {
+        border-right: none !important;
+    }
+
 }

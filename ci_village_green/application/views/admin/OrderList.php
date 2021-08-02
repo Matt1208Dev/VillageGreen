@@ -10,7 +10,7 @@
         </header>
     </div>
 
-    <!-- Filtres -->
+    <!-- Filters -->
     <div class="row">
         <div class="col my-3">
             <a class="btn btn-success me-2 mt-2" href="<?php echo site_url('Orders/OrderList');?>">Toutes</a>
@@ -24,10 +24,10 @@
         </div>
     </div>
 
-    <!-- Liste des commandes -->
-    <div class="row">
+    <!-- Order List -->
+    <section class="row">
         <div class="col table-responsive-sm">
-            <table class="table table-hover table-light align-middle text-center">
+            <table class="table table-hover table-light align-middle text-center rounded overflow-hidden">
                 <thead">
                     <tr>
                     <th scope="col">ID commande</th>
@@ -62,13 +62,13 @@
                 </tbody>
             </table>
         </div>  
-    </div>
+    </section>
+    <!-- END Order List -->
 
-    <!-- Total lignes -->
+    <!-- Number of results -->
     <div class="row">
         <div class="col">
             <p>Nombre de lignes : <?php echo $this->db->affected_rows(); ?></p>
         </div>
     </div>
-
 </div>

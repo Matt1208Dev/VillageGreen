@@ -1,5 +1,7 @@
 $(document).ready(function()
 {
+    // NAVBAR
+
     // Dropdown Guitar/bass
     $("#item-guitar").hover(function()
     {
@@ -143,4 +145,7 @@ $(document).ready(function()
     {
         $("#item-accessories-submenu").slideUp("200");
     });
+
+    // FIN NAVBAR
+
 });

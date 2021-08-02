@@ -1,4 +1,3 @@
-<?php //var_dump($_POST); ?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -15,19 +14,29 @@
 <section id="main-container">
     <div id="adm">
         <div id="logo-vg">
-        <img src="<?php echo base_url('assets/images/HEADER/logo village green.png');?>" alt="logo Village Green" title="logo Village Green">
+            <img src="<?php echo base_url('assets/images/HEADER/logo village green.png');?>" alt="logo Village Green" title="logo Village Green">
         </div>
-        <h1>Connexion à l'espace Admin</h1>
+
+        <header>
+            <h1>Connexion à l'espace Admin</h1>
+        </header>
+
+        <!-- Login Form -->
         <div id="adm-form">
             <?php echo form_open('Admin/login');?>
+                <!-- User Id -->
                 <div>
                     <input id="id" name="id" type="text" placeholder="Identifiant" value="<?php echo set_value('id');?>">
                 </div>
                 <?php echo form_error('id'); ?>
+
+                <!-- User pass  -->
                 <div>
                     <input id="pass" name="pass" type="password" placeholder="Mot de passe">
                 </div>
                 <?php echo form_error('pass'); ?>
+
+                <!-- Submit button -->
                 <div>
                     <input id="submit" name="submit" type="submit" value="Envoi">
                 </div>

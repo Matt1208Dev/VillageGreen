@@ -73,6 +73,8 @@ class OrdersModel extends CI_Model
                                     ON `ord_cus_id` = `cus_id`
                                     JOIN `order_status`
                                     ON `ord_ost_id` = `ost_id`
+                                    JOIN `products`
+                                    ON `ode_pro_id` = `pro_id`  
                                     WHERE ord_id = $id");
                                     
         $order = $query->result();  
