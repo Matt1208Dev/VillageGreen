@@ -3,7 +3,7 @@
         <!-- Titre catégorie et libellé article -->
         <header>
             <h3 class="py-3 m-0">
-                Modification fiche produit
+                Modification produit
                 <?php echo ' > ' . $product[0]->pro_label; ?>
             </h3>
         </header>
@@ -70,12 +70,13 @@
                 <div class="row bg-light justify-content-center">
                     <p class="col-sm-12 m-0 py-1">Image actuelle :</p>
                     <div class="col-sm-6 d-flex justify-content-center">
-                        <img class="img-fluid my-2 rounded" style="height: 200px;" src="<?php echo base_url('assets/images/products/' . set_value('pro_id', $product[0]->pro_id) . '.' . set_value('pro_photo', $product[0]->pro_photo)) ; ?>" alt="photo du produit <?php echo set_value('pro_label', $product[0]->pro_label);?>" title="<?php echo set_value('pro_label', $product[0]->pro_label);?>">
+                        <img class="img-fluid my-2 rounded" style="height: 200px;" src="<?php if(isset($product[0]->pro_id) && (isset($product[0]->pro_photo))){echo base_url('assets/images/products/' . $product[0]->pro_id . '.' . $product[0]->pro_photo);}else{echo base_url('assets/images/products/no-visuel.png');} ?>" alt="photo du produit <?php if(isset($product[0]->pro_label)){echo $product[0]->pro_label;}?>" title="<?php if(isset($product[0]->pro_label)){echo $product[0]->pro_label;}?>">
                     </div>
                     <div>   
                         <label for="picture" class="mb-0 mt-2 fw-bold product-card-title">ILLUSTRATION</label><br>
-                        <input class="form-control mb-2 bg-transparent" type="file" name="picture" id="picture">
+                        <input class="form-control mb-2 bg-transparent" type="file" name="pro_photo" id="userfile">
                     </div>
+                    <?php if(isset($this->session->uploadErrorUser)){echo '<p class="fw-bold text-danger">'. $this->session->uploadErrorUser . '</p>';}?>
                     <div class="col-sm-12">
                         <label for="pro_desc" class="mb-0 mt-2 fw-bold product-card-title">DESCRIPTION</label>
                         <textarea id="pro_desc" name="pro_desc" class="form-control mb-2 bg-transparent"><?php echo set_value('pro_desc', $product[0]->pro_desc) ?></textarea>
@@ -145,19 +146,18 @@
                 <div class="row" id="buttons">
                     <!-- Buttons -->
                     <div class="col-sm-12 border-top border-4 text-center px-0 py-auto">
-                        <input type="submit" id="submit" value="Enregistrer" class="col-12 btn block nav-link text-white blue-link">
+                        <input type="submit" id="submit" value="Enregistrer" class="col-12 btn block nav-link text-white blue-link green-hover">
                     </div>
                     <div class="col-sm-6 border-top border-end border-4 text-center px-0 py-auto bord-cus">
-                        <a href="" class="btn nav-link text-white bg-secondary" role="button">Retour à la page produit</a>
+                        <a href="<?php echo site_url('Admin/ProductList/');?>" class="btn nav-link text-white btn-secondary" role="button">Retour à la page produit</a>
                     </div>
                     <div class="col-sm-6 border-top border-4 text-center px-0 py-auto">
-                        <a href="" class="btn nav-link text-white bg-danger" role="button">Supprimer le produit</a>
+                        <a href="<?php echo site_url('Admin/deleteProduct/' . $product[0]->pro_id);?>" class="btn nav-link text-white btn-danger" role="button">Supprimer le produit</a>
                     </div>
                 </div>
 
             </form>
         </section>
         <!-- FIN Product card form -->
-<?php var_dump($_POST, $_SESSION, $product);?>
     </div>
 </div>

@@ -43,6 +43,12 @@ body
     transition: all 200ms ease-out;
 }
 
+.green-hover:hover
+{
+    background-color: rgb(25, 135, 84) !important;
+    transition: all 200ms ease-out;
+}
+
 .product-card-title
 {
     font-size: 0.8rem;
@@ -59,6 +65,7 @@ body
     {
         font-size: 0.8rem;
     } 
+
 }
 
 @media screen and (max-width: 576px) {

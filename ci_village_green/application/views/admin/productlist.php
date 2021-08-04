@@ -34,11 +34,11 @@
             <!-- Row 3/6 -->
             <div class="row bg-light">
                 <div class="col-sm-6 d-flex justify-content-center">
-                    <img class="img-fluid my-2 rounded" style="height: 200px;" src="<?php if(isset($product->pro_id) && (isset($product->pro_photo))){echo base_url('assets/images/products/' . $product->pro_id . '.' . $product->pro_photo) ;} ?>" alt="photo du produit <?php if(isset($product->pro_label)){echo $product->pro_label;}?>" title="<?php if(isset($product->pro_label)){echo $product->pro_label;}?>">
+                    <img class="img-fluid my-2 rounded" style="height: 200px;" src="<?php if(isset($product->pro_id) && (isset($product->pro_photo))){echo base_url('assets/images/products/' . $product->pro_id . '.' . $product->pro_photo);}else{echo base_url('assets/images/products/no-visuel.png');} ?>" alt="photo du produit <?php if(isset($product->pro_label)){echo $product->pro_label;}?>" title="<?php if(isset($product->pro_label)){echo $product->pro_label;}?>">
                 </div>
                 <div class="col-sm-6">
                     <h6 class="mb-0 mt-2 fw-bold product-card-title">DESCRIPTION</h6>
-                    <p class="mb-2"><?php if(isset($product->pro_desc)){echo $product->pro_desc;} ?></p>
+                    <p class="mb-2"><?php if(isset($product->pro_desc)){echo substr($product->pro_desc, 0, 255) . '...';} ?></p>
                 </div>
             </div>
 

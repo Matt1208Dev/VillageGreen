@@ -75,6 +75,19 @@ class ProduitsModel extends CI_Model
         return $list;
     }
 
+    function productById($id)
+    {
+        $requete = $this->db->query("SELECT * FROM `products` 
+                                        JOIN `categories`
+                                        ON `pro_cat_id` = `cat_id`
+                                        JOIN `suppliers`
+                                        ON `pro_sup_id` = `sup_id`
+                                        WHERE pro_id = $id ;");
+        $list = $requete->result();
+
+        return $list;
+    }
+
     function getCategories()
     {
         $requete = $this->db->query("SELECT * FROM `categories`
@@ -93,12 +106,25 @@ class ProduitsModel extends CI_Model
         return $list;
     }
 
+    // Insertion d'un nouveau produit
+    public function AddProduct($data)
+    {
+        $this->db->insert('products', $data);
+    }
+
     // Mise à jour d'un produit
     public function UpdateProduct($id, $data)
     {
         $this->db->where('pro_id', $id);
         $this->db->update('products', $data);
 
+    }
+
+    // Suppression d'un produit
+    public function DeleteProduct($id)
+    {
+        $this->db->where('pro_id', $id);
+        $this->db->delete('products');
     }
 
     // Mise à jour date de dernière modification d'un produit
