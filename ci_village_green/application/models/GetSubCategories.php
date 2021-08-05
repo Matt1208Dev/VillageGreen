@@ -14,7 +14,7 @@ catch (Exception $e)
 
 $categorie = $_GET['cat_parent_id'];
 
-$requete = "SELECT * FROM categories WHERE cat_parent_id = $categorie";
+$requete = "SELECT `cat_id`, `cat_name` FROM `categories` WHERE `cat_parent_id` = $categorie";
 $result = $db->query($requete);
 
 $SubCategories = $result->fetchAll(PDO::FETCH_OBJ);

@@ -167,13 +167,13 @@ class Admin extends CI_Controller
                 $data = $this->input->post();
 
 				$this->form_validation->set_error_delimiters('<div class="fw-bold text-danger">', '</div>');
-		        $this->form_validation->set_rules('pro_label', 'Libellé', 'required|regex_match[/[a-zA-Zéèàêëäï\\-\\ ]{1,50}/]', array('required'=>'Le champ %s est requis','regex-match'=>'Pas plus de 50 caractères.'));
-                $this->form_validation->set_rules('pro_ref', 'Référence', 'required|regex_match[/[a-zA-Zéèàêëäï\\-\\ ]{1,15}/]', array('required'=>'Le champ %s est requis','regex-match'=>'Pas plus de 15 caractères.'));
+		        $this->form_validation->set_rules('pro_label', 'Libellé', 'required|regex_match[/[a-zA-Zéèàêëäï\\-\\ ]{1,50}/]', array('required'=>'Le champ %s est requis','regex_match'=>'Pas plus de 50 caractères.'));
+                $this->form_validation->set_rules('pro_ref', 'Référence', 'required|regex_match[/[a-zA-Zéèàêëäï\\-\\ ]{1,15}/]', array('required'=>'Le champ %s est requis','regex_match'=>'Pas plus de 15 caractères.'));
                 $this->form_validation->set_rules('pro_cat_id', 'Sous-catégorie', 'required', array('required'=>'Le choix d\'une %s est requis'));
-                $this->form_validation->set_rules('pro_desc', 'description', 'required|regex_match[/[a-zA-Zéèàêëäï,.\'\"\\-\\ ]{1,255}/]', array('required'=>'Le champ %s est requis','regex-match'=>'La description ne doit pas excéder 255 caractères.'));
-                $this->form_validation->set_rules('pro_ppet', 'prix d\'achat HT', 'required|regex_match[/[0-9]{1,5}[0-9]{2}/]', array('required'=>'Le champ %s est requis','regex-match'=>'Le prix doit être au format 1590.90'));
-                $this->form_validation->set_rules('pro_spet', 'prix de vente HT', 'required|regex_match[/[0-9]{1,5}[0-9]{2}/]', array('required'=>'Le champ %s est requis','regex-match'=>'Le prix doit être au format 1590.90'));
-                $this->form_validation->set_rules('pro_phy_stk', 'stock', 'required|regex_match[/[0-9]{1,5}/]', array('required'=>'Le champ %s est requis','regex-match'=>'Le nombre doit être un entier.'));
+                $this->form_validation->set_rules('pro_desc', 'description', 'required|regex_match[/[a-zA-Zéèàêëäï,.\'\"\\-\\ ]{1,255}/]', array('required'=>'Le champ %s est requis','regex_match'=>'La description ne doit pas excéder 255 caractères.'));
+                $this->form_validation->set_rules('pro_ppet', 'prix d\'achat HT', 'required|regex_match[/[0-9]{1,5}[0-9]{2}/]', array('required'=>'Le champ %s est requis','regex_match'=>'Le prix doit être au format 1000.00'));
+                $this->form_validation->set_rules('pro_spet', 'prix de vente HT', 'required|regex_match[/[0-0]{1,5}[0-9]{2}/]', array('required'=>'Le champ %s est requis','regex_match'=>'Le prix doit être au format 1000.00'));
+                $this->form_validation->set_rules('pro_phy_stk', 'stock', 'required|regex_match[/[0-9]{1,5}/0', array('required'=>'Le champ %s est requis','regex_match'=>'Le nombre doit être un entier.'));
                 $this->form_validation->set_rules('pro_lock', 'verrou produit', 'required', array('required'=>'Le champ %s est requis'));
                 $this->form_validation->set_rules('pro_sup_id', 'fournisseur', 'required', array('required'=>'Le choix d\'un %s est requis'));
 
@@ -310,13 +310,13 @@ class Admin extends CI_Controller
                 $data = $this->input->post();
 
 				$this->form_validation->set_error_delimiters('<div class="fw-bold text-danger">', '</div>');
-		        $this->form_validation->set_rules('pro_label', 'Libellé', 'required|regex_match[/[0-9a-zA-Zéèàêëäï\\-\\ ]{1,50}/]', array('required'=>'Le champ %s est requis','regex-match'=>'Pas plus de 50 caractères.'));
-                $this->form_validation->set_rules('pro_ref', 'Référence', 'required|regex_match[/[0-9a-zA-Zéèàêëäï\\-\\ ]{1,15}/]', array('required'=>'Le champ %s est requis','regex-match'=>'Pas plus de 15 caractères.'));
+		        $this->form_validation->set_rules('pro_label', 'Libellé', 'required|regex_match[/[0-9a-zA-Zéèàêëäï\\-\\ ]{1,50}/]', array('required'=>'Le champ %s est requis','regex_match'=>'Pas plus de 50 caractères.'));
+                $this->form_validation->set_rules('pro_ref', 'Référence', 'required|regex_match[/[0-9a-zA-Zéèàêëäï\\-\\ ]{1,15}/]', array('required'=>'Le champ %s est requis','regex_match'=>'Pas plus de 15 caractères.'));
                 $this->form_validation->set_rules('pro_cat_id', 'Sous-catégorie', 'required', array('required'=>'Le choix d\'une %s est requis'));
-                $this->form_validation->set_rules('pro_desc', 'description', 'required|regex_match[/[0-9a-zA-Zéèàêëäï,.\'\"\\-\\ ]{1,255}/]', array('required'=>'Le champ %s est requis','regex-match'=>'La description ne doit pas excéder 255 caractères.'));
-                $this->form_validation->set_rules('pro_ppet', 'prix d\'achat HT', 'required|regex_match[/[0-9]{1,5}[0-9]{2}/]', array('required'=>'Le champ %s est requis','regex-match'=>'Le prix doit être au format 1590.90'));
-                $this->form_validation->set_rules('pro_spet', 'prix de vente HT', 'required|regex_match[/[0-9]{1,5}[0-9]{2}/]', array('required'=>'Le champ %s est requis','regex-match'=>'Le prix doit être au format 1590.90'));
-                $this->form_validation->set_rules('pro_phy_stk', 'stock', 'required|regex_match[/[0-9]{1,5}/]', array('required'=>'Le champ %s est requis','regex-match'=>'Le nombre doit être un entier.'));
+                $this->form_validation->set_rules('pro_desc', 'description', 'required|regex_match[/[0-9a-zA-Zéèàêëäï,.\'\"\\-\\ ]{1,255}/]', array('required'=>'Le champ %s est requis','regex_match'=>'La description ne doit pas excéder 255 caractères.'));
+                $this->form_validation->set_rules('pro_ppet', 'prix d\'achat HT', 'required|regex_match[/[0-9]{1,5}[0-9]{2}/]', array('required'=>'Le champ %s est requis','regex_match'=>'Le prix doit être au format 1000.00'));
+                $this->form_validation->set_rules('pro_spet', 'prix de vente HT', 'required|regex_match[/[0-9]{1,5}[0-9]{2}/]', array('required'=>'Le champ %s est requis','regex_match'=>'Le prix doit être au format 1000.00'));
+                $this->form_validation->set_rules('pro_phy_stk', 'stock', 'required|regex_match[/[0-9]{1,5}/]', array('required'=>'Le champ %s est requis','regex_match'=>'Le nombre doit être un entier.'));
                 $this->form_validation->set_rules('pro_lock', 'verrou produit', 'required', array('required'=>'Le champ %s est requis'));
                 $this->form_validation->set_rules('pro_sup_id', 'fournisseur', 'required', array('required'=>'Le choix d\'un %s est requis'));
 

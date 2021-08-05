@@ -5,61 +5,96 @@ class Orders extends CI_Controller
 {
     public function OrderList()
     {
-        $this->load->model('OrdersModel');
-        $query = $this->OrdersModel->OrderList();
+        if(isset($this->session->userId) && $this->session->userId == 'Admin')
+        {
+            $this->load->model('OrdersModel');
+            $query = $this->OrdersModel->OrderList();
 
-        $aView["list"] = $query;
+            $aView["list"] = $query;
 
-        $this->load->view('Admin/header');
-        $this->load->view('Admin/OrderList', $aView);
-        $this->load->view('Admin/footer');
+            $this->load->view('Admin/header');
+            $this->load->view('Admin/OrderList', $aView);
+            $this->load->view('Admin/footer');
+        }
+        else
+        {
+            $this->load->view('admin/login');
+        }
     }
 
     public function RunningOrder()
     {
-        $this->load->model('OrdersModel');
-        $query = $this->OrdersModel->RunningOrder();
+        if(isset($this->session->userId) && $this->session->userId == 'Admin')
+        {
+            $this->load->model('OrdersModel');
+            $query = $this->OrdersModel->RunningOrder();
 
-        $aView["list"] = $query;
+            $aView["list"] = $query;
 
-        $this->load->view('Admin/header');
-        $this->load->view('Admin/OrderList', $aView);
-        $this->load->view('Admin/footer');
+            $this->load->view('Admin/header');
+            $this->load->view('Admin/OrderList', $aView);
+            $this->load->view('Admin/footer');
+        }
+        else
+        {
+            $this->load->view('admin/login');
+        }
     }
 
     public function OrderByMonthInterval($nb)
     {
-        $this->load->model('OrdersModel');
-        $query = $this->OrdersModel->OrderByMonthInterval($nb);
+        if(isset($this->session->userId) && $this->session->userId == 'Admin')
+        {
+            $this->load->model('OrdersModel');
+            $query = $this->OrdersModel->OrderByMonthInterval($nb);
 
-        $aView["list"] = $query;
+            $aView["list"] = $query;
 
-        $this->load->view('Admin/header');
-        $this->load->view('Admin/OrderList', $aView);
-        $this->load->view('Admin/footer'); 
+            $this->load->view('Admin/header');
+            $this->load->view('Admin/OrderList', $aView);
+            $this->load->view('Admin/footer');
+        }
+        else
+        {
+            $this->load->view('admin/login');
+        }
     }
 
     public function OrderByDayInterval($nb)
     {
-        $this->load->model('OrdersModel');
-        $query = $this->OrdersModel->OrderByDayInterval($nb);
+        if(isset($this->session->userId) && $this->session->userId == 'Admin')
+        {
+            $this->load->model('OrdersModel');
+            $query = $this->OrdersModel->OrderByDayInterval($nb);
 
-        $aView["list"] = $query;
+            $aView["list"] = $query;
 
-        $this->load->view('Admin/header');
-        $this->load->view('Admin/OrderList', $aView);
-        $this->load->view('Admin/footer'); 
+            $this->load->view('Admin/header');
+            $this->load->view('Admin/OrderList', $aView);
+            $this->load->view('Admin/footer');
+        }
+        else
+        {
+            $this->load->view('admin/login');
+        } 
     }
 
     public function orderDetails($id)
     {
-        $this->load->model('OrdersModel');
-        $query = $this->OrdersModel->OrderDetails($id);
+        if(isset($this->session->userId) && $this->session->userId == 'Admin')
+        {
+            $this->load->model('OrdersModel');
+            $query = $this->OrdersModel->OrderDetails($id);
 
-        $aView["order"] = $query;
+            $aView["order"] = $query;
 
-        $this->load->view('Admin/header');
-        $this->load->view('Admin/orderDetails', $aView);
-        $this->load->view('Admin/footer'); 
+            $this->load->view('Admin/header');
+            $this->load->view('Admin/orderDetails', $aView);
+            $this->load->view('Admin/footer');
+        }
+        else
+        {
+            $this->load->view('admin/login');
+        }
     }
 }

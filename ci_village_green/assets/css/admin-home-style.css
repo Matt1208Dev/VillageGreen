@@ -32,6 +32,13 @@ body
     backdrop-filter: blur(2px);
 }
 
+.bg-grey
+{
+    background-color: rgb(166, 166, 166);
+    backdrop-filter: blur(2px);
+    box-shadow: none;
+}
+
 .blue-link
 {
     background-color: #002B53; 
@@ -61,11 +68,23 @@ body
 
 @media screen and (max-width: 1024px) {
     
-    #submit
+    #submit, #table-orders, #table-order-details
     {
         font-size: 0.8rem;
-    } 
+    }
+}
 
+@media screen and (max-width: 768px) {
+    
+    #table-order-details
+    {
+        font-size: 0.6rem;
+    }
+
+    #table-order-details tfoot
+    {
+        font-size: 0.5rem;
+    }
 }
 
 @media screen and (max-width: 576px) {

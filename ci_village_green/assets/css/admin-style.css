@@ -85,6 +85,13 @@ input
     border: 0.2rem solid rgb(56, 192, 226) !important;
 }
 
+#submit:hover
+{
+    background-color: rgb(24, 168, 204);
+    border: 0.2rem solid rgb(24, 168, 204) !important;
+    transition: all 200ms ease-out;
+}
+
 .error
 {
     color: rgb(236, 132, 14);

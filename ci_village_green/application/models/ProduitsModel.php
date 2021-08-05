@@ -28,7 +28,7 @@ class ProduitsModel extends CI_Model
 
     function productDetails($id)
     {
-        $requete = $this->db->query("SELECT * FROM `products` 
+        $requete = $this->db->query("SELECT `pro_id`, `pro_ref`, `pro_label`, `pro_cat_id`, `pro_photo`, `pro_desc`, `pro_ppet`, `pro_spet`, `pro_phy_stk`, `pro_lock`, `pro_add_date`, `pro_sup_id`, `pro_modif_date` FROM `products` 
                                         JOIN `categories`
                                         ON `pro_cat_id` = `cat_id`
                                         WHERE pro_id = $id;");
@@ -51,7 +51,7 @@ class ProduitsModel extends CI_Model
 
     function productList($catId)
     {
-        $requete = $this->db->query("SELECT * FROM `products` 
+        $requete = $this->db->query("SELECT `pro_id`, `pro_ref`, `pro_label`, `cat_name`, `pro_photo`, `pro_desc`, `pro_ppet`, `pro_spet`, `pro_phy_stk`, `pro_lock`, `pro_add_date`, `sup_name` FROM `products` 
                                         JOIN `categories`
                                         ON `pro_cat_id` = `cat_id`
                                         JOIN `suppliers`
@@ -64,7 +64,7 @@ class ProduitsModel extends CI_Model
 
     function productByKeyword($keyword)
     {
-        $requete = $this->db->query("SELECT * FROM `products` 
+        $requete = $this->db->query("SELECT `pro_id`, `pro_ref`, `pro_label`, `cat_name`, `pro_photo`, `pro_desc`, `pro_ppet`, `pro_spet`, `pro_phy_stk`, `pro_lock`, `pro_add_date`, `sup_name` FROM `products` 
                                         JOIN `categories`
                                         ON `pro_cat_id` = `cat_id`
                                         JOIN `suppliers`
@@ -77,7 +77,7 @@ class ProduitsModel extends CI_Model
 
     function productById($id)
     {
-        $requete = $this->db->query("SELECT * FROM `products` 
+        $requete = $this->db->query("SELECT `pro_id`, `pro_ref`, `pro_label`, `cat_name`, `pro_photo`, `pro_desc`, `pro_ppet`, `pro_spet`, `pro_phy_stk`, `pro_lock`, `pro_add_date`, `sup_name` FROM `products` 
                                         JOIN `categories`
                                         ON `pro_cat_id` = `cat_id`
                                         JOIN `suppliers`
@@ -90,7 +90,7 @@ class ProduitsModel extends CI_Model
 
     function getCategories()
     {
-        $requete = $this->db->query("SELECT * FROM `categories`
+        $requete = $this->db->query("SELECT `cat_id`, `cat_name` FROM `categories`
                                         WHERE cat_parent_id IS NULL;");
         $list = $requete->result();
 
@@ -99,7 +99,7 @@ class ProduitsModel extends CI_Model
 
     function getSubCategories()
     {
-        $requete = $this->db->query("SELECT * FROM `categories`
+        $requete = $this->db->query("SELECT `cat_id`, `cat_name` FROM `categories`
                                         WHERE cat_parent_id IS NOT NULL;");
         $list = $requete->result();
 

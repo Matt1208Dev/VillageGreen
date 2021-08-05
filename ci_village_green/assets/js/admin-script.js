@@ -125,4 +125,10 @@ $(document).ready(function()
             }
         })
     });
+
+    // Mise en valeur de l'item navbar en navigation
+    $(".navbar-nav a").on("click", function() {
+        $(".navbar-nav a").removeClass("active");
+        $(this).addClass("active")
+      })
 });
