@@ -30,6 +30,88 @@ class OrdersModel extends CI_Model
         return $orders; 
     }
 
+    public function OrderById($id)
+    {
+        $query = $this->db->query("SELECT ord_id, ord_date, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
+                                    JOIN `customers`
+                                    ON `ord_cus_id` = `cus_id`
+                                    JOIN `order_status`
+                                    ON `ord_ost_id` = `ost_id`
+                                    WHERE `ord_id` = $id ;");
+        $orders = $query->result();  
+
+        return $orders; 
+    }
+
+    public function OrderByCustomerId($id)
+    {
+        $query = $this->db->query("SELECT ord_id, ord_date, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
+                                    JOIN `customers`
+                                    ON `ord_cus_id` = `cus_id`
+                                    JOIN `order_status`
+                                    ON `ord_ost_id` = `ost_id`
+                                    WHERE `cus_id` = $id
+                                    ORDER BY `ord_date` DESC;");
+        $orders = $query->result();  
+
+        return $orders; 
+    }
+
+    public function OrderByFullname($lastName, $firstName)
+    {
+        $query = $this->db->query("SELECT ord_id, ord_date, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
+                                    JOIN `customers`
+                                    ON `ord_cus_id` = `cus_id`
+                                    JOIN `order_status`
+                                    ON `ord_ost_id` = `ost_id`
+                                    WHERE cus_lastname = \"$lastName\" AND cus_firstname = \"$firstName\"
+                                    ORDER BY `ord_date` DESC;");
+        $orders = $query->result();  
+
+        return $orders; 
+    }
+
+    public function OrderByCustomerName($name)
+    {
+        $query = $this->db->query("SELECT ord_id, ord_date, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
+                                    JOIN `customers`
+                                    ON `ord_cus_id` = `cus_id`
+                                    JOIN `order_status`
+                                    ON `ord_ost_id` = `ost_id`
+                                    WHERE cus_lastname = \"$name\"
+                                    ORDER BY `ord_date` DESC;");
+        $orders = $query->result();  
+
+        return $orders; 
+    }
+
+    public function OrderByCustomerFirstname($name)
+    {
+        $query = $this->db->query("SELECT ord_id, ord_date, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
+                                    JOIN `customers`
+                                    ON `ord_cus_id` = `cus_id`
+                                    JOIN `order_status`
+                                    ON `ord_ost_id` = `ost_id`
+                                    WHERE cus_firstname = \"$name\"
+                                    ORDER BY `ord_date` DESC;");
+        $orders = $query->result();  
+
+        return $orders; 
+    }
+
+    public function OrderByParameters($data)
+    {
+        $query = $this->db->query("SELECT ord_id, ord_date, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
+                                    JOIN `customers`
+                                    ON `ord_cus_id` = `cus_id`
+                                    JOIN `order_status`
+                                    ON `ord_ost_id` = `ost_id`
+                                    $data");
+        $orders = $query->result();  
+
+        return $orders; 
+    }
+
     public function OrderByMonthInterval($nb)
     {
         $today =  date('Y-m-d');

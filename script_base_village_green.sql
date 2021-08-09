@@ -34,6 +34,16 @@ CREATE TABLE `suppliers` (
 )
 ENGINE = innoDB;
 
+-- CREATION DE LA TABLE brands --
+
+CREATE TABLE `brands` (
+     `bra_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+     `bra_label` varchar(50) NOT NULL,
+     `bra_sup_id` INT NOT NULL,
+     FOREIGN KEY (`bra_sup_id`) REFERENCES `suppliers`(`sup_id`),
+)
+ENGINE = innoDB;
+
 -- CREATION DE LA TABLE products --
 
 CREATE TABLE `products` (
@@ -50,8 +60,10 @@ CREATE TABLE `products` (
      `pro_modif_date` DATE DEFAULT NULL,
      `pro_sup_id` INT NOT NULL,
      `pro_cat_id` INT NOT NULL,
+     `pro_bra_id` INT NOT NULL,
      FOREIGN KEY (`pro_sup_id`) REFERENCES `suppliers`(`sup_id`),
-     FOREIGN KEY (`pro_cat_id`) REFERENCES `categories`(`cat_id`)
+     FOREIGN KEY (`pro_cat_id`) REFERENCES `categories`(`cat_id`),
+     FOREIGN KEY (`pro_bra_id`) REFERENCES `brands`(`bra_id`)
 )
 ENGINE = innoDB;
 

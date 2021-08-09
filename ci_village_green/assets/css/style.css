@@ -3,7 +3,7 @@
 body
 {
     font-size: 100%;
-    font-family: Helvetica, Arial, sans-serif;
+    font-family: 'Open Sans', Arial, sans-serif;
     background-image: url("http://localhost/ci_village_green/assets/images/BACKGROUND/background village.png");
 }
 
@@ -42,7 +42,12 @@ h4
 
 #navbar
 {
-    width: 80%;
+    align-self: flex-start;
+    justify-self: flex-end;
+    width: 100%;
+    position: relative;
+    right: 22%;
+    top: 5%;
 }
 
 #navbar a:hover
@@ -62,6 +67,14 @@ h4
 {
     background-color: dimgrey;
     font-size: 1.2rem;
+}
+
+#nav-second-row div
+{
+    width: 75%;
+    display: flex;
+    justify-content: space-around;
+    margin-right: 0;
 }
 
 #nav-second-row a
@@ -98,7 +111,8 @@ h4
     border-radius: 10px;
     padding-left: 20%;
     padding-right: 20%;
-    width: 250%;
+    width: 175%;
+    font-size: 0.8rem;
 }
 
 #item-guitar-submenu ul, #item-drums-submenu ul, #item-keyboard-submenu ul, #item-studio-submenu ul, #item-sono-submenu ul, #item-lights-submenu ul, #item-dj-submenu ul, #item-cases-submenu ul, #item-accessories-submenu ul
@@ -129,7 +143,7 @@ h4
 {
 
     z-index: 2;
-    width: 20%;
+    width: 22%;
 }
 
 #navlogo img

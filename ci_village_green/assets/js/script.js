@@ -10,12 +10,12 @@ $(document).ready(function()
 
     !$("#nav-third-row-item-guitar").mouseleave(function()
     {
-        $("#item-guitar-submenu").slideUp("200");
+        $("#item-guitar-submenu").hide("50");
     });
 
     !$("#item-guitar-submenu").mouseleave(function()
     {
-        $("#item-guitar-submenu").slideUp("200");
+        $("#item-guitar-submenu").hide("50");
     });
 
     // Dropdown Drums
@@ -26,12 +26,12 @@ $(document).ready(function()
 
     !$("#nav-third-row-item-drums").mouseleave(function()
     {
-        $("#item-drums-submenu").slideUp("200");
+        $("#item-drums-submenu").hide("50");
     });
 
     !$("#item-drums-submenu").mouseleave(function()
     {
-        $("#item-drums-submenu").slideUp("200");
+        $("#item-drums-submenu").hide("50");
     });
 
     // Dropdown Keyboard
@@ -42,12 +42,12 @@ $(document).ready(function()
 
     !$("#nav-third-row-item-keyboard").mouseleave(function()
     {
-        $("#item-keyboard-submenu").slideUp("200");
+        $("#item-keyboard-submenu").hide("50");
     });
 
     !$("#item-keyboard-submenu").mouseleave(function()
     {
-        $("#item-keyboard-submenu").slideUp("200");
+        $("#item-keyboard-submenu").hide("50");
     });
 
     // Dropdown Studio
@@ -58,12 +58,12 @@ $(document).ready(function()
 
     !$("#nav-third-row-item-studio").mouseleave(function()
     {
-        $("#item-studio-submenu").slideUp("200");
+        $("#item-studio-submenu").hide("50");
     });
 
     !$("#item-studio-submenu").mouseleave(function()
     {
-        $("#item-studio-submenu").slideUp("200");
+        $("#item-studio-submenu").hide("50");
     });
 
     // Dropdown Sono
@@ -74,12 +74,12 @@ $(document).ready(function()
 
     !$("#nav-third-row-item-sono").mouseleave(function()
     {
-        $("#item-sono-submenu").slideUp("200");
+        $("#item-sono-submenu").hide("50");
     });
 
     !$("#item-sono-submenu").mouseleave(function()
     {
-        $("#item-sono-submenu").slideUp("200");
+        $("#item-sono-submenu").hide("50");
     });
 
     // Dropdown Lights
@@ -90,12 +90,12 @@ $(document).ready(function()
 
     !$("#nav-third-row-item-lights").mouseleave(function()
     {
-        $("#item-lights-submenu").slideUp("200");
+        $("#item-lights-submenu").hide("50");
     });
 
     !$("#item-lights-submenu").mouseleave(function()
     {
-        $("#item-lights-submenu").slideUp("200");
+        $("#item-lights-submenu").hide("50");
     });
 
     // Dropdown DJ
@@ -106,12 +106,12 @@ $(document).ready(function()
 
     !$("#nav-third-row-item-dj").mouseleave(function()
     {
-        $("#item-dj-submenu").slideUp("200");
+        $("#item-dj-submenu").hide("50");
     });
 
     !$("#item-dj-submenu").mouseleave(function()
     {
-        $("#item-dj-submenu").slideUp("200");
+        $("#item-dj-submenu").hide("50");
     });
 
     // Dropdown Cases
@@ -122,12 +122,12 @@ $(document).ready(function()
 
     !$("#nav-third-row-item-cases").mouseleave(function()
     {
-        $("#item-cases-submenu").slideUp("200");
+        $("#item-cases-submenu").hide("50");
     });
 
     !$("#item-cases-submenu").mouseleave(function()
     {
-        $("#item-cases-submenu").slideUp("200");
+        $("#item-cases-submenu").hide("50");
     });
 
     // Dropdown Cases
@@ -138,12 +138,12 @@ $(document).ready(function()
 
     !$("#nav-third-row-item-accessories").mouseleave(function()
     {
-        $("#item-accessories-submenu").slideUp("200");
+        $("#item-accessories-submenu").hide("50");
     });
 
     !$("#item-accessories-submenu").mouseleave(function()
     {
-        $("#item-accessories-submenu").slideUp("200");
+        $("#item-accessories-submenu").hide("50");
     });
 
     // FIN NAVBAR

@@ -10,6 +10,8 @@
         </header>
     </div>
 
+    <p class="m-0">Affichage par période</p>
+
     <!-- Filters -->
     <div class="row">
         <div class="col-sm-12 d-flex justify-content-start justify-content-sm-around justify-content-lg-start flex-wrap my-3 px-3 ">
@@ -23,6 +25,31 @@
             <a class="col-lg-2 btn btn-success me-2 mt-2" href="<?php echo site_url('Orders/RunningOrder');?>">En cours</a>
         </div>
     </div>
+    <hr>
+
+    <p>Recherche par un ou plusieurs critères</p>
+    <div class="row mb-3 align-items-center">
+        <?php echo form_open('Orders/OrderList', 'method="POST" class="row align-items-center"');?>
+            <!-- Order ID field -->
+            <div class="col-sm-12 col-lg-2 pe-lg-2">
+                <input class="form-control" type="text" name="ord_id" id="ord_id" placeholder="N° commande">
+            </div>
+            <div class="col-sm-12 col-lg-2 pe-lg-2">
+                <input class="form-control" type="text" name="cus_id" id="cus_id" placeholder="N° client">
+            </div>
+            <div class="col-sm-12 col-lg-2 pe-lg-2">
+                <input class="form-control" type="text" name="cus_lastname" id="cus_lastname" placeholder="Nom client">
+            </div>
+            <div class="col-sm-12 col-lg-2 pe-lg-2">
+                <input class="form-control" type="text" name="cus_firstname" id="cus_firstname" placeholder="Prénom client">
+            </div>
+
+            <!-- Submit button -->
+            <div class="col-sm-12 col-lg-2 ps-lg-1 py-1">
+                <button class="btn text-white form-control blue-link py-1 lh-lg" type="submit" id="submit" value="submit">Rechercher</button>
+            </div>
+        </form>     
+    </div>
 
     <!-- Order List -->
     <section class="row justify-content-center px-3">
@@ -30,7 +57,7 @@
             <table id="table-orders" class="col-sm-10 table table-hover align-middle text-center overflow-hidden my-0">
                 <thead>
                     <tr class="col-sm-10 bg-grey">
-                    <th scope="col">ID commande</th>
+                    <th scope="col">Commande</th>
                     <th scope="col">Date d'ordre</th>
                     <th scope="col">Nom client</th>  
                     <th scope="col">Remise (%)</th>
@@ -70,5 +97,6 @@
         <div class="col">
             <p>Nombre de lignes : <?php echo $this->db->affected_rows(); ?></p>
         </div>
+        <?php var_dump($_POST);?>
     </div>
 </div>

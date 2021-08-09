@@ -5,6 +5,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="http://localhost/ci_village_green/assets/css/style.css">
     <title>Village Green, des musiciens au service des musiciens</title>
 </head>
@@ -21,7 +24,7 @@
                     <!-- </a> -->
                 </div>
 
-                <div id="navbar" class=" p-0">
+                <div id="navbar" class="p-0">
 
                     <div class="row m-0" id="nav-first-row">
                         <div class="container navbar d-flex justify-content-end p-0" id="nav-first-row-div">
@@ -40,7 +43,7 @@
                     </div>
 
                     <div class="row m-0" id="nav-second-row">
-                        <div class="container navbar d-flex justify-content-around p-1">
+                        <div class="container navbar p-1">
                             <a class="nav-link fw-bold py-1" href="#">Produits</a>
                             <a class="nav-link fw-bold py-1" href="#">Services</a>
                             <a class="nav-link fw-bold py-1" href="#">Aide</a>
@@ -49,9 +52,9 @@
                     </div>
 
                     <div class="row m-0" id="nav-third-row">
-                        <div class="container navbar d-flex justify-content-around p-1">
+                        <div class="container navbar d-flex justify-content-end p-1">
                             <div id="nav-third-row-item-guitar">
-                                <a id="item-guitar" class="nav-link pr-1" href="#">Guit/Bass</a>   
+                                <a id="item-guitar" class="nav-link pr-1 px-3 me-2" href="#">Guit/Bass</a>   
                                 <div id="item-guitar-submenu">
                                     <ul>
                                         <li><a class="nav-link px-1 py-1" href="<?php echo site_url('Produits/list/8');?>">Guitares Electriques</li></a>
@@ -66,7 +69,7 @@
                                 </div>
                             </div>
                             <div id="nav-third-row-item-drums">
-                                <a id="item-drums" class="nav-link pr-1" href="#">Batteries</a>
+                                <a id="item-drums" class="nav-link pr-1 px-3 me-2" href="#">Batteries</a>
                                 <div id="item-drums-submenu">
                                     <ul>
                                         <li><a class="nav-link px-1 py-1" href="#">Batteries Electriques</li></a>
@@ -75,7 +78,7 @@
                                 </div>
                             </div>
                             <div id="nav-third-row-item-keyboard">
-                                <a id="item-keyboard" class="nav-link pr-1" href="#">Claviers</a>
+                                <a id="item-keyboard" class="nav-link pr-1 px-3 me-2" href="#">Claviers</a>
                                 <div id="item-keyboard-submenu">
                                     <ul>
                                         <li><a class="nav-link px-1 py-1" href="#">Claviers Arrangeurs</li></a>
@@ -85,7 +88,7 @@
                                 </div>
                             </div>
                             <div id="nav-third-row-item-studio">
-                                <a id="item-studio" class="nav-link pr-1" href="#">Studio</a>
+                                <a id="item-studio" class="nav-link pr-1 px-3 me-2" href="#">Studio</a>
                                 <div id="item-studio-submenu">
                                     <ul>
                                         <li><a class="nav-link px-1 py-1" href="#">Enceintes de monitoring</li></a>
@@ -97,7 +100,7 @@
                                 </div>
                             </div>
                             <div id="nav-third-row-item-sono">
-                                <a id="item-sono" class="nav-link pr-1" href="#">Sono</a>
+                                <a id="item-sono" class="nav-link pr-1 px-3 me-2" href="#">Sono</a>
                                 <div id="item-sono-submenu">
                                     <ul>
                                         <li><a class="nav-link px-1 py-1" href="#">Amplis de puissance</li></a>
@@ -109,7 +112,7 @@
                                 </div>
                             </div>
                             <div id="nav-third-row-item-lights">
-                                <a id="item-lights" class="nav-link pr-1" href="#">Eclairages</a>
+                                <a id="item-lights" class="nav-link pr-1 px-3 me-2" href="#">Eclairages</a>
                                 <div id="item-lights-submenu">
                                     <ul>
                                         <li><a class="nav-link px-1 py-1" href="#">Kits et packs lumières</li></a>
@@ -121,7 +124,7 @@
                                 </div>
                             </div>
                             <div id="nav-third-row-item-dj">
-                                <a id="item-dj" class="nav-link pr-1" href="#">DJ</a>
+                                <a id="item-dj" class="nav-link pr-1 px-3 me-2" href="#">DJ</a>
                                 <div id="item-dj-submenu">
                                     <ul>
                                         <li><a class="nav-link px-1 py-1" href="#">Casques</li></a>
@@ -133,7 +136,7 @@
                                 </div>
                             </div>
                             <div id="nav-third-row-item-cases">
-                                <a id="item-cases" class="nav-link pr-1" href="#">Cases</a>
+                                <a id="item-cases" class="nav-link pr-1 px-3 me-2" href="#">Cases</a>
                                 <div id="item-cases-submenu">
                                     <ul>
                                         <li><a class="nav-link px-1 py-1" href="#">DJ</li></a>
@@ -145,7 +148,7 @@
                                 </div>
                             </div>
                             <div id="nav-third-row-item-accessories">
-                                <a id="item-accessories" class="nav-link pr-1" href="#">Accessoires</a>
+                                <a id="item-accessories" class="nav-link pr-1 px-3 me-2" href="#">Accessoires</a>
                                 <div id="item-accessories-submenu">
                                     <ul>
                                         <li><a class="nav-link px-1 py-1" href="#">Accessoires claviers</li></a>

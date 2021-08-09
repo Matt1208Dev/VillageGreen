@@ -30,7 +30,7 @@ INSERT INTO `products`(`pro_ref`, `pro_label`, `pro_desc`, `pro_ppet`, `pro_spet
 
 -- Table order status --
 
-INSERT INTO `order_status`(`ost_label`) VALUES ("En cours de traitement"), ("En préparation"), ("Expédiée"), ("Livrée"), ("Facturée");
+INSERT INTO `order_status`(`ost_label`) VALUES ("En cours de traitement"), ("En préparation"), ("Expédiée"), ("Livrée"), ("Facturée"), ("Retard de paiement"), ("Soldée");
 
 -- Table orders --
 
