@@ -89,13 +89,13 @@
                     <div class="col-sm-6 border-top border-4">
                         <label for="pro_ppet" class="mb-0 mt-2 fw-bold product-card-title">PRIX D'ACHAT HT</label>
                         <input id="pro_ppet" name="pro_ppet" class="form-control mb-2 bg-transparent" value="<?php echo set_value('pro_ppet', $product[0]->pro_ppet) ?>">
-                    </div>
-                    <?php echo form_error('pro_ppet'); ?>
+                        <?php echo form_error('pro_ppet'); ?>
+                    </div>               
                     <div class="col-sm-6 border-top border-4">
                         <label for="pro_spet" class="mb-0 mt-2 fw-bold product-card-title">PRIX DE VENTE HT</label>
                         <input id="pro_spet" name="pro_spet" class="form-control mb-2 bg-transparent" value="<?php echo set_value('pro_spet', $product[0]->pro_spet) ?>">
+                        <?php echo form_error('pro_spet'); ?>
                     </div>
-                    <?php echo form_error('pro_spet'); ?>
                 </div>
 
                 <!-- Row 5/6 -->

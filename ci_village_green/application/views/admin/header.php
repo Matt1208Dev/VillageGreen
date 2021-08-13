@@ -26,8 +26,8 @@
     </button>
     <div class="collapse navbar-collapse d-lg-flex justify-content-lg-end" id="navbarNavAltMarkup">
       <div class="navbar-nav">
+        <a class="nav-link text-dark text-deco-hover ps-3 ps-lg-2" href="#">Tableau de bord</a>
         <a class="nav-link text-dark text-deco-hover ps-3 ps-lg-2" href="<?php echo site_url('Admin/productList');?>">Produits</a>
-        <a class="nav-link text-dark text-deco-hover ps-3 ps-lg-2" href="#">Etats</a>
         <a class="nav-link text-dark text-deco-hover ps-3 ps-lg-2" href="<?php echo site_url('Orders/OrderList');?>">Commandes clients</a>
         <a class="nav-link text-dark text-deco-hover ps-3 ps-lg-2" href="<?php echo site_url('Admin/sessionDestroy');?>">Déconnexion</a>
       </div>

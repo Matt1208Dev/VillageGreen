@@ -46,7 +46,7 @@
         </div>
 
         <!-- 2eme ligne -->
-        <div id="categories-sec-line" class="d-flex flex-row justify-content-center">
+        <div id="categories-sec-line" class="d-flex flex-row bg-white">
             <div class="item-categories">
                 <img class=" img-fluid" src="<?php echo base_url('assets/images/BODY/CATEGORIES sono.png');?>" alt="photo de la catégorie sono" title="catégorie sono">
                 <img class=" img-fluid rollover" src="<?php echo base_url('assets/images/BODY/CATEGORIES ROLL OVER sono.png');?>" alt="photo de la catégorie sono" title="catégorie sono">
@@ -69,7 +69,7 @@
 
     </section>
 
-    <!-- Best sellers et partenaires -->
+    <!-- Best sellers & partners -->
     <section class="row">
 
         <!-- Best Sellers -->
@@ -79,24 +79,24 @@
                 <h1>Nos meilleures ventes</h1>
             </header>
 
-            <div id="group-items-categories" class="d-flex flex-row justify-content-center">
-                <div class="item-categories">
+            <div id="group-items-categories" class="d-flex flex-row justify-content-center px-3">
+                <div class="item-categories bg-transparent">
                     <img class=" img-fluid px-1" src="<?php echo base_url('assets/images/BODY/TOP VENTES guitare.png');?>" alt="photo de la catégorie TOP VENTES guitare" title="TOP VENTES guitare"> 
                     <img class=" img-fluid px-1 rollover" src="<?php echo base_url('assets/images/BODY/TOP VENTES ROLL OVER guitare.png');?>" alt="photo de la catégorie TOP VENTES guitare" title="TOP VENTES guitare"> 
                 </div>
-                <div class="item-categories">
+                <div class="item-categories bg-transparent">
                     <img class=" img-fluid px-1" src="<?php echo base_url('assets/images/BODY/TOP VENTES saxo.png');?>" alt="photo de la catégorie TOP VENTES saxo" title="TOP VENTES saxo"> 
                     <img class=" img-fluid px-1 rollover" src="<?php echo base_url('assets/images/BODY/TOP VENTES ROLL OVER saxo.png');?>" alt="photo de la catégorie TOP VENTES saxo" title="TOP VENTES saxo"> 
                 </div>
-                <div class="item-categories">
+                <div class="item-categories bg-transparent">
                     <img class=" img-fluid px-1" src="<?php echo base_url('assets/images/BODY/TOP VENTES piano.png');?>" alt="photo de la catégorie TOP VENTES piano" title="TOP VENTES piano"> 
                     <img class=" img-fluid px-1 rollover" src="<?php echo base_url('assets/images/BODY/TOP VENTES ROLL OVER piano.png');?>" alt="photo de la catégorie TOP VENTES piano" title="TOP VENTES piano"> 
                 </div>
             </div>
         </section>
 
-        <!-- Partenaires -->
-        <section id="partners" class="d-flex flex-column">
+        <!-- Partners -->
+        <section id="partners" class="d-flex flex-column px-3">
             <header>
                 <h1>Nos partenaires</h1>
             </header>

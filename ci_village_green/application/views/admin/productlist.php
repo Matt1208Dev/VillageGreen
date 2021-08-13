@@ -38,7 +38,7 @@
                 </div>
                 <div class="col-sm-6">
                     <h6 class="mb-0 mt-2 fw-bold product-card-title">DESCRIPTION</h6>
-                    <p class="mb-2"><?php if(isset($product->pro_desc)){echo substr($product->pro_desc, 0, 255) . '...';} ?></p>
+                    <p class="mb-2"><?php if(isset($product->pro_desc)){echo substr($product->pro_desc, 0, 200) . '...';} ?></p>
                 </div>
             </div>
 

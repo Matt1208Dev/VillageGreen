@@ -23,7 +23,6 @@ body
 #navbar .text-deco-hover:hover
 {
     text-decoration: underline;
-    transition: all 1000ms ease-out;
 }
 
 #product-card

@@ -3,9 +3,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class OrdersModel extends CI_Model
 {
-    public function OrderList()
+    public function AllOrders()
     {
-        $query = $this->db->query("SELECT ord_id, ord_date, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
+        $query = $this->db->query("SELECT ord_id, ord_date,cus_id, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
                                     JOIN `customers`
                                     ON `ord_cus_id` = `cus_id`
                                     JOIN `order_status`
@@ -18,7 +18,7 @@ class OrdersModel extends CI_Model
 
     public function RunningOrder()
     {
-        $query = $this->db->query("SELECT ord_id, ord_date, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
+        $query = $this->db->query("SELECT ord_id, ord_date,cus_id, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
                                     JOIN `customers`
                                     ON `ord_cus_id` = `cus_id`
                                     JOIN `order_status`
@@ -32,7 +32,7 @@ class OrdersModel extends CI_Model
 
     public function OrderById($id)
     {
-        $query = $this->db->query("SELECT ord_id, ord_date, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
+        $query = $this->db->query("SELECT ord_id, ord_date,cus_id, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
                                     JOIN `customers`
                                     ON `ord_cus_id` = `cus_id`
                                     JOIN `order_status`
@@ -45,7 +45,7 @@ class OrdersModel extends CI_Model
 
     public function OrderByCustomerId($id)
     {
-        $query = $this->db->query("SELECT ord_id, ord_date, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
+        $query = $this->db->query("SELECT ord_id, ord_date,cus_id, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
                                     JOIN `customers`
                                     ON `ord_cus_id` = `cus_id`
                                     JOIN `order_status`
@@ -59,7 +59,7 @@ class OrdersModel extends CI_Model
 
     public function OrderByFullname($lastName, $firstName)
     {
-        $query = $this->db->query("SELECT ord_id, ord_date, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
+        $query = $this->db->query("SELECT ord_id, ord_date,cus_id, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
                                     JOIN `customers`
                                     ON `ord_cus_id` = `cus_id`
                                     JOIN `order_status`
@@ -73,7 +73,7 @@ class OrdersModel extends CI_Model
 
     public function OrderByCustomerName($name)
     {
-        $query = $this->db->query("SELECT ord_id, ord_date, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
+        $query = $this->db->query("SELECT ord_id, ord_date,cus_id, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
                                     JOIN `customers`
                                     ON `ord_cus_id` = `cus_id`
                                     JOIN `order_status`
@@ -87,7 +87,7 @@ class OrdersModel extends CI_Model
 
     public function OrderByCustomerFirstname($name)
     {
-        $query = $this->db->query("SELECT ord_id, ord_date, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
+        $query = $this->db->query("SELECT ord_id, ord_date,cus_id, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
                                     JOIN `customers`
                                     ON `ord_cus_id` = `cus_id`
                                     JOIN `order_status`
@@ -101,7 +101,7 @@ class OrdersModel extends CI_Model
 
     public function OrderByParameters($data)
     {
-        $query = $this->db->query("SELECT ord_id, ord_date, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
+        $query = $this->db->query("SELECT ord_id, ord_date,cus_id, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
                                     JOIN `customers`
                                     ON `ord_cus_id` = `cus_id`
                                     JOIN `order_status`
@@ -117,7 +117,7 @@ class OrdersModel extends CI_Model
         $today =  date('Y-m-d');
         $interval = strftime('%Y-%m-%d', strtotime('-'. $nb. ' month'));
 
-        $query = $this->db->query("SELECT ord_id, ord_date, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
+        $query = $this->db->query("SELECT ord_id, ord_date,cus_id, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
                                     JOIN `customers`
                                     ON `ord_cus_id` = `cus_id`
                                     JOIN `order_status`
@@ -134,7 +134,7 @@ class OrdersModel extends CI_Model
         $today =  date('Y-m-d');
         $interval = strftime('%Y-%m-%d', strtotime('-'. $nb. ' day'));
 
-        $query = $this->db->query("SELECT ord_id, ord_date, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
+        $query = $this->db->query("SELECT ord_id, ord_date,cus_id, cus_lastname, cus_firstname, ord_discount, ord_pay_method, ord_bil_date, ost_label FROM `orders`
                                     JOIN `customers`
                                     ON `ord_cus_id` = `cus_id`
                                     JOIN `order_status`
@@ -148,7 +148,7 @@ class OrdersModel extends CI_Model
 
     public function OrderDetails($id)
     {
-        $query = $this->db->query("SELECT `pro_id`, `pro_photo`, `pro_ref`, `pro_desc`, `ode_qty`, `ode_tot_exc_tax`, `ord_discount`, `ode_tax_rate`, `ord_id`, `cus_lastname`, `cus_firstname`, `cus_bil_address`, `cus_bil_postalcode`, `cus_bil_city`, `cus_phone`, `cus_mail`, `cus_del_address`, `cus_del_postalcode`, `cus_del_city`, `ord_pay_method`, `ost_label`
+        $query = $this->db->query("SELECT `pro_id`, `pro_photo`, `pro_ref`, `pro_desc`, `ode_qty`, `ode_tot_exc_tax`, `ord_discount`, `ode_tax_rate`, `ord_id`, `cus_id`, `cus_lastname`, `cus_firstname`, `cus_bil_address`, `cus_bil_postalcode`, `cus_bil_city`, `cus_phone`, `cus_mail`, `cus_del_address`, `cus_del_postalcode`, `cus_del_city`, `ord_pay_method`, `ost_label`
                                     FROM `orders`
                                     JOIN `order_details`
                                     ON `ode_ord_id` = `ord_id`

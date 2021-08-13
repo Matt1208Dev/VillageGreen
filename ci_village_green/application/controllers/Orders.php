@@ -8,18 +8,12 @@ class Orders extends CI_Controller
         // Contrôle de la variable de session userId
         if(isset($this->session->userId) && $this->session->userId == 'Admin')
         {
-            // $_GET ne contient pas de valeurs
+            // $_POST ne contient pas de valeurs
             if(!$this->input->post())
             {
-            // On charge toutes les commandes
-            $this->load->model('OrdersModel');
-            $query = $this->OrdersModel->OrderList();
-
-            $aView["list"] = $query;
-
-            $this->load->view('Admin/header');
-            $this->load->view('Admin/OrderList', $aView);
-            $this->load->view('Admin/footer');
+                $this->load->view('Admin/header');
+                $this->load->view('Admin/OrderSearchForm');
+                $this->load->view('Admin/footer');
             }
             else
             {
@@ -35,6 +29,7 @@ class Orders extends CI_Controller
                     $aView["list"] = $query;
 
                     $this->load->view('Admin/header');
+                    $this->load->view('Admin/OrderSearchForm', $aView);
                     $this->load->view('Admin/OrderList', $aView);
                     $this->load->view('Admin/footer');
                 }
@@ -49,6 +44,7 @@ class Orders extends CI_Controller
                     $aView["list"] = $query;
 
                     $this->load->view('Admin/header');
+                    $this->load->view('Admin/OrderSearchForm', $aView);
                     $this->load->view('Admin/OrderList', $aView);
                     $this->load->view('Admin/footer');
                 }
@@ -64,6 +60,7 @@ class Orders extends CI_Controller
                     $aView["list"] = $query;
 
                     $this->load->view('Admin/header');
+                    $this->load->view('Admin/OrderSearchForm', $aView);
                     $this->load->view('Admin/OrderList', $aView);
                     $this->load->view('Admin/footer');
                 }
@@ -78,6 +75,7 @@ class Orders extends CI_Controller
                     $aView["list"] = $query;
 
                     $this->load->view('Admin/header');
+                    $this->load->view('Admin/OrderSearchForm', $aView);
                     $this->load->view('Admin/OrderList', $aView);
                     $this->load->view('Admin/footer');
                 }
@@ -92,10 +90,16 @@ class Orders extends CI_Controller
                     $aView["list"] = $query;
 
                     $this->load->view('Admin/header');
+                    $this->load->view('Admin/OrderSearchForm', $aView);
                     $this->load->view('Admin/OrderList', $aView);
                     $this->load->view('Admin/footer');
                 }
-
+                else if($this->input->post('ord_id') === '' && $this->input->post('cus_id') === '' && $this->input->post('cus_firstname') === '' && $this->input->post('cus_lastname') === '')
+                {
+                    $this->load->view('Admin/header');
+                    $this->load->view('Admin/OrderSearchForm');
+                    $this->load->view('Admin/footer');
+                }
             }
             
         }
@@ -114,13 +118,41 @@ class Orders extends CI_Controller
 
             $aView["list"] = $query;
 
-            $this->load->view('Admin/header');
-            $this->load->view('Admin/OrderList', $aView);
-            $this->load->view('Admin/footer');
+            if($this->db->affected_rows() != 0)
+            {
+                $this->load->view('Admin/header');
+                $this->load->view('Admin/OrderSearchForm', $aView);
+                $this->load->view('Admin/OrderList', $aView);
+                $this->load->view('Admin/footer');
+            }
+            else
+            {
+                $this->load->view('Admin/header');
+                $this->load->view('Admin/OrderSearchForm');
+                $this->load->view('Admin/footer');
+            }
         }
         else
         {
             $this->load->view('admin/login');
+        }
+    }
+
+    public function AllOrders()
+    {
+        // Contrôle de la variable de session userId
+        if(isset($this->session->userId) && $this->session->userId == 'Admin')
+        {
+            // On charge toutes les commandes
+            $this->load->model('OrdersModel');
+            $query = $this->OrdersModel->AllOrders();
+
+            $aView["list"] = $query;
+
+            $this->load->view('Admin/header');
+            $this->load->view('Admin/OrderSearchForm');
+            $this->load->view('Admin/OrderList', $aView);
+            $this->load->view('Admin/footer');
         }
     }
 
@@ -133,9 +165,19 @@ class Orders extends CI_Controller
 
             $aView["list"] = $query;
 
-            $this->load->view('Admin/header');
-            $this->load->view('Admin/OrderList', $aView);
-            $this->load->view('Admin/footer');
+            if($this->db->affected_rows() != 0)
+            {
+                $this->load->view('Admin/header');
+                $this->load->view('Admin/OrderSearchForm', $aView);
+                $this->load->view('Admin/OrderList', $aView);
+                $this->load->view('Admin/footer');
+            }
+            else
+            {
+                $this->load->view('Admin/header');
+                $this->load->view('Admin/OrderSearchForm');
+                $this->load->view('Admin/footer');
+            }
         }
         else
         {
@@ -151,10 +193,20 @@ class Orders extends CI_Controller
             $query = $this->OrdersModel->OrderByDayInterval($nb);
 
             $aView["list"] = $query;
-
-            $this->load->view('Admin/header');
-            $this->load->view('Admin/OrderList', $aView);
-            $this->load->view('Admin/footer');
+            
+            if($this->db->affected_rows() != 0)
+            {
+                $this->load->view('Admin/header');
+                $this->load->view('Admin/OrderSearchForm', $aView);
+                $this->load->view('Admin/OrderList', $aView);
+                $this->load->view('Admin/footer');
+            }
+            else
+            {
+                $this->load->view('Admin/header');
+                $this->load->view('Admin/OrderSearchForm');
+                $this->load->view('Admin/footer');
+            }
         }
         else
         {
@@ -172,6 +224,7 @@ class Orders extends CI_Controller
             $aView["order"] = $query;
 
             $this->load->view('Admin/header');
+            $this->load->view('Admin/OrderSearchForm', $aView);
             $this->load->view('Admin/orderDetails', $aView);
             $this->load->view('Admin/footer');
         }

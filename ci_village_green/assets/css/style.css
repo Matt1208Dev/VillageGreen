@@ -35,6 +35,12 @@ h4
     background-color: rgba(255, 255, 255, 0.8);
     overflow: visible;
     max-width: 1200px;
+    box-shadow: -2px 1px 8px #000;
+}
+
+.bg-grey
+{
+    background-color: rgb(200, 200, 200);
 }
 
 /* HEADER */
@@ -48,6 +54,7 @@ h4
     position: relative;
     right: 22%;
     top: 5%;
+    background-color: transparent;
 }
 
 #navbar a:hover
@@ -61,6 +68,35 @@ h4
     color: black;
     font-weight: 500;
     font-size: 1rem;
+}
+
+#item-client
+{
+    position: relative;
+}
+
+#item-client-submenu
+{
+    display: none;
+    position: absolute;
+    z-index: 10;
+    left: -100%;
+    top: 100%;
+}
+
+#item-client-submenu input, #item-client-submenu label, #item-client-submenu a 
+{
+    font-size: 0.8rem;
+}
+
+#item-client-submenu p
+{
+    font-size: 0.7rem;
+}
+
+#item-client-submenu h6 
+{
+    font-size: 0.8rem;
 }
 
 #nav-second-row
@@ -108,7 +144,7 @@ h4
     left: 0%;
     opacity: 1;
     background-color: #fff;
-    border-radius: 10px;
+    border-radius: 5px;
     padding-left: 20%;
     padding-right: 20%;
     width: 175%;
@@ -149,7 +185,7 @@ h4
 #navlogo img
 {
     z-index: 2;
-    width: 125%;
+    width: 110%;
 }
 
 
@@ -184,6 +220,7 @@ h4
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
     padding-left: 2%;
     padding-right: 2%;
 }
@@ -246,6 +283,41 @@ h4
     justify-content: center;
 }
 
+@media screen and (max-width: 768px) {
+    
+    /* #firstr
+    {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #offers, #social-networks, #financial-partners
+    {
+        width: 100%;
+
+    }
+
+    #offers h5, #social-networks h5, #financial-partners h5
+    {
+        font-size: 2.5rem;
+
+    }
+
+    .mail-form
+    {
+        width: 100%;
+    } */
+
+    #contact-us, #infos, #useful, #more
+{
+    width: 100%;
+    padding-left: 2%;
+}
+}
+
+
+
 #financial-partners img
 {
     height: 1.8rem;
@@ -256,6 +328,7 @@ h4
 {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
     padding-top: 1%;
 }
 
@@ -364,7 +437,7 @@ h4
 .item-categories
 {
     position: relative;
-    width: 25%;
+    width: auto;
     height: auto;
     background-color: #fff;
 }
@@ -375,6 +448,8 @@ h4
     top: 0;
     left: 0;
     opacity: 0;
+    width: 100%;
+    height: auto;
 }
 
 .rollover:hover
@@ -620,3 +695,49 @@ Affichage liste produit*/
     height: auto;
 }
 
+/* Page "signUp" */
+
+#phone-form-box
+{
+    background-color: rgb(189, 189, 189);
+    
+}
+
+.phone-form-box-img
+{
+    padding-left: 0;
+    padding-right: 0;
+    display: flex;
+    justify-content: center;
+}
+
+#signup-submit
+{
+    /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f3c5bd+0,ff6600+0,ff6600+0,e86c57+1,ff6600+17,ff6600+17,ea2803+43,ea2803+49,ea2803+62,c72200+99 */
+    background: rgb(229,129,111);
+    background: -moz-linear-gradient(top, rgba(229,129,111,1) 0%, rgba(225,60,31,1) 9%, rgba(206,82,0,1) 40%, rgba(188,33,2,1) 77%, rgba(164,27,0,1) 100%);
+    background: -webkit-linear-gradient(top, rgba(229,129,111,1) 0%,rgba(225,60,31,1) 9%,rgba(206,82,0,1) 40%,rgba(188,33,2,1) 77%,rgba(164,27,0,1) 100%);
+    background: linear-gradient(to bottom, rgba(229,129,111,1) 0%,rgba(225,60,31,1) 9%,rgba(206,82,0,1) 40%,rgba(188,33,2,1) 77%,rgba(164,27,0,1) 100%);
+}
+
+#signup-submit:hover
+{
+    opacity: 0.9;
+    transition: opacity 400ms ease-out;
+}
+
+@media screen and (max-width: 1024px) {
+    
+    body
+    {
+        font-size: 0.9rem;
+    }
+}
+
+@media screen and (max-width: 768px) {
+    
+    body
+    {
+        font-size: 0.9rem;
+    }
+}

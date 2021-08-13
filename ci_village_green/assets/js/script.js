@@ -2,6 +2,22 @@ $(document).ready(function()
 {
     // NAVBAR
 
+    // Modal "Espace client"
+    $("#item-client").hover(function()
+    {
+        $("#item-client-submenu").addClass('d-flex').slideDown();
+    });
+
+    !$("#item-client").mouseleave(function()
+    {
+        $("#item-client-submenu").removeClass('d-flex');
+    });
+
+    !$("#item-client-submenu").mouseleave(function()
+    {
+        $("#item-client-submenu").removeClass('d-flex');
+    });
+
     // Dropdown Guitar/bass
     $("#item-guitar").hover(function()
     {

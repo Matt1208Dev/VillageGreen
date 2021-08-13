@@ -1,13 +1,14 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Produits extends CI_Controller {
+class Produits extends CI_Controller
+{
 
     public function accueil()
     {
-        $this->load->view('header');
+        $this->load->view('public/templates/header');
         $this->load->view('accueil');
-        $this->load->view('footer');
+        $this->load->view('public/templates/footer');
     }
 
     public function list($catId)
@@ -17,9 +18,9 @@ class Produits extends CI_Controller {
 
         $View["liste"] = $list;
 
-        $this->load->view('header');
+        $this->load->view('public/templates/header');
         $this->load->view('list', $View);
-        $this->load->view('footer');
+        $this->load->view('public/templates/footer');
     }
 
     public function productDetails($id)
@@ -29,10 +30,8 @@ class Produits extends CI_Controller {
 
         $View["product"] = $product;
 
-        $this->load->view('header');
+        $this->load->view('public/templates/header');
         $this->load->view('productDetails', $View);
-        $this->load->view('footer');
+        $this->load->view('public/templates/footer');
     }
-
-    
 }
