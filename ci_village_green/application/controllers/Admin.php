@@ -82,7 +82,6 @@ class Admin extends CI_Controller
                     $View["categories"] = $categories;
 
                     $catId = $this->input->post('subcategory-selector');
-                    // $this->load->model('ProduitsModel');
                     $list = $this->ProduitsModel->productList($catId);
                     $View["list"] = $list;
 

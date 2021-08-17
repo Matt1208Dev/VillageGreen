@@ -2,7 +2,7 @@ $(document).ready(function()
 {
     // NAVBAR
 
-    // Modal "Espace client"
+    // Modal1 "Espace client"
     $("#item-client").hover(function()
     {
         $("#item-client-submenu").addClass('d-flex').slideDown();
@@ -16,6 +16,22 @@ $(document).ready(function()
     !$("#item-client-submenu").mouseleave(function()
     {
         $("#item-client-submenu").removeClass('d-flex');
+    });
+
+    // Modal2 "Espace client"
+    $("#item-client").hover(function()
+    {
+        $("#item-client-submenu2").addClass('d-flex').slideDown();
+    });
+
+    !$("#item-client").mouseleave(function()
+    {
+        $("#item-client-submenu2").removeClass('d-flex');
+    });
+
+    !$("#item-client-submenu2").mouseleave(function()
+    {
+        $("#item-client-submenu2").removeClass('d-flex');
     });
 
     // Dropdown Guitar/bass

@@ -1,3 +1,4 @@
+<?php var_dump($_SESSION);?>
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -30,49 +31,79 @@
                         <div class="container navbar d-flex justify-content-end p-0" id="nav-first-row-div">
                                 <a class="nav-link" href="#">Infos</a>
                                 <div id="item-client" class="d-inline-block">
-                                <a class="nav-link" href="#">Espace Client</a>
-                                <div id="item-client-submenu" class="justify-content-center py-3 px-4 bg-white rounded">
-                                    <div class="border-end border-1 border-warning d-flex flex-column align-items-stretch">
-                                        <form action="" class="d-flex flex-column justify-content-between h-100 px-4">
-                                            <header class="px-2 text-center">
-                                                <h6 class=" fw-bold">
-                                                    Etes-vous déjà client chez nous ?
+                                    <a class="nav-link" href="#">Espace Client</a>
+
+                                    <?php   
+                                        if(!isset($_SESSION['logged_in']) || (!$_SESSION['logged_in'])):   
+                                    ?>
+
+                                    <div id="item-client-submenu" class="justify-content-center py-3 px-4 bg-white rounded">                                       
+                                        <div class="border-end border-1 border-warning d-flex flex-column align-items-stretch">
+                                            <?php echo form_open('Customers/login', 'class="d-flex flex-column justify-content-between h-100 px-4"');?>
+                                                <header class="px-2 text-center">
+                                                    <h6 class=" fw-bold">
+                                                        Etes-vous déjà client chez nous ?
+                                                    </h6>
+                                                </header>
+                                                <div class="d-flex flex-column justify-content-center align-content-center px-2">
+                                                    <div class="mb-3">
+                                                        <input class="form-control border" type="email" name="cus_mail" id="email" placeholder="Adresse E-mail">
+                                                    </div>
+                                                    <div class="mb-3">
+                                                        <input class="form-control" type="password" name="cus_pass" id="password" placeholder="Mot de passe">
+                                                    </div>
+                                                    <div class="d-flex align-content-center mb-3">
+                                                        <input class="form-check-input me-1" type="checkbox" name="stay-connected" id="stay-connected" value="yes">
+                                                        <label class="form-check-label" for="stay-connected">Rester connecté</label>
+                                                    </div> 
+                                                    <div class="d-grid">        
+                                                        <input class="nav-link btn mb-1 px-2 text-white fw-bold orange-gradient" type="submit" id="submit" value="Se connecter maintenant">
+                                                    </div>
+                                                        <a class="nav-link px-2 text-center" href="#">Vous avez oublié votre mot de passe ?</a>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        
+                                        <div class="col-6 px-4">
+                                            <header class="text-center">
+                                                <h6 class="mb-1 px-2 fw-bold">
+                                                    N'êtes-vous pas encore client ?
                                                 </h6>
                                             </header>
-                                            <div class="d-flex flex-column justify-content-center align-content-center px-2">
-                                                <div class="mb-3">
-                                                    <input class="form-control border" type="email" name="email" id="email" placeholder="Adresse E-mail">
-                                                </div>
-                                                <div class="mb-3">
-                                                    <input class="form-control" type="password" name="password" id="password" placeholder="Mot de passe">
-                                                </div>
-                                                <div class="d-flex align-content-center mb-3">
-                                                    <input class="form-check-input me-1" type="checkbox" name="stay-connected" id="stay-connected">
-                                                    <label class="form-check-label" for="stay-connected">Rester connecté</label>
-                                                </div> 
-                                                <div class="d-grid">        
-                                                    <input class="nav-link btn text-dark btn-warning mb-1 px-2" type="submit" id="submit" value="Se connecter maintenant">
-                                                </div>
-                                                    <a class="nav-link px-2 text-center" href="#">Vous avez oublié votre mot de passe ?</a>
+                                            <p>
+                                                En tant que client Village Green, vous pouvez suivre vos envois, lire des tests produits exclusifs, évaluer des produits, déposer des petites annonces, gérer vos chèques-cadeaux, devenir partenaires et plus encore.
+                                            </p>
+                                            <div>
+                                                <a class="nav-link btn  text-white fw-bold mb-1 px-2 orange-gradient" role="link" href="<?php echo site_url('Customer/signUp');?>">S'inscrire</a>
                                             </div>
-                                        </form>
-                                    </div>
-                                    
-                                    <div class="col-6 px-4">
-                                        <header class="text-center">
-                                            <h6 class="mb-1 px-2 fw-bold">
-                                                N'êtes-vous pas encore client ?
-                                            </h6>
-                                        </header>
-                                        <p>
-                                            En tant que client Village Green, vous pouvez suivre vos envois, lire des tests produits exclusifs, évaluer des produits, déposer des petites annonces, gérer vos chèques-cadeaux, devenir partenaires et plus encore.
-                                        </p>
-                                        <div>
-                                            <a class="nav-link btn btn-warning text-dark mb-1 px-2" role="link" href="<?php echo site_url('Customer/signUp');?>">S'inscrire</a>
+                                                <a class="nav-link btn" href="#">Plus d'informations</a>
                                         </div>
-                                            <a class="nav-link btn" href="#">Plus d'informations</a>
                                     </div>
-                                </div>    
+
+                                    <?php
+                                        else:
+                                    ?>
+                                    <div id="item-client-submenu2" class="justify-content-center py-3 px-4 bg-white rounded">
+                                        <div class="d-flex flex-column align-items-stretch">                                         
+                                            <header class="px-2 text-center">
+                                                <h6 class=" fw-bold border-bottom pb-3 border-1 border-warning">
+                                                    Mon Compte
+                                                </h6>
+                                            </header>
+                                            <div class="d-flex flex-column justify-content-center align-content-center px-2 mt-2">
+                                                <p class="mb-2">Bonjour, <span class="fw-bold"><?php echo ($_SESSION['username']);?></span></p> 
+                                                <div class="d-grid">        
+                                                    <a class="btn text-white fw-bold mt-1 orange-gradient" role="button" href="">Accéder à mon espace</a>
+                                                    <a class="btn" role="button" href="<?php echo site_url('Customers/logOut');?>">Me déconnecter</a> 
+                                                </div>
+                                            </div>                                        
+                                        </div>
+                                    </div>
+
+                                    <?php 
+                                    endif;
+                                    ?>
+
                                 </div>
                                 <a class="nav-link" href="#">
                                     <img class="img-fluid" src="<?php echo base_url('assets/images/HEADER/picto panier.png');?> " alt="pictogramme panier d'achat" title="Votre panier">

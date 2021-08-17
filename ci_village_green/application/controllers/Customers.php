@@ -77,7 +77,7 @@ class Customers extends CI_Controller
 
     public function login()
     {
-        $this->load->model('Customers');
+        $this->load->model('CustomersModel');
 
         if(!$this->input->post())
         {
@@ -89,9 +89,60 @@ class Customers extends CI_Controller
         else
         {
             $mail = $this->input->post('cus_mail');
-            $checkMail = $this->Customers->checkMail($mail);
-            $checkMail = $this->Customers->checkPass($mail);
-            // A finir et tester sur page blanche
+            $pass = $this->input->post('cus_pass');
+            $stayConnected = $this->input->post('stay-connected');
+            $checkLogin = $this->CustomersModel->checkLogin($mail);
+            $View['checkLogin'] = $checkLogin;
+            $View['stayconnected'] = $stayConnected;
+
+            if($checkLogin)
+            {
+                // Si les mots de passe correspondent
+                if(password_verify($pass, $checkLogin[0]->cus_pass))
+                {
+                    // On initialise ses variables de sessions
+                    $userInfos = array
+                                    (
+                                        'user_id'   => $checkLogin[0]->cus_id,
+                                        'username'  => $checkLogin[0]->cus_firstname,
+                                        'email'     => $checkLogin[0]->cus_mail,
+                                        'type'      => $checkLogin[0]->cus_type,
+                                        'logged_in' => TRUE
+                                    );
+                
+                    $this->session->set_userdata($userInfos);
+
+                    // Si "Rester connecté" est coché
+                    if($stayConnected == 'yes')
+                    {
+                        // On initialise des cookies
+                        set_cookie('user_id', $checkLogin[0]->cus_id, 3600*24*365);
+                        set_cookie('username', $checkLogin[0]->cus_firstname, 3600*24*365);
+                        set_cookie('email', $checkLogin[0]->cus_mail, 3600*24*365);
+                        set_cookie('type', $checkLogin[0]->cus_type, 3600*24*365);
+                        set_cookie('logged_in', TRUE, 3600*24*365);
+                    }
+
+                    redirect('Produits/accueil');
+                }
+                // Si les mots de passe ne correspondent pas
+                else
+                {
+                    
+                }
+            }
+            else
+            {
+
+            }
+
+            $this->load->view('customers/login', $View);
         }
+    }
+
+    public function logOut()
+    {
+        session_destroy();
+        redirect('Produits/accueil');
     }
 }

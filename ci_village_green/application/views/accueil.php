@@ -1,7 +1,7 @@
 <section id="mainContent" class="container px-0">
 
     <!-- Bannière promotionnelle -->
-    <header id="banner" class="d-flex justify-content-center">
+    <header id="banner" class="d-flex justify-content-evenly">
         <div id="banner-gibson">
             <img class="img-fluid" src="<?php echo base_url('assets/images/BODY/pub guitare.png');?>" alt="Remise jusqu'à 15% sur Gibson et Ibanez" title="Remise jusqu'à 15% sur Gibson et Ibanez">
             <img id="banner-gibson-button" class="img-fluid" src="<?php echo base_url('assets/images/BODY/pub guitare bouton blanc.png');?>" alt="bouton en savoir plus" title="En savoir plus">
