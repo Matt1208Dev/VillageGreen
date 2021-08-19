@@ -36,7 +36,19 @@
                 <div class="details-price">
                     <button type="button" role="button" >Ajouter au Panier</button>
                     <p class="label"><b>VOTRE PRIX :</b></p>
-                    <p class="your-price"><b>349 €</b></p>
+                    <p class="your-price"><b><?php  // Affichage du prix selon typologie et coef client
+                                                    if(isset($product[0]->pro_ppet) && isset($customer[0]))
+                                                    {
+                                                        if($customer[0]->cus_type === "Particulier")
+                                                        {
+                                                            echo number_format((($product[0]->pro_ppet + ($product[0]->pro_ppet * $customer[0]->cus_coef/100)) * 1.20), 2, ",", " ") . '€'; 
+                                                        }
+                                                        else if($customer[0]->cus_type === "Professionnel")
+                                                        {
+                                                            echo number_format(($product[0]->pro_ppet + ($product[0]->pro_ppet * $customer[0]->cus_coef/100)), 2, ",", " ") . ' € HT'; 
+                                                        }
+                                                    }
+                                                ?></b></p>
                     <p class="label"><b>PRIX CATALOGUE :</b></p>
                     <p><?php if(isset($product[0]->pro_spet)){echo $product[0]->pro_spet; }?></p>
                 </div>

@@ -1,7 +1,7 @@
 <section id="footer">
 
     <div id="firstr">
-        <div id="offers">
+        <div id="offers" class="col-md-4">
             <h5>Recevez <span class="orange">nos offres exclusives</span></h5>
             <div class="mail-form">
                 <form>
@@ -10,7 +10,7 @@
                 </form>
             </div>
         </div>
-        <div id="social-networks">
+        <div id="social-networks" class="col-md-2">
             <h5><span class="orange">Suivez-nous</span> par ici !</h5>
             <div id="social-picto">
             <a href="http://www.facebook.com">
@@ -21,22 +21,8 @@
             </a>
             </div>
         </div>
-        <div id="financial-partners">
-            <div id="financial-partners-firstr">
-                <img src="<?php echo base_url("assets/images/FOOTER/logo_chronopost.png"); ?>" alt="pictogramme Chronopost" title="Chronopost">
-                <img src="<?php echo base_url("assets/images/FOOTER/logo_banquepop.png"); ?>" alt="pictogramme Banque Populaire" title="Banque Populaire">
-                <img src="<?php echo base_url("assets/images/FOOTER/logo_mastercard.png"); ?>" alt="pictogramme Mastercard" title="Mastercard">
-                <img src="<?php echo base_url("assets/images/FOOTER/logo_visa.png"); ?>" alt="pictogramme Visa" title="Visa">
-                <img src="<?php echo base_url("assets/images/FOOTER/logo_cb.jpg"); ?>" alt="pictogramme Carte bleue" title="Carte bleue">
-                <img src="<?php echo base_url("assets/images/FOOTER/logo_aurore.png"); ?>" alt="pictogramme Aurore" title="Aurore">
-                <img src="<?php echo base_url("assets/images/FOOTER/logo_paypal.png"); ?>" alt="pictogramme Paypal" title="Paypal">
-            </div>
-            <div id="financial-partners-secondr">
-                <img src="<?php echo base_url("assets/images/FOOTER/logo_sofinco.png"); ?>" alt="pictogramme Sofinco" title="Sofinco">
-                <img src="<?php echo base_url("assets/images/FOOTER/logo_kadeos.jpg"); ?>" alt="pictogramme Kadeos" title="Kadeos">
-                <img src="<?php echo base_url("assets/images/FOOTER/logo_maximiles.png"); ?>" alt="pictogramme Maximiles" title="Maximiles">
-                <img src="<?php echo base_url("assets/images/FOOTER/logo_1euro.gif"); ?>" alt="pictogramme 1euro.com" title="1euro.com">
-            </div>
+        <div id="financial-partners" class="col-md-4">
+            <img class="img-fluid" src="<?php echo base_url("assets/images/FOOTER/financial_partners_logos.png"); ?>" alt="Logos des partenaires financiers" title="Partenaires financiers">
         </div>
     </div>
 
