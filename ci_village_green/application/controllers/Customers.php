@@ -79,31 +79,28 @@ class Customers extends CI_Controller
     {
         $this->load->model('CustomersModel');
 
-        if (!$this->input->post()) 
-        {
+        if (!$this->input->post()) {
             // Pas d'entrées dans $_POST, 1er affichage de la page
             $this->load->view('public/templates/header');
-            $this->load->view('accueil');
+            $this->load->view('home');
             $this->load->view('public/templates/footer');
-        } 
-        else 
-        {
+        } else {
             // On récupère les données saisies par l'utilisateur
             $mail = $this->input->post('cus_mail');
             $pass = $this->input->post('cus_pass');
             $stayConnected = $this->input->post('stay-connected');
 
+            // On récupère l'URI de la page qui appelle la fonction
+            $current_uri = substr($this->session->uri, 1);
+
             // On vérifie que le mail saisi renvoi un résultat en bdd
             $checkLogin = $this->CustomersModel->checkLogin($mail);
-            $View['checkLogin'] = $checkLogin;
-            $View['stayconnected'] = $stayConnected;
 
             // Un résultat est trouvé
-            if ($checkLogin) 
-            {
+            if ($checkLogin) {
                 // Si les mots de passe correspondent
-                if (password_verify($pass, $checkLogin[0]->cus_pass)) 
-                {
+                if (password_verify($pass, $checkLogin[0]->cus_pass)) {
+
                     // On initialise ses variables de sessions
                     $userInfos = array(
                         'user_id'   => $checkLogin[0]->cus_id,
@@ -115,18 +112,21 @@ class Customers extends CI_Controller
 
                     $this->session->set_userdata($userInfos);
 
+                    // On initialise des cookies
+                    set_cookie('user_id', $checkLogin[0]->cus_id, 3600 * 24 * 365);
+                    set_cookie('username', $checkLogin[0]->cus_firstname, 3600 * 24 * 365);
+                    set_cookie('email', $checkLogin[0]->cus_mail, 3600 * 24 * 365);
+                    set_cookie('type', $checkLogin[0]->cus_type, 3600 * 24 * 365);
+
                     // Si "Rester connecté" est coché
                     if ($stayConnected == 'yes') {
-                        // On initialise des cookies
-                        set_cookie('user_id', $checkLogin[0]->cus_id, 3600 * 24 * 365);
-                        set_cookie('username', $checkLogin[0]->cus_firstname, 3600 * 24 * 365);
-                        set_cookie('email', $checkLogin[0]->cus_mail, 3600 * 24 * 365);
-                        set_cookie('type', $checkLogin[0]->cus_type, 3600 * 24 * 365);
                         set_cookie('logged_in', TRUE, 3600 * 24 * 365);
                     }
 
-                    // On redirige sur la page d'accueil
-                    redirect('Products/accueil');
+                    // On recharge la vue actuelle
+                    // $current_uri = substr($current_uri, 1);
+                    redirect($current_uri);
+
                 }
                 // Si les mots de passe ne correspondent pas
                 else {
@@ -135,19 +135,18 @@ class Customers extends CI_Controller
                     $View['errorMsg'] = $errorMsg;
                     // On réaffiche la page d'accueil
                     $this->load->view('public/templates/header', $View);
-                    $this->load->view('accueil');
+                    $this->load->view('home');
                     $this->load->view('public/templates/footer');
                 }
-            } 
+            }
             // Pas de résultat
-            else 
-            {
+            else {
                 // Message d'erreur pour le mail
                 $errorMsg['cus_mail'] = 'Email inconnu';
                 $View['errorMsg'] = $errorMsg;
                 // On réaffiche la page d'accueil
                 $this->load->view('public/templates/header', $View);
-                $this->load->view('accueil');
+                $this->load->view('home');
                 $this->load->view('public/templates/footer');
             }
         }
@@ -156,17 +155,23 @@ class Customers extends CI_Controller
     public function logOut()
     {
         session_destroy();
-        redirect('Products/accueil');
+        if (isset($_COOKIE['logged_in'])) {
+            delete_cookie('logged_in');
+        }
+
+        $current_uri = substr($this->session->uri, 1);
+        redirect($current_uri);
+        // redirect('Products/home');
     }
 
     public function isLogged()
     {
+        // On vérifie dans $_SESSION la présence de 'logged_in'
         if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
             return true;
         }
         // On vérifie la présence de cookies de log
-        else if (get_cookie('logged_in', true) === '1') 
-        {
+        else if (get_cookie('logged_in', true) === '1') {
             $cus_id =  get_cookie('user_id', true);
             $cus_firstname = get_cookie('username', true);
             $cus_mail = get_cookie('email', true);
@@ -178,8 +183,7 @@ class Customers extends CI_Controller
             $checkCookies = $this->CustomersModel->checkCustomerCookieLogin($cus_id, $cus_firstname, $cus_mail, $cus_type);
 
             // Elles correspondent
-            if($checkCookies === true)
-            {
+            if ($checkCookies === true) {
                 // On initialise les variables de sessions
                 $userInfos = array(
                     // Le second paramètre (true) de get_cookie() échappe les valeurs récupérées
@@ -195,14 +199,12 @@ class Customers extends CI_Controller
                 return true;
             }
             // Elles ne correspondent pas
-            else 
-            {
+            else {
                 return false;
             }
         }
-        // Pas de cookie trouvé
-        else 
-        {
+        // Pas de cookie trouvé, ni de variable de session 'logged_in'
+        else {
             return false;
         }
     }
@@ -223,8 +225,7 @@ class Customers extends CI_Controller
         $isLogged = $this->isLogged();
 
         // Le client est loggé
-        if ($isLogged === true)
-        {
+        if ($isLogged === true) {
             // Récupération des données client pour affichage dans le formulaire au chargement de la vue
             $id = $_SESSION['user_id'];
             $this->load->model('CustomersModel');
@@ -237,9 +238,7 @@ class Customers extends CI_Controller
                 $this->load->view('public/templates/header');
                 $this->load->view('Customers/myAccount/updateInformation', $View);
                 $this->load->view('public/templates/footer');
-            }
-            else 
-            {
+            } else {
                 // Contrôle de saisie du formulaire
                 $data = $this->input->post();
                 $id = $this->input->post('cus_id');
@@ -258,39 +257,32 @@ class Customers extends CI_Controller
                 $this->form_validation->set_rules('cus_del_city', 'ville', 'required|regex_match[/[a-zA-Z\-\',èàùìòéãõäëïüöâêîôû]{1,50}/]', array('required' => 'Le champ %s n\'est pas complété.', 'regex_match' => 'Attention, seuls les caractères spéciaux suivants sont acceptés : -\',èàùìòéãõäëïüöâêîôû.'));
                 $this->form_validation->set_rules('cus_type', 'statut', 'required', array('required' => 'Merci de cocher un %s.'));
                 $this->form_validation->set_rules('cus_phone', 'numéro de téléphone mobile', 'required|regex_match[/^0[67]{1}[0-9]{8}$/]', array('required' => 'Le champ %s n\'est pas complété.', 'regex_match' => 'Le numéro de téléphone mobile doit être composé de 10 chiffres, commencer par 06 ou 07 et écris au format 06XXXXXXXX.'));
-                
+
                 // Si le champ password a été rempli
-                if($data['cus_pass'] !== '')
-                {
+                if ($data['cus_pass'] !== '') {
                     // On énonce les règles de validation le concernant
                     $this->form_validation->set_rules('cus_pass', 'mot de passe', 'required|regex_match[/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/]', array('required' => 'Le champ %s n\'est pas complété.', 'regex_match' => 'Le mot de passe doit contenir au moins 8 caractères, 1 majuscule, 1 minuscule et un caractères spécial.'));
                     $this->form_validation->set_rules('cus_pass_confirm', 'confirmation mot de passe', "required|regex_match[/" . $_POST['cus_pass'] . "/]", array('required' => 'Le champ %s n\'est pas complété.', 'regex_match' => 'Le mot de passe ne correspond pas à celui saisi précédemment.'));
-                }
-                else
-                {
+                } else {
                     // Sinon on détruit les variables pour ne pas écraser le mot de passe enregistré en bdd
                     unset($data['cus_pass'], $data['cus_pass_confirm']);
                 }
 
                 // Contrôle de saisie
-                if ($this->form_validation->run() == FALSE) 
-                {
+                if ($this->form_validation->run() == FALSE) {
                     // Echec de la validation, on réaffiche la vue formulaire
                     $this->load->view('public/templates/header');
                     $this->load->view('Customers/myAccount/updateInformation', $View);
                     $this->load->view('public/templates/footer');
-                }
-                else
-                {
+                } else {
                     // Validation OK
                     // Le mot de passe fait partie des champs à mettre à jour
-                    if($data['cus_pass'])
-                    {
-                    // Hachage du password du client/utilisateur
-                    $data['cus_pass'] = password_hash($data['cus_pass'], PASSWORD_DEFAULT);
+                    if ($data['cus_pass']) {
+                        // Hachage du password du client/utilisateur
+                        $data['cus_pass'] = password_hash($data['cus_pass'], PASSWORD_DEFAULT);
 
-                    // Destruction de l'entrée 'cuss_pass_confirm' qui ne sera pas stockée en bdd
-                    unset($data['cus_pass_confirm']);
+                        // Destruction de l'entrée 'cuss_pass_confirm' qui ne sera pas stockée en bdd
+                        unset($data['cus_pass_confirm']);
                     }
 
                     // Affectation du coefficient prix selon profil client
@@ -308,11 +300,11 @@ class Customers extends CI_Controller
                     redirect('Customers/signUpSuccess');
                 }
             }
-        }
-        else // Le client n'est pas loggé
+        } else // Le client n'est pas loggé
         {
-            // Redirection vers la page d'accueil'
-            redirect('Products/accueil');
+            // Redirection vers la page d'home'
+            redirect('Products/home');
         }
     }
+
 }

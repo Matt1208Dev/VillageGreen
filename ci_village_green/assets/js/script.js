@@ -3,6 +3,7 @@ $(document).ready(function()
     // NAVBAR
 
     // Modal1 "Espace client"
+
     $("#item-client").hover(function()
     {
         $("#item-client-submenu").addClass('d-flex').slideDown();
@@ -16,6 +17,23 @@ $(document).ready(function()
     !$("#item-client-submenu").mouseleave(function()
     {
         $("#item-client-submenu").removeClass('d-flex');
+    });
+
+    // Modal1 Navbar collapsed
+
+    $("#item-client-nav-coll").hover(function()
+    {
+        $("#item-client-submenu-nav-coll").addClass('d-flex').slideDown();
+    });
+
+    !$("#item-client-nav-coll").mouseleave(function()
+    {
+        $("#item-client-submenu-nav-coll").removeClass('d-flex');
+    });
+
+    !$("#item-client-submenu-nav-coll").mouseleave(function()
+    {
+        $("#item-client-submenu-nav-coll").removeClass('d-flex');
     });
 
     // Modal2 "Espace client"
@@ -34,8 +52,25 @@ $(document).ready(function()
         $("#item-client-submenu2").removeClass('d-flex');
     });
 
+    // Modal2 Navbar collapsed
+
+    $("#item-client-nav-coll").hover(function()
+    {
+        $("#item-client-submenu2-nav-coll").addClass('d-flex').slideDown();
+    });
+
+    !$("#item-client-nav-coll").mouseleave(function()
+    {
+        $("#item-client-submenu2-nav-coll").removeClass('d-flex');
+    });
+
+    !$("#item-client-submenu2-nav-coll").mouseleave(function()
+    {
+        $("#item-client-submenu2-nav-coll").removeClass('d-flex');
+    });
+
     // Dropdown Guitar/bass
-    $("#item-guitar").hover(function()
+    $("#item-guitar").click(function()
     {
         $("#item-guitar-submenu").slideDown();
     });
@@ -51,7 +86,7 @@ $(document).ready(function()
     });
 
     // Dropdown Drums
-    $("#item-drums").hover(function()
+    $("#item-drums").click(function()
     {
         $("#item-drums-submenu").slideDown();
     });
@@ -67,7 +102,7 @@ $(document).ready(function()
     });
 
     // Dropdown Keyboard
-    $("#item-keyboard").hover(function()
+    $("#item-keyboard").click(function()
     {
         $("#item-keyboard-submenu").slideDown();
     });
@@ -83,7 +118,7 @@ $(document).ready(function()
     });
 
     // Dropdown Studio
-    $("#item-studio").hover(function()
+    $("#item-studio").click(function()
     {
         $("#item-studio-submenu").slideDown();
     });
@@ -99,7 +134,7 @@ $(document).ready(function()
     });
 
     // Dropdown Sono
-    $("#item-sono").hover(function()
+    $("#item-sono").click(function()
     {
         $("#item-sono-submenu").slideDown();
     });
@@ -115,7 +150,7 @@ $(document).ready(function()
     });
 
     // Dropdown Lights
-    $("#item-lights").hover(function()
+    $("#item-lights").click(function()
     {
         $("#item-lights-submenu").slideDown();
     });
@@ -131,7 +166,7 @@ $(document).ready(function()
     });
 
     // Dropdown DJ
-    $("#item-dj").hover(function()
+    $("#item-dj").click(function()
     {
         $("#item-dj-submenu").slideDown();
     });
@@ -147,7 +182,7 @@ $(document).ready(function()
     });
 
     // Dropdown Cases
-    $("#item-cases").hover(function()
+    $("#item-cases").click(function()
     {
         $("#item-cases-submenu").slideDown();
     });
@@ -163,7 +198,7 @@ $(document).ready(function()
     });
 
     // Dropdown Cases
-    $("#item-accessories").hover(function()
+    $("#item-accessories").click(function()
     {
         $("#item-accessories-submenu").slideDown();
     });

@@ -14,8 +14,9 @@
     <p>Vous pouvez dans cette espace :</p>
     <ul>
       <li>Gérer les produits du site : ajouter, modifier, supprimer.</li>
-      <li>Accéder à des états : stocks, délais moyens de livraison etc.</li>
-      <li>Visualiser les commandes clients</li>
+      <li>Accéder au tableau de bord : état des stocks, délais moyens de livraison etc.</li>
+      <li>Gérer les commandes clients</li>
+      <li>Créer/modifier les fiches clients</li>
     </ul>
 </section>
 </div>

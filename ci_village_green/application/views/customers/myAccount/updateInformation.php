@@ -32,7 +32,7 @@
 
         <div id="update-information" class="col-md-9">
             <?php echo form_open('Customers/updateInformation');?>
-                <div class="col-sm-12 col-md-10 row align-items-center justify-content-sm-center mx-sm-0 mx-lg-auto h-100">
+                <div class="col-sm-12 col-md-10 row align-items-center justify-content-sm-center mx-sm-0 mx-md-auto h-100">
                     <h4 class="pb-0">Votre identité</h4>
                     <hr>
                     <!-- Champ caché ID client -->
@@ -55,7 +55,7 @@
                     <div class="px-0 mt-sm-2 px-sm-0">
                         <p class="px-2 mb-1">Sexe</p>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input bg-grey" type="radio" value="0" name="cus_sex" id="cus_sex" <?php echo set_radio('cus_sex', '0', $customer[0]->cus_sex);?><?php if($customer[0]->cus_sex === '0'){echo 'checked=checked';};?>>
+                            <input class="form-check-input bg-grey ps-1" type="radio" value="0" name="cus_sex" id="cus_sex" <?php echo set_radio('cus_sex', '0', $customer[0]->cus_sex);?><?php if($customer[0]->cus_sex === '0'){echo 'checked=checked';};?>>
                             <label class="form-check-label" for="cus_type">Homme</label>
                         </div>
                         <div class="form-check form-check-inline">
@@ -154,10 +154,9 @@
                         <?php echo form_error('cus_pass_confirm');?>
                     </div> 
                     <input class="btn btn-lg  my-sm-0 mt-sm-3 mb-md-5 me-md-2 col-sm-11 col-md-3 col-lg-2 fw-bold orange-gradient" type="submit" value="Valider"></input>
-                    <a class="btn btn-lg  my-sm-0 mt-sm-3 mb-md-5 col-sm-11 col-md-3 col-lg-2 fw-bold btn-secondary" href="<?php echo site_url('Customers/home');?>">Retour</a>
+                    <a class="btn btn-lg  my-sm-0 mt-sm-3 mb-sm-5 mb-md-5 col-sm-11 col-md-3 col-lg-2 fw-bold btn-secondary" href="<?php echo site_url('Customers/home');?>">Retour</a>
                 </div>
             </form>
         </div>
     </div>
 </section>
-<?php var_dump($_POST);?>

@@ -26,9 +26,11 @@ h4 {
   font-weight: 500;
 }
 
-.main-container {
+.main-background {
   background-color: rgba(255, 255, 255, 0.8);
-  overflow: visible;
+}
+
+.main-container {
   max-width: 1200px;
   box-shadow: -2px 1px 8px #000;
 }
@@ -37,8 +39,37 @@ h4 {
   background-color: rgb(200, 200, 200);
 }
 
+.blue {
+  fill: #002b53;
+}
+
+.blue-text
+{
+  color: #002b53;
+}
+
 /* HEADER */
 /* Navbar */
+
+/* Navbar collapsed */
+.bg-logo-vg {
+  background-color: #e7e7e7;
+}
+
+#logo-vg {
+  max-height: 170px;
+  width: auto;
+}
+
+#navlogo {
+  z-index: 2;
+  width: 22%;
+}
+
+#navlogo img {
+  z-index: 2;
+  height: 170px;
+}
 
 #navbar {
   align-self: flex-start;
@@ -55,17 +86,25 @@ h4 {
   transition: all 400ms ease-out;
 }
 
+.badge-picto-panier
+{
+  top: 35%;
+  left: 45%;
+}
+
 #nav-first-row a {
   color: black;
   font-weight: 500;
   font-size: 1rem;
 }
 
-#item-client {
+#item-client,
+#item-client-nav-coll {
   position: relative;
 }
 
-#item-client-submenu {
+#item-client-submenu,
+#item-client-submenu-nav-coll {
   display: none;
   position: absolute;
   z-index: 10;
@@ -73,13 +112,14 @@ h4 {
   top: 100%;
 }
 
-#item-client-submenu2 {
+#item-client-submenu2,
+#item-client-submenu2-nav-coll {
   display: none;
   position: absolute;
   z-index: 10;
   left: 0%;
   top: 100%;
-  width: 15vw;
+  min-width: 15vw;
 }
 
 #item-client-submenu input,
@@ -121,6 +161,7 @@ h4 {
 
 #nav-third-row a {
   color: #fff;
+  font-size: 0.9rem;
 }
 
 #nav-third-row-item-guitar,
@@ -143,13 +184,28 @@ h4 {
 #item-sono-submenu,
 #item-lights-submenu,
 #item-dj-submenu,
-#item-cases-submenu,
-#item-accessories-submenu {
+#item-cases-submenu {
   display: none;
   z-index: 1;
   position: absolute;
   top: 100%;
   left: 0%;
+  opacity: 1;
+  background-color: #fff;
+  border-radius: 5px;
+  padding-left: 20%;
+  padding-right: 20%;
+  /* width: 175%; */
+  width: 14vw;
+  font-size: 0.8rem;
+}
+
+#item-accessories-submenu {
+  display: none;
+  z-index: 1;
+  position: absolute;
+  top: 100%;
+  left: -80%;
   opacity: 1;
   background-color: #fff;
   border-radius: 5px;
@@ -211,21 +267,63 @@ h4 {
   transition: all 400ms ease-out;
 }
 
-#navlogo {
-  z-index: 2;
-  width: 22%;
+@media screen and (max-width: 576px) {
+
+  #item-client-submenu-nav-coll
+  {
+    flex-direction: column;
+  }
+
+  #item-client-submenu-login-nav-coll
+  {
+    border-right: none !important;
+    border-bottom-style: solid;
+  }
 }
 
-#navlogo img {
-  z-index: 2;
-  width: 110%;
+@media screen and (max-width: 768px) {
+  h2 {
+    font-size: 1.4rem;
+  }
+}
+
+@media screen and (max-width: 1080px) {
+  #nav-third-row a.nav-link.ps-4 {
+    padding-left: 0;
+    padding-right: 0.5rem;
+  }
+
+  #item-guitar-submenu,
+  #item-drums-submenu,
+  #item-keyboard-submenu,
+  #item-studio-submenu,
+  #item-sono-submenu,
+  #item-lights-submenu,
+  #item-dj-submenu,
+  #item-cases-submenu {
+    width: 220%;
+  }
+
+  #item-accessories-submenu {
+    position: absolute;
+    top: 100%;
+    left: -80%;
+    width: 180%;
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  #nav-third-row a.nav-link.ps-4 {
+    padding-right: 1.3rem;
+    margin-right: 0.5rem;
+  }
 }
 
 /* FOOTER */
 
 #footer {
-  /* background-image: url("http://localhost/ci_village_green/assets/images/BACKGROUND/background village.png"); */
-  background-color: rgb(55, 55, 55);
+  background-image: url("http://localhost/ci_village_green/assets/images/BACKGROUND/background_footer.png");
+  /* background-color: rgb(55, 55, 55); */
   color: #c5c5c5;
   display: flex;
   flex-direction: column;
@@ -243,7 +341,7 @@ h4 {
   transition: all 400ms ease-out;
 }
 
-#firstr {
+/* #firstr {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -251,7 +349,7 @@ h4 {
   flex-wrap: wrap;
   padding-left: 2%;
   padding-right: 2%;
-}
+} */
 
 .orange {
   color: rgb(237, 146, 35);
@@ -284,54 +382,17 @@ h4 {
   border-radius: 2px;
 }
 
-#social-networks {
+/* #social-networks {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
-
-#social-networks p {
-  margin-bottom: 0;
-}
-
-/* #financial-partners
-{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-
-#financial-partners-firstr, #financial-partners-secondr
-{
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
 } */
 
-@media screen and (max-width: 768px) {
-  /* #firstr
-    {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
+/* #social-networks p {
+  margin-bottom: 0;
+} */
 
-    #offers, #social-networks, #financial-partners
-    {
-        width: 100%;
-
-    }
-
-    #offers h5, #social-networks h5, #financial-partners h5
-    {
-        font-size: 2.5rem;
-
-    }
-
-    .mail-form
-    {
-        width: 100%;
-    } */
+/* @media screen and (max-width: 768px) {
 
   #contact-us,
   #infos,
@@ -340,19 +401,19 @@ h4 {
     width: 100%;
     padding-left: 2%;
   }
-}
+} */
 
-#financial-partners img {
+/* #financial-partners img {
   height: auto;
   width: 100%;
-}
+} */
 
-#secondr {
+/* #secondr {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   padding-top: 1%;
-}
+} */
 
 .footer-title {
   font-size: 0.8rem;
@@ -370,47 +431,54 @@ h4 {
   font-weight: 600;
 }
 
-#contact-us,
+@media screen and (max-width: 768px) {
+  #footer {
+    font-size: 1rem;
+  }
+}
+/* #contact-us,
 #infos,
 #useful,
 #more {
   width: 25%;
   padding-left: 2%;
-}
+} */
 
-#thirdr {
+/* #thirdr {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 1%;
   margin-bottom: 0.5%;
-}
+} */
 
-#thirdr p {
+/* #thirdr p {
   margin-bottom: 0;
-}
+} */
 
-#fourthr {
+/* #fourthr {
   background-color: #000;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 0.5%;
   padding-bottom: 0.5%;
-}
+} */
 
-.footer-categories {
+/* .footer-categories {
   color: #fff;
-}
+} */
 
-#fourth p {
+/* #fourth p {
   display: flex;
   justify-content: center;
-}
+} */
 
-.partner-links {
+/* .partner-links {
   margin-bottom: 0;
-}
+} */
+
+/* FIN FOOTER */
 
 /* Page Accueil */
 /* Bannière promotionnelle accueil */
@@ -418,6 +486,8 @@ h4 {
 #mainContent {
   position: relative;
   z-index: 0;
+  margin-left: 0;
+  margin-right: 0;
 }
 
 #banner {
@@ -430,25 +500,25 @@ h4 {
 
 #banner-gibson-button {
   position: absolute;
-  top: 1.1rem;
-  left: 1.1rem;
+  top: 3.5%;
+  left: 2.0%;
   border: 2px solid #fff;
   max-width: 51.12%;
 }
 
 /* Bannière promotionnelle livraison */
 
-#banner-delivery {
-  margin-left: 15px;
-}
+/* #banner-delivery {
+  margin-left: 2vw;
+} */
 
 /* Section catégories */
 
 .item-categories {
   position: relative;
-  width: auto;
+  /* width: auto;
   height: auto;
-  background-color: #fff;
+  background-color: #fff; */
 }
 
 .rollover {
@@ -456,8 +526,8 @@ h4 {
   top: 0;
   left: 0;
   opacity: 0;
-  width: 100%;
-  height: auto;
+  /* max-width: 299px; */
+  /* height: auto; */
 }
 
 .rollover:hover {
@@ -465,11 +535,11 @@ h4 {
   transition: all 400ms ease-out;
 }
 
-#categories,
+/* #categories,
 #best-sellers-partners {
   padding-top: 2%;
   padding-bottom: 1%;
-}
+} */
 
 #header-categories {
   padding-left: 3%;
@@ -501,46 +571,61 @@ h4 {
 /* Page listGuitar.php 
 Affichage liste produit*/
 
-#products-list {
+/* #products-list {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-}
+} */
 
 /* item produit */
+
+.card-img-top
+{
+  max-height: 320px;
+  width: auto;
+}
 
 .product-box {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  width: 25%;
-  height: 60vh;
+  /* width: 25%; */
+  max-height: 70vh;
   border: 2px solid;
   border-radius: 10px;
   background-color: #fff;
-  margin-left: 1rem;
+  /* margin-left: 1rem; */
   margin-bottom: 1rem;
 }
 
-.product-box:hover {
+/* .product-box:hover {
   border: 2px solid rgb(56, 192, 226);
   transition: all 100ms ease-out;
+} */
+
+.rockin {
+  transition: all 400ms ease-in-out;
+}
+
+.rockin:hover {
+  transform: scale(1.10) rotateZ(45deg);
+  transition: all 400ms ease-in-out;
 }
 
 /* boite image */
 
 .product-box-img {
-  height: 60%;
-  display: flex;
-  justify-content: center;
+  max-height: 60%;
+  /* display: flex;
+  justify-content: center; */
 }
 
-.product-box img {
-  height: 100%;
+/* .product-box img {
+  max-height: 100%;
   width: auto;
   margin: 3% 0%;
-}
+} */
 
 /* Descriptif boite produit */
 
@@ -548,15 +633,15 @@ Affichage liste produit*/
   font-weight: 300;
   color: #fff;
   background-color: #373737;
-  height: 34%;
+  /* min-height: 40%; */
   border-top: 1px solid;
   border-bottom-left-radius: 10px;
   border-bottom-right-radius: 10px;
   padding-left: 2%;
-  padding-bottom: 1%;
+  padding-bottom: 2%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
   position: relative;
 }
 
@@ -580,6 +665,30 @@ Affichage liste produit*/
   background-color: transparent;
   color: rgb(56, 192, 226);
   font-size: 1.1rem;
+}
+
+@media screen and (max-width: 993px) {
+  /* .product-box{
+    width: 30%;
+  } */
+
+  /* .product-box-img {
+    max-height: 40%;
+  } */
+
+  .product-label {
+    font-size: 1.0rem;
+  }
+
+  .product-box-desc a {
+    font-size: 1rem; 
+  };
+
+  .product-box-price p
+  {
+    font-size: 1.1rem;
+  }
+
 }
 
 /* -- Page productDetails -- */
@@ -687,7 +796,6 @@ Affichage liste produit*/
 }
 
 .orange-gradient {
-
   color: #fff;
   /* Permalink - use to edit and share this gradient: https://colorzilla.com/gradient-editor/#f3c5bd+0,ff6600+0,ff6600+0,e86c57+1,ff6600+17,ff6600+17,ea2803+43,ea2803+49,ea2803+62,c72200+99 */
   background: rgb(229, 129, 111);
@@ -738,9 +846,64 @@ Affichage liste produit*/
 /* View Customers/ */
 
 .bg-dark-grey {
-  background-color: rgb(55, 55, 55); 
+  background-color: rgb(55, 55, 55);
 }
 
 #local-nav {
   border-top-right-radius: 15px;
+}
+
+/* View viewBasket */
+
+#bag
+{
+  position: relative;
+}
+
+.bag-img-text
+{
+  font-size: 3rem;
+  position: absolute;
+  top: 42%;
+  left: 30%;
+}
+
+.bag-text
+{
+  font-size: 1.5rem;
+}
+
+/* Vee viewBasket */
+
+.img-mini
+{
+  height: 120px;
+  width: auto;
+}
+
+#basket-text-box, #basket-text-box2
+{
+  background-image: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.3)), url('../../assets/images/BACKGROUND/guitar-basket-text.jpeg');
+  background-position: center;
+  background-size: cover;
+}
+
+.basket-text
+{
+  color: #fff;
+  font-size: 26px;
+}
+
+#pro_qty
+{
+  width: 30%;
+}
+
+@media screen and (max-width: 415px) {
+  
+  #pro_qty
+  {
+    width: 75%;
+  }
+
 }

@@ -1,6 +1,6 @@
 <section class="container-fluid">
     <!-- FORM -->
-    <?php echo form_open('Customer/signUp', 'class="row"');?>
+    <?php echo form_open('Customers/signUp', 'class="row"');?>
         <div class="col-12">
             <!-- Title -->
             <header>

@@ -29,7 +29,7 @@ class Admin extends CI_Controller
     public function sessionDestroy()
     {
         session_destroy();
-        redirect('Products/accueil');
+        redirect('Products/home');
     }
 
     public function home()
@@ -39,7 +39,7 @@ class Admin extends CI_Controller
             $this->load->view('admin/home');
             $this->load->view('admin/footer');
         } else {
-            redirect('Products/accueil');
+            redirect('Products/home');
         }
     }
 
@@ -90,7 +90,7 @@ class Admin extends CI_Controller
                 }
             }
         } else {
-            redirect('Products/accueil');
+            redirect('Products/home');
         }
     }
 

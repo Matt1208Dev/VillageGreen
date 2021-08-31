@@ -2,7 +2,7 @@
     <div class="row">
         <div class="col-12 d-flex flex-column justify-content-center align-items-center">
             <p class="fs-2 mb-5">Votre inscription a bien été prise en compte.</p>
-            <a href="<?php echo site_url('Products/accueil'); ?>" class="btn btn-secondary mb-5">Retour à l'accueil</a>
+            <a href="<?php echo site_url('Products/home'); ?>" class="btn btn-secondary mb-5">Retour à l'accueil</a>
         </div>
     </div>
 

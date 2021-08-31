@@ -28,7 +28,7 @@ class ProductsModel extends CI_Model
 
     function productDetails($id)
     {
-        $requete = $this->db->query("SELECT `pro_id`, `pro_ref`, `pro_label`, `pro_cat_id`, `cat_name`, `pro_photo`, `pro_desc`, `pro_ppet`, `pro_spet`, `pro_phy_stk`, `pro_lock`, `pro_add_date`, `pro_sup_id`, `pro_modif_date` FROM `products` 
+        $requete = $this->db->query("SELECT `pro_id`, `pro_ref`, `pro_label`, `pro_cat_id`, `cat_id`, `cat_name`, `pro_photo`, `pro_desc`, `pro_ppet`, `pro_spet`, `pro_phy_stk`, `pro_lock`, `pro_add_date`, `pro_sup_id`, `pro_modif_date` FROM `products` 
                                         JOIN `categories`
                                         ON `pro_cat_id` = `cat_id`
                                         WHERE pro_id = $id;");
