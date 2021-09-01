@@ -79,7 +79,7 @@
                         <?php echo form_error('cus_type');?>
                     </div>
 
-                    <h4 class="pb-0">Votre adresse de facturation</h4>
+                    <h4 id="bill-address" class="pb-0">Votre adresse de facturation</h4>
                     <hr>
                     <!-- Address field -->
                     <div class="row align-items-center mt-sm-2 px-sm-0">
@@ -102,7 +102,7 @@
                         <?php echo form_error('cus_bil_city');?>
                     </div>
 
-                    <h4 class="pb-0">Votre adresse de livraison</h4>
+                    <h4 id="delivery-address" class="pb-0">Votre adresse de livraison</h4>
                     <hr>
                     <!-- Address field -->
                     <div class="row align-items-center mt-sm-2 px-sm-0">
@@ -125,10 +125,10 @@
                         <?php echo form_error('cus_del_city');?>
                     </div>
 
-                    <h4 class="pb-0">Vos coordonnées</h4>
+                    <h4  class="pb-0">Vos coordonnées</h4>
                     <hr>
                     <!-- Mobile phone number field -->
-                    <div class="row align-items-center mt-sm-2 px-sm-0 mb-md-3">
+                    <div id="mobile" class="row align-items-center mt-sm-2 px-sm-0 mb-md-3">
                         <label class="form-label" for="cus_phone">Numéro de mobile</label>
                         <input class="form-control col bg-grey" type="tel" name="cus_phone" id="cus_phone" value="<?php echo set_value('cus_phone', $customer[0]->cus_phone);?>">
                         <?php echo form_error('cus_phone');?>

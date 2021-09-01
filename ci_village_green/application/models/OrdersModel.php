@@ -164,4 +164,15 @@ class OrdersModel extends CI_Model
 
         return $order;
     }
+
+    // Création d'une commande dans la table Orders
+    public function CreateOrder($data)
+    {
+        $this->db->insert('orders', $data);
+    }
+
+    public function CreateOrderDetailsLine($data)
+    {
+        $this->db->insert('order_details', $data);
+    }
 }

@@ -250,4 +250,82 @@ class Basket extends CI_Controller
             redirect('Products/home');
         }
     }
+
+    public function createOrder()
+    {
+        // Vérification que le client est loggé
+        $isLogged = $this->isLogged();
+
+        // Le client est loggé
+        if ($isLogged === true)
+        {
+            // On récupère les infos utilisateur dans la session pour la création de la commande
+            $user_id = $_SESSION['user_id'];
+            $user_type = $_SESSION['type'];
+            // Création de la commande
+            $ord_date = date('Y-m-d');
+
+            if($user_type == "Particulier")
+            {
+                $pay_method = "Comptant";
+            }
+            else if($user_type == "Professionnel")
+            {
+                $pay_method = "Différé";
+            }
+            
+            $ord_status = 1; // 1er statut de la commande : "Validée"
+
+            $data = array(
+
+                'ord_date' => $ord_date,
+                'ord_pay_method' => $pay_method,
+                'ord_ost_id' => $ord_status,
+                'ord_cus_id' => $user_id
+            );
+
+            // Création de la commande dans la bdd
+            $this->load->model('OrdersModel');
+            $this->OrdersModel->CreateOrder($data);
+
+            // Récupération de l'ID de la commande nouvellement créée
+            $id = $this->db->insert_id();
+
+            // On récupère le panier dans $_SESSION
+            $basket = $this->session->basket;
+
+            foreach($basket as $item)
+            {
+                $ode_qty = $item['pro_qty'];
+                $ode_tot_exc_tax = $item['pro_ppet'] + ($item['pro_ppet'] * $item['cus_coef']/100);
+                $ode_tax_rate = 20;
+                $ode_tot_all_tax_inc = ($ode_tot_exc_tax + $ode_tot_exc_tax * $ode_tax_rate/100);
+                $ode_pro_id = $item['pro_id'];
+
+                $line = array(
+
+                    'ode_qty' => $ode_qty,
+                    'ode_tot_exc_tax' => $ode_tot_exc_tax,
+                    'ode_tax_rate' => $ode_tax_rate,
+                    'ode_tot_all_tax_inc' => $ode_tot_all_tax_inc,
+                    'ode_pro_id' => $ode_pro_id,
+                    'ode_ord_id' => $id
+                );
+
+                $this->OrdersModel->CreateOrderDetailsLine($line);
+            }
+
+            // Redirection vers la page de succès
+            $View['newId'] = $id;
+            $this->load->view('public/templates/header');
+            $this->load->view('Basket/createOrderSuccess', $View);
+            $this->load->view('public/templates/footer');
+        }
+        else 
+        // Le client n'est pas loggé
+        {
+            // Redirection vers la page d'home'
+            redirect('Products/home');
+        }
+    }
 }

@@ -116,10 +116,12 @@ CREATE TABLE `orders` (
      `ord_pay_method` VARCHAR(10) NOT NULL,
      `ord_ost_id` INT NOT NULL,
      `ord_cus_id` INT NOT NULL,
-     `ord_del_time` DATE NOT NULL,
+     `ord_del_time` DATE,
      `ord_bil_date` DATE,
+     `ord_com_id` INT NOT NULL,
      FOREIGN KEY (`ord_ost_id`) REFERENCES `order_status`(`ost_id`),
-     FOREIGN KEY (`ord_cus_id`) REFERENCES `customers`(`cus_id`)
+     FOREIGN KEY (`ord_cus_id`) REFERENCES `customers`(`cus_id`),
+     FOREIGN KEY (`ord_com_id`) REFERENCES `commercials`(`com_id`)
 )
 ENGINE = innoDB;
 

@@ -1,5 +1,10 @@
 <!-- Création d'une variable de session avec l'URI de la page actuelle -->
-<?php if(isset($_SERVER['PATH_INFO'])){$this->session->set_userdata('uri', $_SERVER['PATH_INFO']);} ?>
+<?php   
+        if($this->session->userdata('uri')){$this->session->set_userdata('prev_uri', $this->session->userdata('uri'));}
+        if(isset($_SERVER['PATH_INFO'])){$this->session->set_userdata('uri', $_SERVER['PATH_INFO']);}
+        // J'ajoute un cookie de session persistante afin de conserver le panier pendant 24 heures
+        set_cookie(session_name(), session_id(), time()+3600*24);
+?>
 
 
 <!DOCTYPE html>
