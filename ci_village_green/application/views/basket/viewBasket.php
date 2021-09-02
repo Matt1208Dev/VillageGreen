@@ -44,11 +44,11 @@ if ($this->session->basket != null)
                                         {
                                             if($row['cus_type'] === "Particulier")
                                             {
-                                                $iTotal = round((($row['pro_ppet'] + ($row['pro_ppet'] * $row['cus_coef']/100)) * 1.20), 1);
+                                                $iTotal = round(((($row['pro_ppet'] + ($row['pro_ppet'] * $row['cus_coef']/100)) * $row['pro_qty']) * 1.20), 1);
                                             }
                                             else if($row['cus_type'] === "Professionnel")
                                             {
-                                                $iTotal = $row['pro_ppet'] + ($row['pro_ppet'] * $row['cus_coef']/100); 
+                                                $iTotal = (($row['pro_ppet'] + ($row['pro_ppet'] * $row['cus_coef']/100)) * $row['pro_qty']); 
                                             }
                                         }
                             $totalItems = $totalItems + $iTotal;
@@ -98,9 +98,13 @@ if ($this->session->basket != null)
                                     
                                     <!-- J'intègre des champs cachés qui transmettront les infos nécessaires à la restauration des lignes panier après traitement -->
                                     <input type="hidden" name="pro_id" id="pro_id" value="<?= $row['pro_id'] ?>">
+                                    <input type="hidden" name="pro_ppet" id="pro_ppet" value="<?= $row['pro_ppet'] ?>">
                                     <input type="hidden" name="pro_spet" id="pro_spet" value="<?= $row['pro_spet'] ?>">
                                     <input type="hidden" name="pro_label" id="pro_label" value="<?= $row['pro_label'] ?>">
                                     <input type="hidden" name="pro_phy_stk" id="pro_phy_stk" value="<?= $row['pro_phy_stk'] ?>">
+                                    <input type="hidden" name="pro_photo" id="pro_photo" value="<?= $row['pro_photo'] ?>">
+                                    <input type="hidden" name="cus_type" id="cus_type" value="<?= $row['cus_type'] ?>">
+                                    <input type="hidden" name="cus_coef" id="cus_coef" value="<?= $row['cus_coef'] ?>">
 
                                     <!-- Champ modification de la quantité -->
                                     <input class="form-control d-inline" type="number" name="pro_qty" id="pro_qty" value="<?php echo $row['pro_qty']; ?>" min="1">
@@ -147,13 +151,13 @@ if ($this->session->basket != null)
     <div class="row m-0 justify-content-evenly">
         
         <!-- Message satisfait ou remboursé, affichage sur écran > 768px -->
-        <div id="basket-text-box" class="col-12 col-md-7 col-lg-8 d-none d-md-flex flex flex-column justify-content-center fw-light px-5 mx-0 mx-md-3 mb-3">
+        <div id="basket-text-box" class="col-12 col-lg-8 d-none d-md-flex flex flex-column justify-content-center fw-light px-5 py-2 mx-0 mx-md-3 mb-3">
             <p class="basket-text">Satisfait ou remboursé !</p>
-            <p class="basket-text">Retournez-nous votre commande dans les 30 jours si elle ne vous donne pas entière satisfaction.</p>   
+            <p class="basket-text mb-0">Retournez-nous votre commande dans les 30 jours si elle ne vous donne pas entière satisfaction.</p>   
         </div>
 
         <!-- Début Tableau Récapitulatif-->
-        <div class="col-12 col-md-4 col-lg-3 p-0">
+        <div class="col-6 col-md-12 col-md-4 col-lg-3 p-0">
             <div class="table-responsive">
                 <table class="table table-hover text-center">
                     <thead>

@@ -5,6 +5,7 @@ class Basket extends CI_Controller
 {
     public function viewBasket()
     {
+        // Affichage de la vue viewBasket
         $this->load->view('public/templates/header');
         $this->load->view('basket/viewBasket');
         $this->load->view('public/templates/footer');
@@ -102,6 +103,9 @@ class Basket extends CI_Controller
         //création d'un tableau temporaire vide
         $tempBasket = array(); 
 
+        // Initialisation du flag $change qui confirmera d'un changement de quantité
+        $change = false;
+
         // On parcourt panier récupéré dans $basket
         for ($i = 0; $i < count($basket); $i++) 
         {
@@ -113,6 +117,7 @@ class Basket extends CI_Controller
                 {
                     // Elles différent, on inclut le produit de $_POST avec sa quantité dans le panier temporaire
                     array_push($tempBasket, $product);
+                    $change = true;
                 }
             } 
             // Les ID ne correspondent pas, on inclut le produit de $basket
@@ -122,17 +127,26 @@ class Basket extends CI_Controller
             }
         }
 
-        // $basket récupère les données à jour
-        $basket = $tempBasket;
+        // Il y a bien eu changement de quantité sur le produit
+        if($change === true)
+        {
+            // $basket récupère les données à jour
+            $basket = $tempBasket;
 
-        // On supprime la variable $tempBasket qui ne servira plus
-        unset($tempBasket);
+            // On supprime la variable $tempBasket qui ne servira plus
+            unset($tempBasket);
 
-        // Mise à jour de la variable de session "basket"
-        $this->session->set_userdata("basket", $basket);
+            // Mise à jour de la variable de session "basket"
+            $this->session->set_userdata("basket", $basket);
 
-        // On réaffiche le panier 
-        redirect("basket/viewBasket");
+            // On réaffiche le panier 
+            redirect("basket/viewBasket");
+        }
+        else
+        {
+            // On réaffiche le panier 
+            redirect("basket/viewBasket");
+        }
     }
 
     public function removeProduct()
@@ -174,6 +188,12 @@ class Basket extends CI_Controller
     {
         // Suppression de la variable de session basket
         $this->session->unset_userdata('basket');
+
+        // Suppression du cookie basket si initialisé
+        if (isset($_COOKIE['logged_in'])) 
+        {
+            delete_cookie('logged_in');
+        }
 
         // Reaffichage du panier
         redirect('Basket/viewBasket');
@@ -246,7 +266,7 @@ class Basket extends CI_Controller
         else 
         // Le client n'est pas loggé
         {
-            // Redirection vers la page d'home'
+            // Redirection vers la page d'accueil'
             redirect('Products/home');
         }
     }
@@ -274,7 +294,7 @@ class Basket extends CI_Controller
                 $pay_method = "Différé";
             }
             
-            $ord_status = 1; // 1er statut de la commande : "Validée"
+            $ord_status = 1; // 1er statut de la commande : "En cours de traitement"
 
             $data = array(
 
@@ -284,9 +304,13 @@ class Basket extends CI_Controller
                 'ord_cus_id' => $user_id
             );
 
-            // Création de la commande dans la bdd
             $this->load->model('OrdersModel');
-            $this->OrdersModel->CreateOrder($data);
+
+            // Démarrage de la transaction pour la création de la commande
+            $this->db->trans_start();
+
+            // Insertion de la ligne de commande dans la table `orders`
+            $this->OrdersModel->CreateOrderLine($data);
 
             // Récupération de l'ID de la commande nouvellement créée
             $id = $this->db->insert_id();
@@ -294,6 +318,7 @@ class Basket extends CI_Controller
             // On récupère le panier dans $_SESSION
             $basket = $this->session->basket;
 
+            // Récupération des infos nécessaires de chaque item du panier
             foreach($basket as $item)
             {
                 $ode_qty = $item['pro_qty'];
@@ -302,6 +327,7 @@ class Basket extends CI_Controller
                 $ode_tot_all_tax_inc = ($ode_tot_exc_tax + $ode_tot_exc_tax * $ode_tax_rate/100);
                 $ode_pro_id = $item['pro_id'];
 
+                // Regroupement des infos dans un tableau associatif
                 $line = array(
 
                     'ode_qty' => $ode_qty,
@@ -312,11 +338,65 @@ class Basket extends CI_Controller
                     'ode_ord_id' => $id
                 );
 
+                // Insertion de la ligne en bdd
                 $this->OrdersModel->CreateOrderDetailsLine($line);
+
+                $this->load->model('ProductsModel');
+                // On récupère la valeur en bdd du stock de l'ID produit entré en paramètre
+                $oldStk = $this->ProductsModel->getProductStk($ode_pro_id);
+
+                // On soustrait la quantité entrée en paramètre du stock actuel pour déterminer la nouvelle valeur
+                $newStk = $oldStk[0]->pro_phy_stk - $ode_qty;
+
+                // Mise à jour en base du stock
+                $this->ProductsModel->updateProductStk($ode_pro_id, $newStk);
+            }
+
+            // Si le statut de la transaction renvoie FALSE
+            if($this->db->trans_status() === FALSE)
+            {
+                // Annulation de la transaction
+                $this->db->trans_rollback();
+            }
+             else
+            {
+                // Sinon Finalisation de la transaction
+                $this->db->trans_complete();
+
+                // Suppression des variables basket de $_SESSION et $_COOKIE
+                unset($_SESSION['basket']);
+                delete_cookie('basket');
             }
 
             // Redirection vers la page de succès
             $View['newId'] = $id;
+            redirect('Basket/orderSuccess');
+        }
+        else 
+        // Le client n'est pas loggé
+        {
+            // Redirection vers la page d'accueil'
+            redirect('Products/home');
+        }
+    }
+
+    public function orderSuccess()
+    {
+        // Vérification que le client est loggé
+        $isLogged = $this->isLogged();
+
+        // Le client est loggé
+        if ($isLogged === true)
+        {
+            // Récupération de l'ID client dans la variable de session user_id
+            $cus_id = $this->session->user_id;
+
+            // Requête de récupération du dernier ID de commande
+            $this->load->model('OrdersModel');
+            $id = $this->OrdersModel->getLastOrderByCustomerId($cus_id);
+
+            // Affichage de la vue de succès.
+            $View['cus_id'] = $id;
             $this->load->view('public/templates/header');
             $this->load->view('Basket/createOrderSuccess', $View);
             $this->load->view('public/templates/footer');
@@ -324,8 +404,8 @@ class Basket extends CI_Controller
         else 
         // Le client n'est pas loggé
         {
-            // Redirection vers la page d'home'
+            // Redirection vers la page d'accueil'
             redirect('Products/home');
-        }
+        }    
     }
 }

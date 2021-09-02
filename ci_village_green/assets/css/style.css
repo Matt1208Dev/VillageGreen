@@ -693,20 +693,20 @@ Affichage liste produit*/
 
 /* -- Page productDetails -- */
 
-#product-details {
+/* #product-details {
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-}
+} */
 
-#product-image img {
+#product-image {
   height: 50vh;
 }
 
-#product-image,
+/* #product-image,
 #product-stat {
   width: 50%;
-}
+} */
 
 #product-image {
   display: flex;
@@ -727,20 +727,20 @@ Affichage liste produit*/
   margin-right: 1%;
 }
 
-.details-body {
+/* .details-body {
   display: flex;
   flex-direction: row;
-}
+} */
 
 .details-header {
   border-bottom: 2px solid;
   margin-bottom: 1rem;
 }
 
-.details-stat,
+/* .details-stat,
 .details-price {
   width: 50%;
-}
+} */
 
 .details-price button {
   display: block;
@@ -780,6 +780,12 @@ Affichage liste produit*/
 #banner-services img {
   max-width: 100%;
   height: auto;
+}
+
+@media screen and (max-width: 767px) {
+  .your-price {
+    font-size: 2.0rem;
+  }
 }
 
 /* Page "signUp" */

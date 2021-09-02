@@ -413,7 +413,7 @@
                             </div>
 
                             <div class="row justify-content-end m-0 bg-logo-vg" id="nav-third-row">
-                                <div class="col-10 d-flex flew row flex-nowrap">
+                                <div class="col-10 d-flex flew-row flex-nowrap px-0">
                                     <div class="container navbar d-flex flex-nowrap justify-content-end p-1">
                                         <div id="nav-third-row-item-guitar">
                                             <a id="item-guitar" class="nav-link ps-4" href="#">Guit/Bass</a>

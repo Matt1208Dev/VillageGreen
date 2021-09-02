@@ -133,4 +133,20 @@ class ProductsModel extends CI_Model
         $this->db->where('pro_id', $id);
         $this->db->update('products', array('pro_modif_date' => $pro_modif_date));
     }
+
+    public function getProductStk($pro_id)
+    {
+        $requete = $this->db->query("SELECT `pro_phy_stk`
+                                        FROM `products` 
+                                        WHERE pro_id = $pro_id ;");
+        $stk = $requete->result();
+
+        return $stk;
+    }
+
+    public function updateProductStk($pro_id, $stk)
+    {
+        $this->db->where('pro_id', $pro_id);
+        $this->db->update('products', array('pro_phy_stk' => $stk));
+    }
 }

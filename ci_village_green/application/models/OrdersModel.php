@@ -166,13 +166,31 @@ class OrdersModel extends CI_Model
     }
 
     // Création d'une commande dans la table Orders
-    public function CreateOrder($data)
+    public function CreateOrderLine($data)
     {
         $this->db->insert('orders', $data);
+
+        return true;
     }
 
+    // Création d'une ligne de commande dans la table Order_details
     public function CreateOrderDetailsLine($data)
     {
         $this->db->insert('order_details', $data);
+
+        return true;
+    }
+
+    // Récupération de l'ID de la dernière commande passée par le client
+    public function getLastOrderByCustomerId($cus_id)
+    {
+        $query = $this->db->query("SELECT ord_id
+                                    FROM `orders`
+                                    WHERE `ord_cus_id` = $cus_id
+                                    ORDER BY `ord_id` DESC
+                                    LIMIT 1;");
+        $ord_id = $query->result();  
+
+        return $ord_id;
     }
 }
