@@ -786,6 +786,17 @@ Affichage liste produit*/
   .your-price {
     font-size: 2.0rem;
   }
+  
+  #product-image {
+    height: 80vh;
+  }
+}
+
+@media screen and (min-width: 768px) {
+  .product-desc {
+    min-height: 30vh;
+  }
+
 }
 
 /* Page "signUp" */
@@ -879,7 +890,7 @@ Affichage liste produit*/
   font-size: 1.5rem;
 }
 
-/* Vee viewBasket */
+/* Vue viewBasket */
 
 .img-mini
 {
@@ -912,4 +923,29 @@ Affichage liste produit*/
     width: 75%;
   }
 
+}
+
+/* Vue myAccount/Home */
+
+@media screen and (max-width: 767px) {
+  #account-content
+  {
+    min-height: 40vh;
+  }
+
+}
+
+@media screen and (min-width: 768px) {
+  #local-nav
+  {
+    min-height: 60vh;
+  }
+
+}
+
+/* Vue myAccount/myOrders */
+
+.order-line
+{
+  min-height: 150px;
 }

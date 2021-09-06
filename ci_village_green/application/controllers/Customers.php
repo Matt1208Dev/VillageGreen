@@ -355,4 +355,38 @@ class Customers extends CI_Controller
         $this->load->view('public/templates/footer');
     }
 
+    public function myOrders()
+    {
+        // Vérification que le client est loggé
+        $isLogged = $this->isLogged();
+
+        // Le client est loggé
+        if ($isLogged === true) 
+        {
+            // Récupération de l'ID du client dans $_SESSION
+            $id = $this->session->user_id;
+
+            // Requête de récupération de ses commandes
+            $this->load->model('OrdersModel');
+            $ordersId = $this->OrdersModel->getOrdersIdByCustomerId($id);
+            $allOrders = array();
+
+            for($i=0; $i < count($ordersId); $i++)
+            {
+                $line = $this->OrdersModel->getOrderLinesByOrderId($ordersId[$i]->ord_id);
+                array_push($allOrders, $line);
+            }
+
+            // Chargement de la vue "mes commandes"
+            $View['orders'] = $allOrders;
+            $this->load->view('public/templates/header');
+            $this->load->view('Customers/myAccount/myOrders', $View);
+            $this->load->view('public/templates/footer');
+        }
+        else // Le client n'est pas loggé
+        {
+            // Redirection vers la page d'home'
+            redirect('Products/home');
+        }
+    }
 }

@@ -71,7 +71,7 @@
                                 if($customer[0]->cus_type === "Particulier")
                                 {
                         ?>
-                                    <p class="your-price"><b><?php echo number_format(round((($product[0]->pro_ppet + ($product[0]->pro_ppet * $customer[0]->cus_coef/100)) * 1.20), 1),2, ",", " ");?>€ TTC</b></p> 
+                                    <p class="your-price"><b><?php echo number_format(round((($product[0]->pro_ppet + ($product[0]->pro_ppet * $customer[0]->cus_coef/100)) * 1.20), 1),2, ",", " ");?>€ <span class="fs-5">TTC</span></b></p> 
                         <?php        
                                 ;}
                                 else if($customer[0]->cus_type === "Professionnel")
@@ -95,14 +95,18 @@
                                     {
                                         if($customer[0]->cus_type === "Particulier")
                                         {
-                                            echo number_format(round((($product[0]->pro_spet + ($product[0]->pro_spet * $customer[0]->cus_coef/100)) * 1.20), 1),2, ",", " ") . ' € TTC'; 
+                            ?>
+                                            <p><?php echo number_format(round((($product[0]->pro_spet + ($product[0]->pro_spet * $customer[0]->cus_coef/100)) * 1.20), 1),2, ",", " ");?> € TTC</p> 
+                            <?php            
                                         }
                                         else if($customer[0]->cus_type === "Professionnel")
                                         {
-                                            echo $product[0]->pro_spet . ' € HT'; 
+                            ?>
+                                          <p><?php echo $product[0]->pro_spet;?> € HT</p>
+                            <?php           
                                         }
                                     }
-                                    ?>
+                            ?>
                         </p>
                     </div>
                 </div>
@@ -125,7 +129,7 @@
 
 <!-- Bannière services -->
 <section id="banner-services" class="row m-0">
-    <img class="img-fluid w-100 px-0 pt-3 pb-2 d-none d-sm-flex" src="<?php echo base_url('assets/images/BODY/banniere centre 4 pictos.png');?>" alt="bannière de nos services" title="Nos services">
+    <img class="img-fluid w-100 px-0 pt-3 d-none d-sm-flex" src="<?php echo base_url('assets/images/BODY/banniere centre 4 pictos.png');?>" alt="bannière de nos services" title="Nos services">
     <img class="img-fluid w-100 pt-3 px-0 d-flex d-sm-none" src="<?php echo base_url('assets/images/BODY/banniere centre 2 pictos1.png');?>" alt="bannière de nos services" title="Nos services">
     <img class="img-fluid w-100 pb-2 px-0 d-flex d-sm-none" src="<?php echo base_url('assets/images/BODY/banniere centre 2 pictos2.png');?>" alt="bannière de nos services" title="Nos services">
 </section>

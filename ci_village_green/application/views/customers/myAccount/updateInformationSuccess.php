@@ -3,7 +3,7 @@
     <div class="row mt-md-3">
         <header>
             <h3>
-                VOTRE ESPACE PERSONNEL
+            MES INFORMATIONS PERSONNELLES
             </h3>
         </header>
     </div>
@@ -13,7 +13,7 @@
         <div id="local-nav" class="col-md-3 bg-dark-grey">
             <ul class="nav flex-colum mt-md-3">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="">Mes commandes</a>
+                    <a class="nav-link text-white" href="<?php echo site_url('Customers/myOrders');?>">Mes commandes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="">Mes derniers articles consultés</a>

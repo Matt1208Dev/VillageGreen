@@ -3,10 +3,10 @@
     <div class="row mt-md-3">
         <header>
             <h3 class="pb-0">
-                VOTRE ESPACE PERSONNEL
+                MES INFORMATIONS PERSONNELLES
             </h3>
             <h5 class="mt-md-1 ps-md-2 ms-4 mb-md-4">
-                Mettez à jour vos informations personnelles
+                Mettre à jour mes informations personnelles
             </h5>
         </header>
     </div>
@@ -16,7 +16,7 @@
         <div id="local-nav" class="col-md-3 bg-dark-grey">
             <ul class="navbar-nav flex-colum mt-md-3">
                 <li class="nav-item">
-                    <a class="nav-link text-white" href="">Mes commandes</a>
+                    <a class="nav-link text-white" href="<?php echo site_url('Customers/myOrders');?>">Mes commandes</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link text-white" href="">Mes derniers articles consultés</a>
