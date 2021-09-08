@@ -119,6 +119,10 @@ CREATE TABLE `orders` (
      `ord_del_time` DATE,
      `ord_bil_date` DATE,
      `ord_com_id` INT NOT NULL,
+     `ord_del_address` VARCHAR(255)  NOT NULL, 
+     `ord_del_postalcode` VARCHAR(5) NOT NULL,        
+     `ord_del_city`  VARCHAR(50) NOT NULL,        
+     `ord_del_phone`   VARCHAR(20) NOT NULL,
      FOREIGN KEY (`ord_ost_id`) REFERENCES `order_status`(`ost_id`),
      FOREIGN KEY (`ord_cus_id`) REFERENCES `customers`(`cus_id`),
      FOREIGN KEY (`ord_com_id`) REFERENCES `commercials`(`com_id`)
@@ -135,8 +139,10 @@ CREATE TABLE `order_details` (
      `ode_tot_all_tax_inc` DECIMAL(7,2) NOT NULL,
      `ode_pro_id` INT NOT NULL,
      `ode_ord_id` INT NOT NULL,
+     `ode_ost_id` INT NOT NULL,
      FOREIGN KEY (`ode_pro_id`) REFERENCES `products`(`pro_id`),
-     FOREIGN KEY (`ode_ord_id`) REFERENCES `orders`(`ord_id`)
+     FOREIGN KEY (`ode_ord_id`) REFERENCES `orders`(`ord_id`),
+     FOREIGN KEY (`ode_ost_id`) REFERENCES `order_status`(`ost_id`)
 )
 ENGINE = innoDB;
 

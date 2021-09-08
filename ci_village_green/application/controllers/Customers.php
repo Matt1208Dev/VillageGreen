@@ -170,15 +170,18 @@ class Customers extends CI_Controller
 
     public function logOut()
     {
+        // Destruction de $_SESSION
         session_destroy();
+
+        // Si le cookie "logged_in" pour le maintien de session existe
         if (isset($_COOKIE['logged_in'])) 
         {
+            // On l'efface
             delete_cookie('logged_in');
         }
 
-        $current_uri = substr($this->session->uri, 1);
-        redirect($current_uri);
-        // redirect('Products/home');
+        // Redirection vers la page d'accueil
+        redirect('Products/home');
     }
 
     public function isLogged()
@@ -369,8 +372,13 @@ class Customers extends CI_Controller
             // Requête de récupération de ses commandes
             $this->load->model('OrdersModel');
             $ordersId = $this->OrdersModel->getOrdersIdByCustomerId($id);
+
+            // Tri du tableau en ordre décroissant
+            rsort($ordersId);
+
             $allOrders = array();
 
+            // Pour chaque commande, Nous allons récupérer les informations relatives à/aux ligne(s) produit qu'elle contient
             for($i=0; $i < count($ordersId); $i++)
             {
                 $line = $this->OrdersModel->getOrderLinesByOrderId($ordersId[$i]->ord_id);
@@ -386,6 +394,93 @@ class Customers extends CI_Controller
         else // Le client n'est pas loggé
         {
             // Redirection vers la page d'home'
+            redirect('Products/home');
+        }
+    }
+
+    public function cancelOrderDetailsLine()
+    {
+        // Vérification que le client est loggé
+        $isLogged = $this->isLogged();
+
+        // Le client est loggé
+        if ($isLogged === true) 
+        {
+            // Récupération de l'ID de la ligne à annuler
+            $ode_id = $this->input->post('ode_id');
+            $ode_ord_id = $this->input->post('ode_ord_id');
+            $pro_id = $this->input->post('pro_id');
+            $ode_qty = $this->input->post('ode_qty');
+
+            // Démarrage de la transaction pour l'annulation d'une ligne de commande
+            $this->db->trans_start();
+
+            // Mise à jour du statut de la ligne à "Annulée" en bdd
+            $this->load->model('OrdersModel');
+            $this->OrdersModel->cancelOrderDetailsLine($ode_id);
+            
+            // Retour en stock de la quantité annulée
+            $this->load->model('ProductsModel');
+
+            // On récupère la valeur en bdd du stock de l'ID produit entré en paramètre
+            $oldStk = $this->ProductsModel->getProductStk($pro_id);
+
+            // On additionne la quantité entrée en paramètre du stock actuel pour déterminer la nouvelle valeur
+            $newStk = $oldStk[0]->pro_phy_stk + $ode_qty;
+
+            // Mise à jour en base du stock
+            $this->ProductsModel->updateProductStk($pro_id, $newStk);
+
+            // On contrôle ensuite le statut des éventuelles autres lignes de la commande
+            $order = $this->OrdersModel->getOrderLinesByOrderId($ode_ord_id);
+
+            $canceled = true;
+            foreach($order as $line)
+            {
+                // Si au moins une des lignes n'est pas en statut "Annulée"
+                if($line->ode_ost_id !== '8')
+                {
+                    $canceled = false;
+                }
+            }
+
+            if($canceled == false)
+            {
+                // On laisse "En cours" le statut global de commande
+            }
+            else
+            {
+                // Sinon on passe le statut global de la commande sur "Annulée"
+                $this->OrdersModel->cancelOrderLine($ode_ord_id);
+
+            }
+
+            $totalq = $this->db->total_queries();
+
+            // Si le statut de la transaction renvoie FALSE
+            if($this->db->trans_status() === FALSE)
+            {
+                // Annulation de la transaction
+                $this->db->trans_rollback();
+
+                // On réaffiche la vue "mes commandes"
+                // redirect('Customers/myOrders');
+            }
+             else
+            {
+                // Sinon Finalisation de la transaction
+                $this->db->trans_complete();
+
+                // On réaffiche la vue "mes commandes"
+                // redirect('Customers/myOrders');
+            }
+
+
+            var_dump($ode_id, $ode_ord_id, $order, $canceled, $totalq );
+        }
+        else // Le client n'est pas loggé
+        {
+            // Redirection vers la page d'accueil'
             redirect('Products/home');
         }
     }

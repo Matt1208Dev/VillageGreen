@@ -294,7 +294,7 @@ class Basket extends CI_Controller
                 $pay_method = "Différé";
             }
             
-            $ord_status = 1; // 1er statut de la commande : "En cours de traitement"
+            $ord_status = 9; // 1er statut de la commande : "En cours"
 
             $data = array(
 
@@ -306,9 +306,6 @@ class Basket extends CI_Controller
 
             $this->load->model('OrdersModel');
 
-            // Démarrage de la transaction pour la création de la commande
-            $this->db->trans_start();
-
             // Insertion de la ligne de commande dans la table `orders`
             $this->OrdersModel->CreateOrderLine($data);
 
@@ -317,6 +314,9 @@ class Basket extends CI_Controller
 
             // On récupère le panier dans $_SESSION
             $basket = $this->session->basket;
+
+            // 1er statut de la ligne de commande : "En cours de traitement"
+            $ode_status = 1; 
 
             // Récupération des infos nécessaires de chaque item du panier
             foreach($basket as $item)
@@ -335,41 +335,32 @@ class Basket extends CI_Controller
                     'ode_tax_rate' => $ode_tax_rate,
                     'ode_tot_all_tax_inc' => $ode_tot_all_tax_inc,
                     'ode_pro_id' => $ode_pro_id,
-                    'ode_ord_id' => $id
+                    'ode_ord_id' => $id,
+                    'ode_ost_id' => $ode_status
+
                 );
 
                 // Insertion de la ligne en bdd
                 $this->OrdersModel->CreateOrderDetailsLine($line);
 
-                $this->load->model('ProductsModel');
-                // On récupère la valeur en bdd du stock de l'ID produit entré en paramètre
-                $oldStk = $this->ProductsModel->getProductStk($ode_pro_id);
+                // Mise à jour du stock dans la table products. trigger after_insert_order_details déjà operationnel en bdd
 
-                // On soustrait la quantité entrée en paramètre du stock actuel pour déterminer la nouvelle valeur
-                $newStk = $oldStk[0]->pro_phy_stk - $ode_qty;
+                // $this->load->model('ProductsModel');
+                // // On récupère la valeur en bdd du stock de l'ID produit entré en paramètre
+                // $oldStk = $this->ProductsModel->getProductStk($ode_pro_id);
 
-                // Mise à jour en base du stock
-                $this->ProductsModel->updateProductStk($ode_pro_id, $newStk);
+                // // On soustrait la quantité entrée en paramètre du stock actuel pour déterminer la nouvelle valeur
+                // $newStk = $oldStk[0]->pro_phy_stk - $ode_qty;
+
+                // Mise à jour en base du stock 
+                // $this->ProductsModel->updateProductStk($ode_pro_id, $newStk);
             }
 
-            // Si le statut de la transaction renvoie FALSE
-            if($this->db->trans_status() === FALSE)
-            {
-                // Annulation de la transaction
-                $this->db->trans_rollback();
-            }
-             else
-            {
-                // Sinon Finalisation de la transaction
-                $this->db->trans_complete();
-
-                // Suppression des variables basket de $_SESSION et $_COOKIE
-                unset($_SESSION['basket']);
-                delete_cookie('basket');
-            }
+            // Suppression des variables basket de $_SESSION et $_COOKIE
+            unset($_SESSION['basket']);
+            delete_cookie('basket');
 
             // Redirection vers la page de succès
-            $View['newId'] = $id;
             redirect('Basket/orderSuccess');
         }
         else 

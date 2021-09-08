@@ -72,11 +72,17 @@
                                 <?php   if($line->ost_label == 'En cours de traitement')
                                         {
                                 ?>
-                                        <div class="col-12 col-md-5 d-flex flex-column justify-content-md-center align-items-center pe-2">   
-                                            <p class="col-12 text-center">
-                                                Un doute ? Commandé par erreur? Vous pouvez encore annuler cet achat.
-                                            </p>
-                                            <a class="col-8 btn btn-outline-danger" href="#">Annuler ma commande</a>                              
+                                        <div class="col-12 col-md-5 d-flex flex-column justify-content-md-center align-items-center pe-2">
+                                            <?php echo form_open('Customers/cancelOrderDetailsLine', 'class="text-center"'); ?> 
+                                                <p class="col-12 text-center">
+                                                    Un doute ? Commandé par erreur? Vous pouvez encore annuler cet achat.
+                                                </p>
+                                                <input type="hidden" name="ode_id" value="<?php echo $line->ode_id;?>">
+                                                <input type="hidden" name="ode_ord_id" value="<?php echo $line->ord_id;?>">
+                                                <input type="hidden" name="pro_id" value="<?php echo $line->pro_id;?>">
+                                                <input type="hidden" name="ode_qty" value="<?php echo $line->ode_qty;?>">
+                                                <button type="submit" class="col-8 btn btn-outline-danger">Annuler cet article</button>
+                                            </form>                              
                                         </div>
                                 <?php 
                                         }
@@ -85,7 +91,27 @@
                                 ?>
                                         <div class="col-12 col-md-5 d-flex flex-column justify-content-md-center align-items-center pe-2">   
                                             <p class="col-12 text-center text-muted">
-                                                Délai de livraison prévu : <?php echo date_format(new DateTime($line->ord_del_time), 'd/m/Y');?>
+                                                Délai de livraison estimé : 5 jours ouvrés
+                                            </p>                              
+                                        </div>
+                                <?php
+                                        }
+                                        else if($line->ost_label == 'Expédiée')
+                                        {
+                                ?>
+                                        <div class="col-12 col-md-5 d-flex flex-column justify-content-md-center align-items-center pe-2">   
+                                            <p class="col-12 text-center text-muted">
+                                                Délai de livraison estimé : 2 jours ouvrés
+                                            </p>                              
+                                        </div>
+                                <?php
+                                        }
+                                        else if($line->ost_label == 'Livrée')
+                                        {
+                                ?>
+                                        <div class="col-12 col-md-5 d-flex flex-column justify-content-md-center align-items-center pe-2">   
+                                            <p class="col-12 text-center text-muted">
+                                                Livrée
                                             </p>                              
                                         </div>
                                 <?php
