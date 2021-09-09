@@ -14,7 +14,7 @@
 <section id="main-container">
     <div id="adm">
         <div id="logo-vg">
-            <img src="<?php echo base_url('assets/images/HEADER/logo village green.png');?>" alt="logo Village Green" title="logo Village Green">
+            <img src="<?php echo base_url('assets/images/HEADER/logo_village_green.png');?>" alt="logo Village Green" title="logo Village Green">
         </div>
 
         <header>

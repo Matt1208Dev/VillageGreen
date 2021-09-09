@@ -6,7 +6,7 @@
                 MES COMMANDES
             </h3>
             <h5 class="mt-md-1 ps-md-2 ms-4 mb-md-4">
-                Historique des mes commandes
+                Historique de mes commandes
             </h5>
         </header>
     </div>
@@ -35,7 +35,7 @@
         <?php   foreach($orders as $order)
                     {
         ?>
-                        <div id="account-content" class="col-md-12 bg-white rounded-2 p-2 my-2 d-flex flex-column">
+                        <div class="col-md-12 bg-white rounded-2 p-2 my-2 d-flex flex-column account-content">
                             
                             <div class="col-12 d-flex flex-column flex-md-row justify-content-between mb-2 mb-md-0">
                                 <header>
@@ -131,7 +131,6 @@
         <?php       
                     }
         ?>
-        <?php var_dump($orders);?>
         </div>
     </div>
 </section>

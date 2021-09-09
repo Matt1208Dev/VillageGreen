@@ -8,7 +8,7 @@
 
     <!-- Services banner -->
     <section id="banner-services">
-        <img class="img-fluid w-100 pt-5 pb-2" src="<?php echo base_url('assets/images/BODY/banniere centre 4 pictos.png'); ?>" alt="Livraison gratuite à parti de 19€ d'achats" title="Remise jusqu'à 15% sur Gibson et Ibanez">
+        <img class="img-fluid w-100 pt-5 pb-2" src="<?php echo base_url('assets/images/BODY/banniere_centre_4_pictos.png'); ?>" alt="Livraison gratuite à parti de 19€ d'achats" title="Remise jusqu'à 15% sur Gibson et Ibanez">
     </section>
 
 </div>

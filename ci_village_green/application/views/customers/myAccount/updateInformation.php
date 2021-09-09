@@ -55,12 +55,12 @@
                     <div class="px-0 mt-sm-2 px-sm-0">
                         <p class="px-2 mb-1">Sexe</p>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input bg-grey ps-1" type="radio" value="0" name="cus_sex" id="cus_sex" <?php echo set_radio('cus_sex', '0', $customer[0]->cus_sex);?><?php if($customer[0]->cus_sex === '0'){echo 'checked=checked';};?>>
-                            <label class="form-check-label" for="cus_type">Homme</label>
+                            <input class="form-check-input bg-grey ps-1" type="radio" value="0" name="cus_sex" id="man" <?php echo set_radio('cus_sex', '0', $customer[0]->cus_sex);?><?php if($customer[0]->cus_sex === '0'){echo 'checked=checked';};?>>
+                            <label class="form-check-label" for="man">Homme</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input bg-grey" type="radio" value="1" name="cus_sex" id="cus_sex" <?php echo set_radio('cus_sex', '1', $customer[0]->cus_sex);?><?php if($customer[0]->cus_sex === '1'){echo 'checked=checked';};?>>
-                            <label class="form-check-label" for="cus_type">Femme</label>
+                            <input class="form-check-input bg-grey" type="radio" value="1" name="cus_sex" id="woman" <?php echo set_radio('cus_sex', '1', $customer[0]->cus_sex);?><?php if($customer[0]->cus_sex === '1'){echo 'checked=checked';};?>>
+                            <label class="form-check-label" for="woman">Femme</label>
                         </div>
                         <?php echo form_error('cus_sex');?>
                     </div>
@@ -69,12 +69,12 @@
                     <div class="px-0 mt-sm-2 px-sm-0 mb-md-3">
                         <p class="px-2 mb-1">Je suis un : </p>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input bg-grey" type="radio" value="Particulier" name="cus_type" id="cus_type" <?php echo set_radio('cus_type', 'Particulier', $customer[0]->cus_type);?><?php if($customer[0]->cus_type === 'Particulier'){echo 'checked=checked';};?>>
-                            <label class="form-check-label" for="cus_type">Particulier</label>
+                            <input class="form-check-input bg-grey" type="radio" value="Particulier" name="cus_type" id="part" <?php echo set_radio('cus_type', 'Particulier', $customer[0]->cus_type);?><?php if($customer[0]->cus_type === 'Particulier'){echo 'checked=checked';};?>>
+                            <label class="form-check-label" for="part">Particulier</label>
                         </div>
                         <div class="form-check form-check-inline">
-                            <input class="form-check-input bg-grey" type="radio" value="Professionnel" name="cus_type" id="cus_type" <?php echo set_radio('cus_type', 'Professionnel', $customer[0]->cus_type);?><?php if($customer[0]->cus_type === 'Professionnel'){echo 'checked=checked';};?>>
-                            <label class="form-check-label" for="cus_type">Professionnel</label>
+                            <input class="form-check-input bg-grey" type="radio" value="Professionnel" name="cus_type" id="pro" <?php echo set_radio('cus_type', 'Professionnel', $customer[0]->cus_type);?><?php if($customer[0]->cus_type === 'Professionnel'){echo 'checked=checked';};?>>
+                            <label class="form-check-label" for="pro">Professionnel</label>
                         </div>
                         <?php echo form_error('cus_type');?>
                     </div>
@@ -83,7 +83,7 @@
                     <hr>
                     <!-- Address field -->
                     <div class="row align-items-center mt-sm-2 px-sm-0">
-                        <label class="form-label " for="cus_address">Adresse</label>
+                        <label class="form-label " for="cus_bil_address">Adresse</label>
                         <input class="form-control col bg-grey" type="text" name="cus_bil_address" id="cus_bil_address" value="<?php echo set_value('cus_bil_address', $customer[0]->cus_bil_address);?>">
                         <?php echo form_error('cus_bil_address');?>
                     </div>
@@ -106,7 +106,7 @@
                     <hr>
                     <!-- Address field -->
                     <div class="row align-items-center mt-sm-2 px-sm-0">
-                        <label class="form-label " for="cus_address">Adresse</label>
+                        <label class="form-label " for="cus_del_address">Adresse</label>
                         <input class="form-control col bg-grey" type="text" name="cus_del_address" id="cus_del_address" value="<?php echo set_value('cus_del_address', $customer[0]->cus_del_address);?>">
                         <?php echo form_error('cus_del_address');?>
                     </div>
@@ -137,7 +137,7 @@
                     <!-- Email field -->                    
                     <div class="row align-items-center mt-sm-2 px-sm-0 mb-md-3">
                         <label class="form-label" for="email">Email</label>
-                        <input class="form-control col bg-grey" type="text" name="cus_mail" id="email" placeholder="mail@example.com" value="<?php echo set_value('cus_mail', $customer[0]->cus_mail);?>">                       
+                        <input class="form-control col bg-grey" type="text" name="cus_mail" placeholder="mail@example.com" value="<?php echo set_value('cus_mail', $customer[0]->cus_mail);?>">                       
                         <?php echo form_error('cus_mail');?>
                     </div>
 
@@ -153,7 +153,7 @@
                         <input class="form-control col bg-grey" type="password" name="cus_pass_confirm" id="passwordConfirm" value="<?php echo set_value('cus_pass_confirm');?>">                                                  
                         <?php echo form_error('cus_pass_confirm');?>
                     </div> 
-                    <input class="btn btn-lg  my-sm-0 mt-sm-3 mb-md-5 me-md-2 col-sm-11 col-md-3 col-lg-2 fw-bold orange-gradient" type="submit" value="Valider"></input>
+                    <input class="btn btn-lg  my-sm-0 mt-sm-3 mb-md-5 me-md-2 col-sm-11 col-md-3 col-lg-2 fw-bold orange-gradient" type="submit" value="Valider">
                     <a class="btn btn-lg  my-sm-0 mt-sm-3 mb-sm-5 mb-md-5 col-sm-11 col-md-3 col-lg-2 fw-bold btn-secondary" href="<?php echo site_url('Customers/home');?>">Retour</a>
                 </div>
             </form>

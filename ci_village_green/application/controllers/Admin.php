@@ -103,6 +103,8 @@ class Admin extends CI_Controller
 
             $categories = $this->ProductsModel->getCategories();
             $View["categories"] = $categories;
+            $subCategories = $this->ProductsModel->getSubCategories();
+            $View["subCategories"] = $subCategories;
 
             $this->load->view('admin/header');
             $this->load->view('admin/ProductSearchForm', $View);
@@ -227,6 +229,8 @@ class Admin extends CI_Controller
             $this->load->model('ProductsModel');
             $categories = $this->ProductsModel->getCategories();
             $View["categories"] = $categories;
+            $subCategories = $this->ProductsModel->getSubCategories();
+            $View["subCategories"] = $subCategories;
 
             $this->load->view('admin/header');
             $this->load->view('admin/ProductSearchForm', $View);
@@ -242,6 +246,8 @@ class Admin extends CI_Controller
             $this->load->model('ProductsModel');
             $categories = $this->ProductsModel->getCategories();
             $View["categories"] = $categories;
+            $subCategories = $this->ProductsModel->getSubCategories();
+            $View["subCategories"] = $subCategories;
 
             $this->load->view('admin/header');
             $this->load->view('admin/ProductSearchForm', $View);

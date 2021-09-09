@@ -140,7 +140,7 @@ CREATE TABLE `order_details` (
      `ode_pro_id` INT NOT NULL,
      `ode_ord_id` INT NOT NULL,
      `ode_ost_id` INT NOT NULL,
-     FOREIGN KEY (`ode_pro_id`) REFERENCES `products`(`pro_id`),
+     FOREIGN KEY (`ode_pro_id`) REFERENCES `products`(`pro_id`) ON DELETE SET NULL,
      FOREIGN KEY (`ode_ord_id`) REFERENCES `orders`(`ord_id`),
      FOREIGN KEY (`ode_ost_id`) REFERENCES `order_status`(`ost_id`)
 )

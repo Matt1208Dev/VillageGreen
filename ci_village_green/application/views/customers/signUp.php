@@ -15,8 +15,8 @@
             <div class="col-sm-12 col-md-6">
                 <div class="col-sm-12 col-lg-9 mx-lg-auto mb-sm-4">
                     <div class="row pe-md-4 px-sm-3">
-                        <label class="form-label col-md-5 col-lg-4 text-md-end pe-2 me-2" for="email">E-mail</label>
-                        <input class="form-control col bg-grey" type="text" name="cus_mail" id="email" value="<?php echo set_value('cus_mail');?>">                       
+                        <label class="form-label col-md-5 col-lg-4 text-md-end pe-2 me-2" for="cus_mail">E-mail</label>
+                        <input class="form-control col bg-grey" type="text" name="cus_mail" id="cus_mail" value="<?php echo set_value('cus_mail');?>">                       
                     </div>
                     <?php echo form_error('cus_mail');?>
                 </div>
@@ -70,19 +70,19 @@
             <div class="px-0 mt-sm-1 px-sm-0">
                 <p class="d-inline-block col-4 text-md-end px-3 mb-0">Sexe</p>
                 <div class="form-check form-check-inline col-sm-3">
-                    <input class="form-check-input bg-grey" type="radio" value="0" name="cus_sex" id="cus_sex" <?php echo set_radio('cus_sex', '0');?>>
-                    <label class="form-check-label" for="cus_type">Homme</label>
+                    <input class="form-check-input bg-grey" type="radio" value="0" name="cus_sex" id="man" <?php echo set_radio('cus_sex', '0');?>>
+                    <label class="form-check-label" for="man">Homme</label>
                 </div>
                 <div class="form-check form-check-inline col-sm-3">
-                    <input class="form-check-input bg-grey" type="radio" value="1" name="cus_sex" id="cus_sex" <?php echo set_radio('cus_sex', '1');?>>
-                    <label class="form-check-label" for="cus_type">Femme</label>
+                    <input class="form-check-input bg-grey" type="radio" value="1" name="cus_sex" id="woman" <?php echo set_radio('cus_sex', '1');?>>
+                    <label class="form-check-label" for="woman">Femme</label>
                 </div>
                 <?php echo form_error('cus_sex');?>
             </div>
 
             <!-- Address field -->
             <div class="row align-items-center mt-sm-1 px-sm-0">
-                <label class="form-label text-md-end col-md-4" for="cus_address">Adresse</label>
+                <label class="form-label text-md-end col-md-4" for="cus_bil_address">Adresse</label>
                 <input class="form-control col bg-grey" type="text" name="cus_bil_address" id="cus_bil_address" value="<?php echo set_value('cus_bil_address');?>">
                 <?php echo form_error('cus_bil_address');?>
             </div>
@@ -105,12 +105,12 @@
             <div class="px-0 mt-sm-1 px-sm-0">
                 <p class="d-inline-block col-4 text-md-end px-3 mb-0">Je suis un : </p>
                 <div class="form-check form-check-inline col-sm-3">
-                    <input class="form-check-input bg-grey" type="radio" value="Particulier" name="cus_type" id="cus_type" <?php echo set_radio('cus_type', 'Particulier');?>>
-                    <label class="form-check-label" for="cus_type">Particulier</label>
+                    <input class="form-check-input bg-grey" type="radio" value="Particulier" name="cus_type" id="part" <?php echo set_radio('cus_type', 'Particulier');?>>
+                    <label class="form-check-label" for="part">Particulier</label>
                 </div>
                 <div class="form-check form-check-inline col-sm-3">
-                    <input class="form-check-input bg-grey" type="radio" value="Professionnel" name="cus_type" id="cus_type" <?php echo set_radio('cus_type', 'Professionnel');?>>
-                    <label class="form-check-label" for="cus_type">Professionnel</label>
+                    <input class="form-check-input bg-grey" type="radio" value="Professionnel" name="cus_type" id="pro" <?php echo set_radio('cus_type', 'Professionnel');?>>
+                    <label class="form-check-label" for="pro">Professionnel</label>
                 </div>
                 <?php echo form_error('cus_type');?>
             </div>
@@ -135,24 +135,24 @@
                     </div>
                     <div class="row align-items-center mb-3">
                         <label class="form-label text-end col-4" for="cus_xxx">Numéro de téléphone fixe</label>
-                        <input class="form-control col bg-grey me-5" type="text">
+                        <input class="form-control col bg-grey me-5" id="cus_xxx" type="text">
                     </div>
                 </div>
 
                 <!-- Mobile phone number picture -->
                 <div class="phone-form-box-img border border-top-0 border 1 border-dark">
-                    <img class="img-fluid col mx-auto px-0" src="<?php echo base_url('assets/images/BODY/ESPACE CLIENT/CADRE numero-suivi.png');?>" alt="Suivez vos commandes par SMS" title="Suivez vos commandes par SMS">
+                    <img class="img-fluid col mx-auto px-0" src="<?php echo base_url('assets/images/BODY/ESPACE_CLIENT/CADRE_numero-suivi.png');?>" alt="Suivez vos commandes par SMS" title="Suivez vos commandes par SMS">
                 </div>
             </div>
             
         </div>
-        <input class="btn btn-lg  my-sm-0 my-md-5 col-sm-11 col-md-2 mx-auto text-white fw-bold orange-gradient" type="submit" value="Valider"></input>
+        <input class="btn btn-lg  my-sm-0 my-md-5 col-sm-11 col-md-2 mx-auto text-white fw-bold orange-gradient" type="submit" value="Valider">
     </form>
     <!-- ENF FORM -->
 </section>
 
-<section class="container-fluid">
-    <div action="" class="row">
-        <img class="img-fluid mt-5 px-0" src="<?php echo base_url('assets/images/BODY/ESPACE CLIENT/bas de page pictos.png');?>" alt="Logos de nos partenaires Yamaha, Roland, Sennheiser et Behringer" title="Nos partenaires et services">
+<div class="container-fluid">
+    <div class="row">
+        <img class="img-fluid mt-5 px-0" src="<?php echo base_url('assets/images/BODY/ESPACE_CLIENT/bas_de_page_pictos.png');?>" alt="Logos de nos partenaires Yamaha, Roland, Sennheiser et Behringer" title="Nos partenaires et services">
     </div>
-</section>
+</div>

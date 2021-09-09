@@ -19,7 +19,7 @@ class ProductsModel extends CI_Model
         $requete = $this->db->query("SELECT * FROM `products` 
                                         JOIN `categories`
                                         ON `pro_cat_id` = `cat_id`
-                                        WHERE cat_id = $catId ;");
+                                        WHERE cat_id = $catId AND pro_lock = 0;");
         $aProducts = $requete->result();
 
         return $aProducts;

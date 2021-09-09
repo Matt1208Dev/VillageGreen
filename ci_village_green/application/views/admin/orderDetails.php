@@ -105,7 +105,7 @@ $total = 0;
     <div class="row px-3">
         <div class="col-sm-12 table-responsive-sm mt-3 px-0 mb-3 border border-4 rounded">
             <table id="table-order-details" class="table table-hover table-borderless align-middle text-center overflow-hidden mb-0">
-                <thead">
+                <thead>
                     <tr class="bg-grey">
                         <th scope="col">Visuel Produit</th>
                         <th scope="col">Ref Produit</th>
@@ -161,16 +161,16 @@ $total = 0;
                         }
                         ?>
                     </tbody>
-                    <tfoot class="bg-white">
+                    <tfoot class="bg-light">
                         <!-- Total & taxes -->
-                        <tr class="bg-white border-0 border-top border-4">
+                        <tr class="bg-light border-0 border-top border-4">
                             <td colspan="5" class="pt-2"></td>
                             <td class="pt-2">Total HT : </td>
                             <td class="pt-2 px-0"><?php if (isset($total)) {
                                                         echo 'EUR ' . number_format($total, 2, ".", " ");
                                                     } ?></td>
                         </tr>
-                        <tr class="bg-white">
+                        <tr class="bg-light">
                             <td colspan="5" class="pt-0"></td>
                             <td class="pt-0">TVA : </td>
                             <td class="pt-0 px-0"><?php if (isset($total)) {
@@ -179,13 +179,16 @@ $total = 0;
                         </tr>
 
                         <tr>
-                            <td colspan="5" class="pt-0"></td>
-                            <span class="rounded-bottom">
+                            <td colspan="5" class="rounded-bottom bg-light pt-0"></td>
+                            
                                 <td class="fw-bold pt-0">Total : </td>
-                                <td class=" fw-bold text-danger pt-0 px-0"><?php if (isset($total)) {
-                                                                                echo 'EUR ' . number_format(($total + ($total * $product->ode_tax_rate / 100)), 2, ".", " ");
-                                                                            } ?></td>
-                            </span>
+                                <td class=" fw-bold text-danger pt-0 px-0">
+                                <?php   if (isset($total)) 
+                                        {
+                                            echo 'EUR ' . number_format(($total + ($total * $product->ode_tax_rate / 100)), 2, ".", " ");
+                                        } 
+                                ?>
+                                </td>
                         </tr>
                     </tfoot>
             </table>

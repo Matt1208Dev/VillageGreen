@@ -138,7 +138,6 @@ class Customers extends CI_Controller
                     }
 
                     // On recharge la vue actuelle
-                    // $current_uri = substr($current_uri, 1);
                     redirect($current_uri);
 
                 }
@@ -173,7 +172,7 @@ class Customers extends CI_Controller
         // Destruction de $_SESSION
         session_destroy();
 
-        // Si le cookie "logged_in" pour le maintien de session existe
+        // Si le cookie "logged_in" pour le maintien du log existe
         if (isset($_COOKIE['logged_in'])) 
         {
             // On l'efface
@@ -194,6 +193,7 @@ class Customers extends CI_Controller
         // On vérifie la présence de cookies de log
         else if (get_cookie('logged_in', true) === '1') 
         {
+            // Le second paramètre (true) de get_cookie() échappe les valeurs récupérées
             $cus_id =  get_cookie('user_id', true);
             $cus_firstname = get_cookie('username', true);
             $cus_mail = get_cookie('email', true);
@@ -209,7 +209,7 @@ class Customers extends CI_Controller
             {
                 // On initialise les variables de sessions
                 $userInfos = array(
-                    // Le second paramètre (true) de get_cookie() échappe les valeurs récupérées
+                    
                     'user_id'   => $cus_id,
                     'username'  => $cus_firstname,
                     'email'     => $cus_mail,
@@ -236,7 +236,10 @@ class Customers extends CI_Controller
 
     public function myAccount()
     {
+        // Vérification que le client est loggé
         $isLogged = $this->isLogged();
+
+        // Le client est loggé
         if ($isLogged === true) 
         {
             $this->load->view('public/templates/header');
@@ -352,7 +355,7 @@ class Customers extends CI_Controller
 
     public function updateInformationSuccess()
     {
-        // Affichage de la page d'inscription réussie
+        // Affichage de la page de modification réussie
         $this->load->view('public/templates/header');
         $this->load->view('customers/myAccount/updateInformationSuccess');
         $this->load->view('public/templates/footer');
@@ -412,24 +415,23 @@ class Customers extends CI_Controller
             $pro_id = $this->input->post('pro_id');
             $ode_qty = $this->input->post('ode_qty');
 
-            // Démarrage de la transaction pour l'annulation d'une ligne de commande
-            $this->db->trans_start();
-
             // Mise à jour du statut de la ligne à "Annulée" en bdd
             $this->load->model('OrdersModel');
             $this->OrdersModel->cancelOrderDetailsLine($ode_id);
             
-            // Retour en stock de la quantité annulée
-            $this->load->model('ProductsModel');
 
-            // On récupère la valeur en bdd du stock de l'ID produit entré en paramètre
-            $oldStk = $this->ProductsModel->getProductStk($pro_id);
+            // Retour en stock de la quantité annulée. Trigger after_update_order_details fonctionnel en bdd.
+            // $this->load->model('ProductsModel');
 
-            // On additionne la quantité entrée en paramètre du stock actuel pour déterminer la nouvelle valeur
-            $newStk = $oldStk[0]->pro_phy_stk + $ode_qty;
+            // // On récupère la valeur en bdd du stock de l'ID produit entré en paramètre
+            // $oldStk = $this->ProductsModel->getProductStk($pro_id);
 
-            // Mise à jour en base du stock
-            $this->ProductsModel->updateProductStk($pro_id, $newStk);
+            // // On additionne la quantité entrée en paramètre du stock actuel pour déterminer la nouvelle valeur
+            // $newStk = $oldStk[0]->pro_phy_stk + $ode_qty;
+
+            // // Mise à jour en base du stock
+            // $this->ProductsModel->updateProductStk($pro_id, $newStk);
+
 
             // On contrôle ensuite le statut des éventuelles autres lignes de la commande
             $order = $this->OrdersModel->getOrderLinesByOrderId($ode_ord_id);
@@ -447,6 +449,9 @@ class Customers extends CI_Controller
             if($canceled == false)
             {
                 // On laisse "En cours" le statut global de commande
+
+                // On réaffiche la vue "mes commandes"
+                redirect('Customers/myOrders');
             }
             else
             {
@@ -455,28 +460,9 @@ class Customers extends CI_Controller
 
             }
 
-            $totalq = $this->db->total_queries();
-
-            // Si le statut de la transaction renvoie FALSE
-            if($this->db->trans_status() === FALSE)
-            {
-                // Annulation de la transaction
-                $this->db->trans_rollback();
-
                 // On réaffiche la vue "mes commandes"
-                // redirect('Customers/myOrders');
-            }
-             else
-            {
-                // Sinon Finalisation de la transaction
-                $this->db->trans_complete();
+                redirect('Customers/myOrders');
 
-                // On réaffiche la vue "mes commandes"
-                // redirect('Customers/myOrders');
-            }
-
-
-            var_dump($ode_id, $ode_ord_id, $order, $canceled, $totalq );
         }
         else // Le client n'est pas loggé
         {

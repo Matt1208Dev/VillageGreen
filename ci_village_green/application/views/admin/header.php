@@ -21,7 +21,7 @@
   <nav id="navbar" class="navbar navbar-expand-lg navbar-light py-0 sticky-top">
     <div class="container-fluid ps-0 pe-1">
       <a id="navbar-logo" class="navbar-brand py-0" href="<?php echo site_url('Admin/home'); ?>">
-        <img src="<?php echo base_url('assets/images/HEADER/logo village green.png'); ?>" alt="logo Village Green" title="logo Village Green">
+        <img src="<?php echo base_url('assets/images/HEADER/logo_village_green.png'); ?>" alt="logo Village Green" title="logo Village Green">
       </a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>

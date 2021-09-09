@@ -14,10 +14,10 @@
             <h5><span class="orange">Suivez-nous</span> par ici !</h5>
             <div id="social-picto">
             <a href="http://www.facebook.com">
-                <img src="<?php echo base_url("assets/images/FOOTER/picto facebook.png"); ?>" alt="pictogramme facebook" title="Facebook">
+                <img src="<?php echo base_url("assets/images/FOOTER/picto_facebook.png"); ?>" alt="pictogramme facebook" title="Facebook">
             </a>    
             <a href="http://www.twitter.com">    
-                <img src="<?php echo base_url("assets/images/FOOTER/picto twitter.png"); ?>" alt="pictogramme twitter" title="Twitter">
+                <img src="<?php echo base_url("assets/images/FOOTER/picto_twitter.png"); ?>" alt="pictogramme twitter" title="Twitter">
             </a>
             </div>
         </div>

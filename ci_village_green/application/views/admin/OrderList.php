@@ -9,7 +9,7 @@
     </div>
 
     <!-- Order List -->
-    <section class="row justify-content-center px-3">
+    <div class="row justify-content-center px-3">
         <div class="table-responsive-md border border-4 border-bottom-1 px-0 mb-3 rounded overflow-hidden-md">
             <table id="table-orders" class="col-sm-10 table table-hover align-middle text-center overflow-hidden my-0">
                 <thead>
@@ -49,7 +49,7 @@
                 </tbody>
             </table>
         </div>  
-    </section>
+    </div>
 
     <!-- END Order List -->
 

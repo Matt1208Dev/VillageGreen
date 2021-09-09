@@ -1,9 +1,7 @@
-<!-- Création d'une variable de session avec l'URI de la page actuelle -->
-<?php   
-        if($this->session->userdata('uri')){$this->session->set_userdata('prev_uri', $this->session->userdata('uri'));}
+<?php  
+        // Création d'une variable de session avec l'URI de la page actuelle
+        // if($this->session->userdata('uri')){$this->session->set_userdata('prev_uri', $this->session->userdata('uri'));}
         if(isset($_SERVER['PATH_INFO'])){$this->session->set_userdata('uri', $_SERVER['PATH_INFO']);}
-        // J'ajoute un cookie de session persistante afin de conserver le panier pendant 24 heures
-        set_cookie(session_name(), session_id(), time()+3600*24);
 ?>
 
 
@@ -32,14 +30,14 @@
                     <!-- Logo Village green -->
                     <div class="col-12 text-center">
                         <a class="navbar-brand py-0 mx-0 col" href="<?php echo site_url('Products/home'); ?>">
-                            <img id="logo-vg" class="col-12" src="<?php echo base_url('assets/images/HEADER/logo village green.png'); ?>" alt="Logo Village Green" title="Logo Village Green">
+                            <img id="logo-vg" class="col-12" src="<?php echo base_url('assets/images/HEADER/logo_village_green.png'); ?>" alt="Logo Village Green" title="Logo Village Green">
                         </a>
                     </div>
 
                     <!-- 1ère ligne de la navbar -->
                     <!-- Logo Infos -->
                     <a class="nav-link text-dark pe-0" href="#">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-info-circle blue" viewBox="0 0 16 16" alt="Logo Infos" title="Infos">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-info-circle blue" viewBox="0 0 16 16">
                             <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z" />
                             <path d="m8.93 6.588-2.29.287-.082.38.45.083c.294.07.352.176.288.469l-.738 3.468c-.194.897.105 1.319.808 1.319.545 0 1.178-.252 1.465-.598l.088-.416c-.2.176-.492.246-.686.246-.275 0-.375-.193-.304-.533L8.93 6.588zM9 4.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z" />
                         </svg>
@@ -49,7 +47,7 @@
                     <div id="item-client-nav-coll" class="d-inline-block">
                         <!-- Logo Espace Client -->
                         <a class="nav-link text-dark px-0 px-sm-3 py-lg-0" href="#">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person blue" viewBox="0 0 16 16" alt="Logo Espace client" title="Espace Client">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-person blue" viewBox="0 0 16 16">
                                 <path d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H3s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C11.516 10.68 10.289 10 8 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z" />
                             </svg>
                         </a>
@@ -98,7 +96,7 @@
                                         En tant que client Village Green, vous pouvez suivre vos envois, lire des tests produits exclusifs, évaluer des produits, déposer des petites annonces, gérer vos chèques-cadeaux, devenir partenaires et plus encore.
                                     </p>
                                     <div>
-                                        <a class="nav-link btn  text-white fw-bold mb-1 px-2 orange-gradient" role="link" href="<?php echo site_url('Customers/signUp'); ?>">S'inscrire</a>
+                                        <a class="nav-link btn  text-white fw-bold mb-1 px-2 orange-gradient" href="<?php echo site_url('Customers/signUp'); ?>">S'inscrire</a>
                                     </div>
                                     <a class="nav-link btn" href="#">Plus d'informations</a>
                                 </div>
@@ -131,10 +129,10 @@
 
                     <!-- Picto Panier d'achat -->
                     <!-- <a class="nav-link px-0 px-sm-3" href="<?php echo site_url('Basket/viewBasket'); ?>">
-                        <img class="img-fluid" src="<?php echo base_url('assets/images/HEADER/picto panier.png'); ?> " alt="pictogramme panier d'achat" title="Votre panier">
+                        <img class="img-fluid" src="<?php echo base_url('assets/images/HEADER/picto_panier.png'); ?> " alt="pictogramme panier d'achat" title="Votre panier">
                     </a> -->
                     <a class="nav-link position-relative" href="<?php echo site_url('Basket/viewBasket');?>">
-                        <img class="img-fluid" src="<?php echo base_url('assets/images/HEADER/picto panier.png'); ?> " alt="pictogramme panier d'achat" title="Votre panier">
+                        <img class="img-fluid" src="<?php echo base_url('assets/images/HEADER/picto_panier.png'); ?> " alt="pictogramme panier d'achat" title="Votre panier">
                         <span <?php if(isset($this->session->basket) && count($this->session->basket) > 0) { echo 'class="badge-picto-panier position-absolute bg-danger badge badge-pill rounded-circle"';}?>>
                         <span><?php if (isset($this->session->basket) && count($this->session->basket) > 0) { echo count($this->session->basket);}?></span>
                     </span>
@@ -142,7 +140,7 @@
 
                     <!-- Picto langue -->
                     <a class="nav-link px-0 px-sm-3" href="#">
-                        <img src="<?php echo base_url('assets/images/HEADER/picto pays.png'); ?> " alt="pictogramme pays" title="Langue de navigation">
+                        <img src="<?php echo base_url('assets/images/HEADER/picto_pays.png'); ?> " alt="pictogramme pays" title="Langue de navigation">
                     </a>
 
                     <!-- Picto cadenas espace Admin -->
@@ -170,14 +168,14 @@
                                         Guit/bass
                                     </a>
                                     <ul class="dropdown-menu text-center bg-light" aria-labelledby="dropdown-guitar">
-                                        <li><a class="dropdown-item" href="<?php echo site_url('Products/list/8'); ?>">Guitares Electriques</li></a>
-                                        <li><a class="dropdown-item" href="#">Guitares Classiques</li></a>
-                                        <li><a class="dropdown-item" href="<?php echo site_url('Products/list/10'); ?>">Guitares Acoustiques<br>& Electro-acoustiques</li></a>
-                                        <li><a class="dropdown-item" href="<?php echo site_url('Products/list/12'); ?>">Basses Electriques</li></a>
-                                        <li><a class="dropdown-item" href="#">Basses Acoustiques</li></a>
-                                        <li><a class="dropdown-item" href="#">Basses Semi-Acoustiques</li></a>
-                                        <li><a class="dropdown-item" href="#">Ukulélés</li></a>
-                                        <li><a class="dropdown-item" href="#">Autres instruments à cordes pincées</li></a>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('Products/list/8'); ?>">Guitares Electriques</a></li>
+                                        <li><a class="dropdown-item" href="#">Guitares Classiques</a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('Products/list/10'); ?>">Guitares Acoustiques<br>& Electro-acoustiques</a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('Products/list/12'); ?>">Basses Electriques</a></li>
+                                        <li><a class="dropdown-item" href="#">Basses Acoustiques</a></li>
+                                        <li><a class="dropdown-item" href="#">Basses Semi-Acoustiques</a></li>
+                                        <li><a class="dropdown-item" href="#">Ukulélés</a></li>
+                                        <li><a class="dropdown-item" href="#">Autres instruments à cordes pincées</a></li>
                                     </ul>
                                 </div>
 
@@ -187,8 +185,8 @@
                                         Batteries
                                     </a>
                                     <ul class="dropdown-menu text-center bg-light" aria-labelledby="dropdown-drums">
-                                        <li><a class="nav-link px-1 py-1" href="#">Batteries Electriques</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Batteries Acoustiques</li></a>
+                                        <li><a class="nav-link px-1 py-1" href="#">Batteries Electriques</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Batteries Acoustiques</a></li>
                                     </ul>
                                 </div>
 
@@ -198,9 +196,9 @@
                                         Claviers
                                     </a>
                                     <ul class="dropdown-menu text-center bg-light" aria-labelledby="dropdown-keybords">
-                                        <li><a class="nav-link px-1 py-1" href="#">Claviers Arrangeurs</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Claviers Maîtres</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Pianos Numériques</li></a>
+                                        <li><a class="nav-link px-1 py-1" href="#">Claviers Arrangeurs</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Claviers Maîtres</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Pianos Numériques</a></li>
                                     </ul>
                                 </div>
 
@@ -210,11 +208,11 @@
                                         Studio
                                     </a>
                                     <ul class="dropdown-menu text-center bg-light" aria-labelledby="dropdown-studio">
-                                        <li><a class="nav-link px-1 py-1" href="#">Enceintes de monitoring</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Microphones</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Interfaces Audio</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Logiciels Studio</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Mobilier de studio</li></a>
+                                        <li><a class="nav-link px-1 py-1" href="#">Enceintes de monitoring</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Microphones</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Interfaces Audio</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Logiciels Studio</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Mobilier de studio</a></li>
                                     </ul>
                                 </div>
 
@@ -224,11 +222,11 @@
                                         Claviers
                                     </a>
                                     <ul class="dropdown-menu text-center bg-light" aria-labelledby="dropdown-sono">
-                                        <li><a class="nav-link px-1 py-1" href="#">Amplis de puissance</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Enceintes Actives</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Microphones</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Préamplificateurs Studio</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Packs enceintes</li></a>
+                                        <li><a class="nav-link px-1 py-1" href="#">Amplis de puissance</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Enceintes Actives</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Microphones</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Préamplificateurs Studio</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Packs enceintes</a></li>
                                     </ul>
                                 </div>
 
@@ -238,11 +236,11 @@
                                         Eclairages
                                     </a>
                                     <ul class="dropdown-menu text-center bg-light" aria-labelledby="dropdown-lights">
-                                        <li><a class="nav-link px-1 py-1" href="#">Kits et packs lumières</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Lasers</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Lumière Noire</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Machines et liquides</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Projecteurs</li></a>
+                                        <li><a class="nav-link px-1 py-1" href="#">Kits et packs lumières</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Lasers</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Lumière Noire</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Machines et liquides</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Projecteurs</a></li>
                                     </ul>
                                 </div>
 
@@ -252,11 +250,11 @@
                                         DJ
                                     </a>
                                     <ul class="dropdown-menu text-center bg-light" aria-labelledby="dropdown-dj">
-                                        <li><a class="nav-link px-1 py-1" href="#">Casques</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Effets DJ</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Mixers Numériques</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Platines vinyles</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Tables de mixage</li></a>
+                                        <li><a class="nav-link px-1 py-1" href="#">Casques</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Effets DJ</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Mixers Numériques</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Platines vinyles</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Tables de mixage</a></li>
                                     </ul>
                                 </div>
 
@@ -266,11 +264,11 @@
                                         Cases
                                     </a>
                                     <ul class="dropdown-menu text-center bg-light" aria-labelledby="dropdown-cases">
-                                        <li><a class="nav-link px-1 py-1" href="#">DJ</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Elements rackables</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">flight case pour lumières</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Sono</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Pièces détachées</li></a>
+                                        <li><a class="nav-link px-1 py-1" href="#">DJ</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Elements rackables</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">flight case pour lumières</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Sono</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Pièces détachées</a></li>
                                     </ul>
                                 </div>
 
@@ -280,11 +278,11 @@
                                         Accessoires
                                     </a>
                                     <ul class="dropdown-menu text-center bg-light" aria-labelledby="dropdown-access">
-                                        <li><a class="nav-link px-1 py-1" href="#">Accessoires claviers</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Accessoires guitares</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Accessoires DJ, sono<br>& Home studio</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Accessoires claviers</li></a>
-                                        <li><a class="nav-link px-1 py-1" href="#">Mobilier d'orchestre</li></a>
+                                        <li><a class="nav-link px-1 py-1" href="#">Accessoires claviers</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Accessoires guitares</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Accessoires DJ, sono<br>& Home studio</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Accessoires claviers</a></li>
+                                        <li><a class="nav-link px-1 py-1" href="#">Mobilier d'orchestre</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -302,7 +300,7 @@
                     <div class="row container-fluid p-0 m-0 ">
                         <div id="navlogo" class="p-0">
                             <a class="navbar-brand" href="<?php echo site_url('Products/home'); ?>">
-                                <img id="logo" src="<?php echo base_url('assets/images/HEADER/logo village green.png'); ?>" alt="Logo Village Green" title="Logo Village Green">
+                                <img id="logo" src="<?php echo base_url('assets/images/HEADER/logo_village_green.png'); ?>" alt="Logo Village Green" title="Logo Village Green">
                             </a>
                         </div>
 
@@ -357,7 +355,7 @@
                                                         En tant que client Village Green, vous pouvez suivre vos envois, lire des tests produits exclusifs, évaluer des produits, déposer des petites annonces, gérer vos chèques-cadeaux, devenir partenaires et plus encore.
                                                     </p>
                                                     <div>
-                                                        <a class="nav-link btn  text-white fw-bold mb-1 px-2 orange-gradient" role="link" href="<?php echo site_url('Customers/signUp'); ?>">S'inscrire</a>
+                                                        <a class="nav-link btn  text-white fw-bold mb-1 px-2 orange-gradient" href="<?php echo site_url('Customers/signUp'); ?>">S'inscrire</a>
                                                     </div>
                                                     <a class="nav-link btn" href="#">Plus d'informations</a>
                                                 </div>
@@ -389,13 +387,13 @@
 
                                     </div>
                                     <a class="nav-link position-relative" href="<?php echo site_url('Basket/viewBasket');?>">
-                                        <img class="img-fluid" src="<?php echo base_url('assets/images/HEADER/picto panier.png'); ?> " alt="pictogramme panier d'achat" title="Votre panier">
+                                        <img class="img-fluid" src="<?php echo base_url('assets/images/HEADER/picto_panier.png'); ?> " alt="pictogramme panier d'achat" title="Votre panier">
                                         <span <?php if(isset($this->session->basket) && count($this->session->basket) > 0) { echo 'class="badge-picto-panier position-absolute bg-danger badge badge-pill rounded-circle"';}?>>
                                             <span><?php if (isset($this->session->basket) && count($this->session->basket) > 0) { echo count($this->session->basket);}?></span>
                                         </span>
                                     </a>
                                     <a class="nav-link" href="#">
-                                        <img src="<?php echo base_url('assets/images/HEADER/picto pays.png'); ?> " alt="pictogramme pays" title="Langue de navigation">
+                                        <img src="<?php echo base_url('assets/images/HEADER/picto_pays.png'); ?> " alt="pictogramme pays" title="Langue de navigation">
                                     </a>
                                     <a class="nav-link" href="<?php echo site_url('Admin/login'); ?>">
                                         <img src="<?php echo base_url('assets/images/icons/lock.svg'); ?> " alt="pictogramme cadenas" title="Espace réservé aux administrateurs" width="26">
@@ -419,14 +417,14 @@
                                             <a id="item-guitar" class="nav-link ps-4" href="#">Guit/Bass</a>
                                             <div id="item-guitar-submenu" class="pb-1">
                                                 <ul>
-                                                    <li><a class="nav-link px-1 py-1" href="<?php echo site_url('Products/list/8'); ?>">Guitares Electriques</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Guitares Classiques</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="<?php echo site_url('Products/list/10'); ?>">Guitares Acoustiques<br>& Electro-acoustiques</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="<?php echo site_url('Products/list/12'); ?>">Basses Electriques</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Basses Acoustiques</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Basses Semi-Acoustiques</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Ukulélés</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Autres instruments à cordes pincées</li></a>
+                                                    <li><a class="nav-link px-1 py-1" href="<?php echo site_url('Products/list/8'); ?>">Guitares Electriques</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Guitares Classiques</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="<?php echo site_url('Products/list/10'); ?>">Guitares Acoustiques<br>& Electro-acoustiques</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="<?php echo site_url('Products/list/12'); ?>">Basses Electriques</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Basses Acoustiques</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Basses Semi-Acoustiques</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Ukulélés</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Autres instruments à cordes pincées</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -434,8 +432,8 @@
                                             <a id="item-drums" class="nav-link ps-4" href="#">Batteries</a>
                                             <div id="item-drums-submenu" class="pb-1">
                                                 <ul>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Batteries Electriques</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Batteries Acoustiques</li></a>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Batteries Electriques</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Batteries Acoustiques</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -443,9 +441,9 @@
                                             <a id="item-keyboard" class="nav-link ps-4" href="#">Claviers</a>
                                             <div id="item-keyboard-submenu" class="pb-1">
                                                 <ul>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Claviers Arrangeurs</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Claviers Maîtres</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Pianos Numériques</li></a>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Claviers Arrangeurs</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Claviers Maîtres</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Pianos Numériques</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -453,11 +451,11 @@
                                             <a id="item-studio" class="nav-link ps-4" href="#">Studio</a>
                                             <div id="item-studio-submenu" class="pb-1">
                                                 <ul>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Enceintes de monitoring</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Microphones</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Interfaces Audio</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Logiciels Studio</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Mobilier de studio</li></a>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Enceintes de monitoring</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Microphones</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Interfaces Audio</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Logiciels Studio</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Mobilier de studio</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -465,11 +463,11 @@
                                             <a id="item-sono" class="nav-link ps-4" href="#">Sono</a>
                                             <div id="item-sono-submenu" class="pb-1">
                                                 <ul>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Amplis de puissance</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Enceintes Actives</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Microphones</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Préamplificateurs Studio</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Packs enceintes</li></a>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Amplis de puissance</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Enceintes Actives</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Microphones</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Préamplificateurs Studio</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Packs enceintes</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -477,11 +475,11 @@
                                             <a id="item-lights" class="nav-link ps-4" href="#">Eclairages</a>
                                             <div id="item-lights-submenu" class="pb-1">
                                                 <ul>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Kits et packs lumières</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Lasers</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Lumière Noire</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Machines et liquides</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Projecteurs</li></a>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Kits et packs lumières</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Lasers</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Lumière Noire</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Machines et liquides</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Projecteurs</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -489,11 +487,11 @@
                                             <a id="item-dj" class="nav-link ps-4" href="#">DJ</a>
                                             <div id="item-dj-submenu" class="pb-1">
                                                 <ul>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Casques</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Effets DJ</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Mixers Numériques</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Platines vinyles</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Tables de mixage</li></a>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Casques</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Effets DJ</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Mixers Numériques</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Platines vinyles</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Tables de mixage</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -501,11 +499,11 @@
                                             <a id="item-cases" class="nav-link ps-4" href="#">Cases</a>
                                             <div id="item-cases-submenu" class="pb-1">
                                                 <ul>
-                                                    <li><a class="nav-link px-1 py-1" href="#">DJ</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Elements rackables</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">flight case pour lumières</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Sono</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Pièces détachées</li></a>
+                                                    <li><a class="nav-link px-1 py-1" href="#">DJ</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Elements rackables</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">flight case pour lumières</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Sono</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Pièces détachées</a></li>
                                                 </ul>
                                             </div>
                                         </div>
@@ -513,11 +511,11 @@
                                             <a id="item-accessories" class="nav-link ps-4" href="#">Accessoires</a>
                                             <div id="item-accessories-submenu" class="pb-1">
                                                 <ul>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Accessoires claviers</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Accessoires guitares</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Accessoires DJ, sono<br>& Home studio</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Accessoires claviers</li></a>
-                                                    <li><a class="nav-link px-1 py-1" href="#">Mobilier d'orchestre</li></a>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Accessoires claviers</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Accessoires guitares</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Accessoires DJ, sono<br>& Home studio</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Accessoires claviers</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="#">Mobilier d'orchestre</a></li>
                                                 </ul>
                                             </div>
                                         </div>

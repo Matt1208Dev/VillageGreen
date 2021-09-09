@@ -22,12 +22,12 @@
             <div class="row">
                 <?php echo form_open('Admin/deleteProduct/' . $product[0]->pro_id);?>
                     <div class="col-12 my-2">
-                        <div class="form-check">
+                        <p class="mb-0">Avertissement : Cette action est définitive et les informations ne pourront être récupérées. Cela peut également causer des problèmes d'affichage dans les historiques de commandes des clients ayant acheté le produit. Préférez le verrouillage à la suppression du produit.</p>
+                        <div class="form-check mb-2">
                             <input type="text" name="pro_id" id="pro_id" value="<?php echo $product[0]->pro_id;?>" hidden>
                             <input class="form-check-input" type="checkbox" value="ok" name="confirm" id="confirm">
                             <label class="form-check-label" for="confirm">Je confirme la suppression de l'article.</label>
-                        </div> 
-                        <p>Note importante : Cette action est définitive et les informations ne pourront être récupérées.</p>
+                        </div>                        
                         <input class="btn blue-link text-white green-hover" type="submit" id="submit" value="Confirmer" class="btn blue-link text-white">
                         <a class="btn blue-link text-white" href="<?php echo site_url('Admin/updateProduct/'. $product[0]->pro_id);?>">Retour</a>
                     </div>

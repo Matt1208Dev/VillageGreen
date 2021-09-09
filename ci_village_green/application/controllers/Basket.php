@@ -5,6 +5,13 @@ class Basket extends CI_Controller
 {
     public function viewBasket()
     {
+        if ($this->session->basket == null) 
+        { 
+            if(get_cookie('basket', true) !== null)
+            {
+                $_SESSION['basket'] = get_cookie('basket', true);
+            }
+        }
         // Affichage de la vue viewBasket
         $this->load->view('public/templates/header');
         $this->load->view('basket/viewBasket');
@@ -38,7 +45,6 @@ class Basket extends CI_Controller
 
             // On récupère le contenu du panier en session           
             $basket = $this->session->basket;
-            var_dump($basket);   
 
             $pro_id = $this->input->post('pro_id');
 
@@ -190,9 +196,9 @@ class Basket extends CI_Controller
         $this->session->unset_userdata('basket');
 
         // Suppression du cookie basket si initialisé
-        if (isset($_COOKIE['logged_in'])) 
+        if (isset($_COOKIE['basket'])) 
         {
-            delete_cookie('logged_in');
+            delete_cookie('basket');
         }
 
         // Reaffichage du panier
