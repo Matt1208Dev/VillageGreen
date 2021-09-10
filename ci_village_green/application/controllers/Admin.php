@@ -117,16 +117,19 @@ class Admin extends CI_Controller
     {
         if (isset($this->session->userId) && $this->session->userId == 'Admin') // Verification de la présence de la variable de session userId
         {
+            // On charge les informations du produits
             $this->load->model('ProductsModel');
             $product = $this->ProductsModel->productDetails($id);
             $View["product"] = $product;
 
+            // On charge la liste des catégories et sous-catégories
             $categories = $this->ProductsModel->getCategories();
             $View["categories"] = $categories;
 
             $subCategories = $this->ProductsModel->getSubCategories();
             $View["subCategories"] = $subCategories;
 
+            // On charge la liste des fournisseurs
             $this->load->model('SuppliersModel');
             $suppliers = $this->SuppliersModel->getSuppliers();
             $View["suppliers"] = $suppliers;

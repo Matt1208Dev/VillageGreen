@@ -470,4 +470,30 @@ class Customers extends CI_Controller
             redirect('Products/home');
         }
     }
+
+    public function orderDetails($id)
+    {
+        // Vérification que le client est loggé
+        $isLogged = $this->isLogged();
+
+        // Le client est loggé
+        if ($isLogged === true) 
+        {
+            $this->load->model('OrdersModel');
+            $query = $this->OrdersModel->OrderDetails($id);
+
+            $View["order"] = $query;
+
+            $this->load->view('public/templates/header');
+            $this->load->view('Customers/myAccount/orderDetails', $View);
+            $this->load->view('public/templates/footer');
+
+
+        }
+        else // Le client n'est pas loggé
+        {
+            // Redirection vers la page d'accueil'
+            redirect('Products/home');
+        }
+    }
 }

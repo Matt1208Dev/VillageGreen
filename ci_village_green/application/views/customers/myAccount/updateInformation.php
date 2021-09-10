@@ -1,4 +1,12 @@
 <section id="myAccount" class="container-fluid">
+    <!-- Fil d'Ariane -->
+    <div>
+        <p class="fw-light ps-5">
+            <a class="text-dark text-decoration-none" href="<?php echo site_url('Products/home'); ?>">Accueil</a> >
+            <a class="text-dark text-decoration-none" href="<?php echo site_url('Customers/myAccount'); ?>">Mon compte</a> > 
+            <a class="text-dark text-decoration-none" href="<?php echo site_url('Customers/updateInformation'); ?>">Mes informations personnelles</a>
+        </p>
+    </div>
     <!-- Header -->
     <div class="row mt-md-3">
         <header>

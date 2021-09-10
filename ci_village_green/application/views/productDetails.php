@@ -1,11 +1,13 @@
 <section class="container-fluid p-0">
     <!-- Fil d'Ariane -->
     <div>
-        <p class="fw-light ps-5"><a class="text-dark text-decoration-none" href="<?php echo site_url('Products/home'); ?>">Home</a> > <a class="text-dark text-decoration-none" href="<?php echo site_url('Products/list/' . $product[0]->cat_id); ?>"><?php if (isset($product[0]->cat_name)) {
-                                                                                                                                                                                                                                                            echo $product[0]->cat_name;
-                                                                                                                                                                                                                                                        } ?></a> > <?php if (isset($product[0]->pro_label)) {
-                                                                                                                                                                                                                                                                        echo $product[0]->pro_label;
-                                                                                                                                                                                                                                                                    } ?></p>
+        <p class="fw-light ps-5"><a class="text-dark text-decoration-none" href="<?php echo site_url('Products/home'); ?>">Home</a> > <a class="text-dark text-decoration-none" href="<?php echo site_url('Products/list/' . $product[0]->cat_id); ?>">
+        <?php if (isset($product[0]->cat_name)) {
+                                                    echo $product[0]->cat_name;
+                                                } ?></a> > <?php if (isset($product[0]->pro_label)) {
+                                                                echo $product[0]->pro_label;
+                                                            } ?>
+        </p>
     </div>
 
     <!-- Titre catégorie et libellé article -->
