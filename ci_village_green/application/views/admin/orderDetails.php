@@ -9,9 +9,11 @@ $total = 0;
     <div class="row">
         <header>
             <h3 class="mt-3">
-                Liste des commandes > Détails commande N° : <?php if (isset($order[0]->ord_id)) {
-                                                                echo $order[0]->ord_id;
-                                                            }; ?>
+                Liste des commandes > Détails commande N° : <?php   if (isset($order[0]->ord_id)) 
+                                                                    {
+                                                                    echo $order[0]->ord_id;
+                                                                    }; 
+                                                            ?>
             </h3>
         </header>
     </div>
@@ -109,7 +111,7 @@ $total = 0;
                     <tr class="bg-grey">
                         <th scope="col">Visuel Produit</th>
                         <th scope="col">Ref Produit</th>
-                        <th scope="col">Designation</th>
+                        <th scope="col">Statut</th>
                         <th scope="col">Quantité commandée</th>
                         <th scope="col">Prix HT</th>
                         <th scope="col">Remise (%)</th>
@@ -120,57 +122,65 @@ $total = 0;
                         <?php foreach ($order as $product) { ?>
 
                             <!-- Product details-->
-                            <tr class="bg-light border-0 border-top border-4">
-
-                                <td class="bg-light">
+                            <tr class="bg-white border-0 border-top border-4">
+                                <td class="bg-white">
                                     <a href="<?php if (isset($product->pro_id)) {
                                                     echo site_url("Products/productDetails/" . $product->pro_id);
                                                 }; ?>">
                                         <img src="<?php if (isset($product->pro_id) && (isset($product->pro_photo))) {
                                                         echo base_url('assets/images/products/' . $product->pro_id . '.' . $product->pro_photo);
-                                                    } ?>" alt="photo du produit <?php if (isset($product->pro_label)) {
-                                                                                                                                                                                                                                                echo $product->pro_label;
-                                                                                                                                                                                                                                            } ?>" title="<?php if (isset($product->pro_label)) {
-                                                                                                                                                                                                                                                                                                                        echo $product->pro_label;
-                                                                                                                                                                                                                                                                                                                    } ?>" class="img-fluid img-thumbnail" style="max-height: 100px;">
+                                                    } ?>" alt="photo du produit <?php   if (isset($product->pro_label)) 
+                                                                                        {
+                                                                                            echo $product->pro_label;
+                                                                                        } ?>" title="<?php  if (isset($product->pro_label)) 
+                                                                                                            {
+                                                                                                                echo $product->pro_label;
+                                                                                                            } ?>" class="img-fluid img-thumbnail" style="max-height: 100px;">
                                     </a>
                                 </td>
-                                <th scope="col"><?php if (isset($product->pro_ref)) {
+                                <td scope="col"><?php if (isset($product->pro_ref)) {
                                                     echo $product->pro_ref;
-                                                } ?></th>
-                                <th scope="col"><?php if (isset($product->pro_desc)) {
-                                                    echo substr($product->pro_desc, 0, 55) . '...';
-                                                } ?></th>
-                                <th scope="col"><?php if (isset($product->ode_qty)) {
+                                                } ?></td>
+                                                <td scope="col"><?php if (isset($product->ost_label)){echo $product->ost_label;}?></td>
+                                <td scope="col"><?php if (isset($product->ode_qty)) {
                                                     echo $product->ode_qty;
-                                                } ?></th>
-                                <th scope="col"><?php if (isset($product->ode_tot_exc_tax)) {
-                                                    echo $product->ode_tot_exc_tax;
-                                                } ?></th>
-                                <th scope="col"><?php if (isset($product->ord_discount)) {
+                                                } ?></td>
+                                <td scope="col"><?php if (isset($product->ode_tot_exc_tax)) {
+                                                    echo number_format($product->ode_tot_exc_tax, 2, '.', ' ');
+                                                } ?></td>
+                                <td scope="col"><?php if (isset($product->ord_discount)) {
                                                     echo $product->ord_discount;
-                                                } ?></th>
-                                <th scope="col"><?php if (isset($product->ode_qty) && isset($product->ode_tot_exc_tax)) {
-                                                    $totalRow = number_format((($product->ode_qty) * (($product->ode_tot_exc_tax - ($product->ode_tot_exc_tax * $product->ord_discount / 100)))), 2, ".", " ");
-                                                    $total = $total + $totalRow;
-                                                    echo $totalRow;
-                                                } ?></th>
+                                                } ?></td>
+                                <td scope="col"><?php   if ((isset($product->ode_qty) && isset($product->ode_tot_exc_tax)) && isset($product->ord_discount)) 
+                                                        {
+                                                            $totalRow = $product->ode_qty * ($product->ode_tot_exc_tax - ($product->ode_tot_exc_tax * $product->ord_discount / 100));
+                                                            $total = $total + $totalRow;
+                                                            settype($totalRow, "float");
+                                                            echo number_format(($totalRow), 2, ".", " ");
+                                                        }
+                                                        else
+                                                        {
+                                                            $totalRow = $product->ode_qty * $product->ode_tot_exc_tax;
+                                                            $total = $total + $totalRow;
+                                                            settype($totalRow, "float");
+                                                            echo number_format(($totalRow), 2, ".", " ");
+                                                        } ?></td>
                             </tr>
 
                         <?php
                         }
                         ?>
                     </tbody>
-                    <tfoot class="bg-light">
+                    <tfoot class="bg-white">
                         <!-- Total & taxes -->
-                        <tr class="bg-light border-0 border-top border-4">
+                        <tr class="bg-white border-0 border-top border-4">
                             <td colspan="5" class="pt-2"></td>
                             <td class="pt-2">Total HT : </td>
                             <td class="pt-2 px-0"><?php if (isset($total)) {
                                                         echo 'EUR ' . number_format($total, 2, ".", " ");
                                                     } ?></td>
                         </tr>
-                        <tr class="bg-light">
+                        <tr class="bg-white">
                             <td colspan="5" class="pt-0"></td>
                             <td class="pt-0">TVA : </td>
                             <td class="pt-0 px-0"><?php if (isset($total)) {
@@ -179,7 +189,7 @@ $total = 0;
                         </tr>
 
                         <tr>
-                            <td colspan="5" class="rounded-bottom bg-light pt-0"></td>
+                            <td colspan="5" class="rounded-bottom bg-white pt-0"></td>
                             
                                 <td class="fw-bold pt-0">Total : </td>
                                 <td class=" fw-bold text-danger pt-0 px-0">

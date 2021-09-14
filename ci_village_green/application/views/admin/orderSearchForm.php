@@ -27,27 +27,33 @@
 
     <h5>Recherche par un ou plusieurs critères</h5>
     <div class="row mb-3 align-items-center">
-        <?php echo form_open('Orders/OrderList', 'method="POST" class="row align-items-center"');?>
+        <?php echo form_open('Orders/OrderList', 'method="POST" class="row align-items-stretch"');?>
             <!-- Order ID field -->
             <div class="col-sm-12 col-lg-2 pe-lg-2">
-                <input class="form-control" type="text" name="ord_id" id="ord_id" placeholder="N° commande">
+                <input class="form-control" type="text" name="ord_id" id="ord_id" placeholder="N° commande">              
             </div>
             <!-- Customer ID field -->
             <div class="col-sm-12 col-lg-2 pe-lg-2">
-                <input class="form-control" type="text" name="cus_id" id="cus_id" placeholder="N° client">
+                <input class="form-control" type="text" name="cus_id" id="cus_id" placeholder="N° client">               
             </div>
             <!-- Customer Lastname field -->
             <div class="col-sm-12 col-lg-2 pe-lg-2">
-                <input class="form-control" type="text" name="cus_lastname" id="cus_lastname" placeholder="Nom client">
+                <input class="form-control" type="text" name="cus_lastname" id="cus_lastname" placeholder="Nom client">                
             </div>
             <!-- Customer Firstname field -->
             <div class="col-sm-12 col-lg-2 pe-lg-2">
-                <input class="form-control" type="text" name="cus_firstname" id="cus_firstname" placeholder="Prénom client">
+                <input class="form-control" type="text" name="cus_firstname" id="cus_firstname" placeholder="Prénom client">                
             </div>
             <!-- Submit button -->
-            <div class="col-sm-12 col-lg-2 ps-lg-1 py-1">
+            <div class="col-sm-12 col-lg-2 ps-lg-1 py-1 py-md-0">
                 <button class="btn text-white form-control blue-link py-1 lh-lg" type="submit" id="submit" value="submit">Rechercher</button>
             </div>
-        </form>     
+        </form>
+        <div class="col">
+            <?php echo form_error('ord_id');?>
+            <?php echo form_error('cus_id');?>
+            <?php echo form_error('cus_lastname');?>
+            <?php echo form_error('cus_firstname');?>
+        </div>
     </div>
 </div> 

@@ -6,22 +6,63 @@ class Admin extends CI_Controller
 
     public function login()
     {
-        if (isset($this->session->userId) && $this->session->userId == 'Admin') {
+        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+        if (isset($this->session->username))
+        {
             redirect('Admin/home');;
-        } else if ($this->input->post()) {
-            $data = $this->input->post();
+        } 
+        else if ($this->input->post()) 
+        {
+            // $data = $this->input->post();
+            // On récupère les données saisies par l'utilisateur
+            $username = $this->input->post('id');
+            $pass = $this->input->post('pass');
 
             $this->form_validation->set_error_delimiters('<div class="error">', '</div>');
-            $this->form_validation->set_rules("id", "Identifiant", "required|regex_match[/Admin/]", array("required" => "Le champ %s est obligatoire.", "regex_match" => "L'identifiant est erroné"));
-            $this->form_validation->set_rules("pass", "Mot de passe", "required|regex_match[/Admin/]", array("required" => "Le champ %s est obligatoire.", "regex_match" => "Mot de passe erroné"));
+            // $this->form_validation->set_rules("id", "Identifiant", "required|regex_match[/Admin/]", array("required" => "Le champ %s est obligatoire.", "regex_match" => "L'identifiant est erroné"));
+            // $this->form_validation->set_rules("pass", "Mot de passe", "required|regex_match[/Admin/]", array("required" => "Le champ %s est obligatoire.", "regex_match" => "Mot de passe erroné"));
+            $this->form_validation->set_rules("id", "Identifiant", "required", array("required" => "Le champ %s est obligatoire."));
+            $this->form_validation->set_rules("pass", "Mot de passe", "required", array("required" => "Le champ %s est obligatoire."));
 
-            if ($this->form_validation->run() == FALSE) {
+            if ($this->form_validation->run() == FALSE) 
+            {
                 $this->load->view('admin/login');
-            } else {
-                $this->session->set_userdata('userId', 'Admin');
-                redirect('Admin/home');
+            } 
+            else 
+            {
+                $this->load->model('AdminModel');
+                // On vérifie que le mail saisi renvoi un résultat en bdd
+                $checkLogin = $this->AdminModel->checkLogin($username);
+
+                // Un résultat est trouvé
+                if ($checkLogin) 
+                {
+                    // Si les mots de passe correspondent
+                    // if (password_verify($pass, $checkLogin[0]->cus_pass)) 
+                    if($pass === $checkLogin[0]->com_pass)
+                    {
+
+                        // On initialise ses variables de sessions
+                        $userInfos = array(
+                            'com_id'   => $checkLogin[0]->com_id,
+                            'firstname'  => $checkLogin[0]->com_firstname,
+                            'username'     => $checkLogin[0]->com_username,
+                            'type'      => $checkLogin[0]->com_type
+                        );
+
+                        $this->session->set_userdata($userInfos);
+                        // $this->session->set_userdata('userId', 'Admin');
+                        redirect('Admin/home');
+                    }
+                } 
+                else 
+                {
+                    $this->load->view('admin/login');
+                }
             }
-        } else {
+        } 
+        else 
+        {
             $this->load->view('admin/login');
         }
     }
@@ -34,7 +75,9 @@ class Admin extends CI_Controller
 
     public function home()
     {
-        if (isset($this->session->userId) && $this->session->userId == 'Admin') {
+        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+        if (isset($this->session->username))
+        {
             $this->load->view('admin/header');
             $this->load->view('admin/home');
             $this->load->view('admin/footer');
@@ -45,7 +88,9 @@ class Admin extends CI_Controller
 
     public function productList()
     {
-        if (isset($this->session->userId) && $this->session->userId == 'Admin') {
+        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+        if (isset($this->session->username))
+        {
             $this->load->model('ProductsModel');
             $categories = $this->ProductsModel->getCategories();
             $View["categories"] = $categories;
@@ -96,7 +141,9 @@ class Admin extends CI_Controller
 
     public function viewProduct($id)
     {
-        if (isset($this->session->userId) && $this->session->userId == 'Admin') {
+        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+        if (isset($this->session->username)) 
+        {
             $this->load->model('ProductsModel');
             $product = $this->ProductsModel->productById($id);
             $View["list"] = $product;
@@ -115,7 +162,8 @@ class Admin extends CI_Controller
 
     public function updateProduct($id)
     {
-        if (isset($this->session->userId) && $this->session->userId == 'Admin') // Verification de la présence de la variable de session userId
+        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+        if (isset($this->session->username))
         {
             // On charge les informations du produits
             $this->load->model('ProductsModel');
@@ -227,7 +275,8 @@ class Admin extends CI_Controller
 
     public function updateProductSuccess()
     {
-        if (isset($this->session->userId) && $this->session->userId == 'Admin') // Verification de la présence de la variable de session userId
+        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+        if (isset($this->session->username))
         {
             $this->load->model('ProductsModel');
             $categories = $this->ProductsModel->getCategories();
@@ -244,7 +293,8 @@ class Admin extends CI_Controller
 
     public function addProductSuccess()
     {
-        if (isset($this->session->userId) && $this->session->userId == 'Admin') // Verification de la présence de la variable de session userId
+        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+        if (isset($this->session->username))
         {
             $this->load->model('ProductsModel');
             $categories = $this->ProductsModel->getCategories();
@@ -261,7 +311,8 @@ class Admin extends CI_Controller
 
     public function addProduct()
     {
-        if (isset($this->session->userId) && $this->session->userId == 'Admin') // Verification de la présence de la variable de session userId
+        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+        if (isset($this->session->username))
         {
             $this->load->model('ProductsModel');
             $categories = $this->ProductsModel->getCategories();
@@ -372,7 +423,8 @@ class Admin extends CI_Controller
 
     public function deleteProduct($id)
     {
-        if (isset($this->session->userId) && $this->session->userId == 'Admin') // Verification de la présence de la variable de session userId
+        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+        if (isset($this->session->username))
         {
             // Chargement des infos relative au produit spécifié en paramètre
             $this->load->model('ProductsModel');

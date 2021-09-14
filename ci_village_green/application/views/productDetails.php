@@ -22,8 +22,8 @@
     <article>
         <div class="row m-0 justify-content-center align-items-stretch bg-white">
             <!-- Box visuel produit -->
-            <div id="product-image" class="col-12 col-md-6 py-2">
-                <img class="img-fluid" src="<?php if (isset($product[0]->pro_id) && (isset($product[0]->pro_photo))) {
+            <div id="product-image" class="col-12 col-md-6 py-2 overflow-hidden">
+                <img class="img-fluid zoom" src="<?php if (isset($product[0]->pro_id) && (isset($product[0]->pro_photo))) {
                                                         echo base_url('assets/images/products/' . $product[0]->pro_id . '.' . $product[0]->pro_photo);
                                                     } ?>" alt="photo du produit <?php if (isset($product[0]->pro_label)) {
                                                                                     echo $product[0]->pro_label;

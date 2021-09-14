@@ -73,7 +73,9 @@ CREATE TABLE `commercials` (
      `com_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
      `com_lastname` varchar(50) NOT NULL,
      `com_firstname` varchar(50) NOT NULL,
-     `com_type` VARCHAR(15) NOT NULL
+     `com_type` VARCHAR(15) NOT NULL,
+     `com_username` VARCHAR(50) NOT NULL,
+     `com_pass` VARCHAR(255) NOT NULL
 )
 ENGINE = innoDB;
 

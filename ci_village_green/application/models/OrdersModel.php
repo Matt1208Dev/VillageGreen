@@ -23,7 +23,7 @@ class OrdersModel extends CI_Model
                                     ON `ord_cus_id` = `cus_id`
                                     JOIN `order_status`
                                     ON `ord_ost_id` = `ost_id`
-                                    WHERE ost_label != 'Facturée'
+                                    WHERE ost_label != 'Facturée' and ost_label != 'Annulée'
                                     ORDER BY `ord_date` DESC;");
         $orders = $query->result();  
 
@@ -148,14 +148,33 @@ class OrdersModel extends CI_Model
 
     public function OrderDetails($id)
     {
-        $query = $this->db->query("SELECT `pro_id`, `pro_photo`, `pro_ref`, `pro_label`, `pro_desc`, `pro_ppet`, `pro_spet`, `ode_qty`, `ode_tot_exc_tax`, `ord_discount`, `ode_tax_rate`, `ord_id`, `ode_ost_id`, `cus_id`, `cus_lastname`, `cus_firstname`, `cus_bil_address`, `cus_bil_postalcode`, `cus_bil_city`, `cus_phone`, `cus_mail`, `cus_del_address`, `cus_del_postalcode`, `cus_del_city`, `cus_type`, `cus_coef`, `ord_pay_method`, `ost_label`
+        $query = $this->db->query("SELECT `pro_id`, `pro_photo`, `pro_ref`, `pro_label`, `pro_desc`, `pro_ppet`, `pro_spet`, `ode_qty`, `ode_tot_exc_tax`, `ord_discount`, `ode_tax_rate`, `ord_id`, `ode_ost_id`, `cus_id`, `cus_lastname`, `cus_firstname`, `cus_bil_address`, `cus_bil_postalcode`, `cus_bil_city`, `cus_phone`, `cus_mail`, `cus_del_address`, `cus_del_postalcode`, `cus_del_city`, `cus_type`, `cus_coef`, `ord_pay_method`, `ost_id`, `ost_label`
                                     FROM `orders`
                                     JOIN `order_details`
                                     ON `ode_ord_id` = `ord_id`
                                     JOIN `customers`
                                     ON `ord_cus_id` = `cus_id`
                                     JOIN `order_status`
-                                    ON `ord_ost_id` = `ost_id`
+                                    ON `ode_ost_id` = `ost_id`
+                                    JOIN `products`
+                                    ON `ode_pro_id` = `pro_id`  
+                                    WHERE ord_id = $id");
+                                    
+        $order = $query->result();  
+
+        return $order;
+    }
+
+    public function CustomerOrderDetails($id)
+    {
+        $query = $this->db->query("SELECT `pro_id`, `pro_photo`, `pro_ref`, `pro_label`, `pro_desc`, `pro_ppet`, `pro_spet`, `ode_qty`, `ode_tot_exc_tax`, `ord_discount`, `ode_tax_rate`, `ord_id`, `ord_date`, `ode_ost_id`, `cus_id`, `cus_lastname`, `cus_firstname`, `cus_bil_address`, `cus_bil_postalcode`, `cus_bil_city`, `cus_phone`, `cus_mail`, `cus_del_address`, `cus_del_postalcode`, `cus_del_city`, `cus_type`, `cus_coef`, `ord_pay_method`, `ost_id`, `ost_label`
+                                    FROM `orders`
+                                    JOIN `order_details`
+                                    ON `ode_ord_id` = `ord_id`
+                                    JOIN `customers`
+                                    ON `ord_cus_id` = `cus_id`
+                                    JOIN `order_status`
+                                    ON `ode_ost_id` = `ost_id`
                                     JOIN `products`
                                     ON `ode_pro_id` = `pro_id`  
                                     WHERE ord_id = $id");

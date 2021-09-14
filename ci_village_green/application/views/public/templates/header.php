@@ -2,6 +2,7 @@
         // Création d'une variable de session avec l'URI de la page actuelle
         // if($this->session->userdata('uri')){$this->session->set_userdata('prev_uri', $this->session->userdata('uri'));}
         if(isset($_SERVER['PATH_INFO'])){$this->session->set_userdata('uri', $_SERVER['PATH_INFO']);}
+        var_dump($_SESSION);?>
 ?>
 
 
@@ -171,6 +172,7 @@
                                         <li><a class="dropdown-item" href="<?php echo site_url('Products/list/8'); ?>">Guitares Electriques</a></li>
                                         <li><a class="dropdown-item" href="#">Guitares Classiques</a></li>
                                         <li><a class="dropdown-item" href="<?php echo site_url('Products/list/10'); ?>">Guitares Acoustiques<br>& Electro-acoustiques</a></li>
+                                        <li><a class="dropdown-item" href="<?php echo site_url('Products/list/11'); ?>">Guitares Gauchers</a></li>
                                         <li><a class="dropdown-item" href="<?php echo site_url('Products/list/12'); ?>">Basses Electriques</a></li>
                                         <li><a class="dropdown-item" href="#">Basses Acoustiques</a></li>
                                         <li><a class="dropdown-item" href="#">Basses Semi-Acoustiques</a></li>
@@ -420,6 +422,7 @@
                                                     <li><a class="nav-link px-1 py-1" href="<?php echo site_url('Products/list/8'); ?>">Guitares Electriques</a></li>
                                                     <li><a class="nav-link px-1 py-1" href="#">Guitares Classiques</a></li>
                                                     <li><a class="nav-link px-1 py-1" href="<?php echo site_url('Products/list/10'); ?>">Guitares Acoustiques<br>& Electro-acoustiques</a></li>
+                                                    <li><a class="nav-link px-1 py-1" href="<?php echo site_url('Products/list/11'); ?>">Guitares Gauchers</a></li>
                                                     <li><a class="nav-link px-1 py-1" href="<?php echo site_url('Products/list/12'); ?>">Basses Electriques</a></li>
                                                     <li><a class="nav-link px-1 py-1" href="#">Basses Acoustiques</a></li>
                                                     <li><a class="nav-link px-1 py-1" href="#">Basses Semi-Acoustiques</a></li>

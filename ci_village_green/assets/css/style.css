@@ -604,13 +604,32 @@ Affichage liste produit*/
   transition: all 100ms ease-out;
 } */
 
-.rockin {
+.rockin-right {
   transition: all 400ms ease-in-out;
 }
 
-.rockin:hover {
+.rockin-right:hover {
   transform: scale(1.10) rotateZ(45deg);
   transition: all 400ms ease-in-out;
+}
+
+.rockin-left {
+  transition: all 400ms ease-in-out;
+}
+
+.rockin-left:hover {
+  transform: scale(1.10) rotateZ(-45deg);
+  transition: all 400ms ease-in-out;
+}
+
+.zoom
+{
+  transition: all 400ms ease-in-out;
+}
+
+.zoom:hover 
+{
+  transform: scale(1.8) translateY(-25%);
 }
 
 /* boite image */
@@ -963,4 +982,13 @@ Affichage liste produit*/
 .order-line
 {
   min-height: 150px;
+}
+
+/* Vue myAccount/orderDetails */
+
+@media screen and (max-width: 767px) {
+  
+  table{
+    font-size: 0.8rem;
+  }
 }

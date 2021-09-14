@@ -211,7 +211,7 @@
                                                                     } else {
                                                                         echo 'HT';
                                                                     } ?> :</td>
-                                <td class="col fw-bold"><?php echo number_format($iTotalGlobal + $delivery, 2, ',', ' '); ?> €</td>
+                                <td class="col fw-bold text-danger"><?php echo number_format($iTotalGlobal + $delivery, 2, ',', ' '); ?> €</td>
                             </tr>
 
                         </tbody>

@@ -409,11 +409,11 @@ class Customers extends CI_Controller
         // Le client est loggé
         if ($isLogged === true) 
         {
-            // Récupération de l'ID de la ligne à annuler
+            // Récupération de l'ID de la ligne à annuler et de la commande
             $ode_id = $this->input->post('ode_id');
             $ode_ord_id = $this->input->post('ode_ord_id');
-            $pro_id = $this->input->post('pro_id');
-            $ode_qty = $this->input->post('ode_qty');
+            // $pro_id = $this->input->post('pro_id');
+            // $ode_qty = $this->input->post('ode_qty');
 
             // Mise à jour du statut de la ligne à "Annulée" en bdd
             $this->load->model('OrdersModel');
@@ -480,7 +480,7 @@ class Customers extends CI_Controller
         if ($isLogged === true) 
         {
             $this->load->model('OrdersModel');
-            $query = $this->OrdersModel->OrderDetails($id);
+            $query = $this->OrdersModel->CustomerOrderDetails($id);
 
             $View["order"] = $query;
 
