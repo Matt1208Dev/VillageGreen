@@ -179,23 +179,32 @@ class Orders extends CI_Controller
         // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
         if (isset($this->session->username))
         {
-            $this->load->model('OrdersModel');
-            $query = $this->OrdersModel->OrderByMonthInterval($nb);
-
-            $aView["list"] = $query;
-
-            if($this->db->affected_rows() != 0)
-            {
-                $this->load->view('Admin/header');
-                $this->load->view('Admin/OrderSearchForm', $aView);
-                $this->load->view('Admin/OrderList', $aView);
-                $this->load->view('Admin/footer');
-            }
-            else
+            if(!is_numeric($nb))
             {
                 $this->load->view('Admin/header');
                 $this->load->view('Admin/OrderSearchForm');
                 $this->load->view('Admin/footer');
+            }
+            else
+            {
+                $this->load->model('OrdersModel');
+                $query = $this->OrdersModel->OrderByMonthInterval($nb);
+
+                $aView["list"] = $query;
+
+                if($this->db->affected_rows() != 0)
+                {
+                    $this->load->view('Admin/header');
+                    $this->load->view('Admin/OrderSearchForm', $aView);
+                    $this->load->view('Admin/OrderList', $aView);
+                    $this->load->view('Admin/footer');
+                }
+                else
+                {
+                    $this->load->view('Admin/header');
+                    $this->load->view('Admin/OrderSearchForm');
+                    $this->load->view('Admin/footer');
+                }
             }
         }
         else
@@ -209,23 +218,32 @@ class Orders extends CI_Controller
         // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
         if (isset($this->session->username))
         {
-            $this->load->model('OrdersModel');
-            $query = $this->OrdersModel->OrderByDayInterval($nb);
-
-            $aView["list"] = $query;
-            
-            if($this->db->affected_rows() != 0)
-            {
-                $this->load->view('Admin/header');
-                $this->load->view('Admin/OrderSearchForm', $aView);
-                $this->load->view('Admin/OrderList', $aView);
-                $this->load->view('Admin/footer');
-            }
-            else
+            if(!is_numeric($nb))
             {
                 $this->load->view('Admin/header');
                 $this->load->view('Admin/OrderSearchForm');
                 $this->load->view('Admin/footer');
+            }
+            else
+            {
+                $this->load->model('OrdersModel');
+                $query = $this->OrdersModel->OrderByDayInterval($nb);
+
+                $aView["list"] = $query;
+                
+                if($this->db->affected_rows() != 0)
+                {
+                    $this->load->view('Admin/header');
+                    $this->load->view('Admin/OrderSearchForm', $aView);
+                    $this->load->view('Admin/OrderList', $aView);
+                    $this->load->view('Admin/footer');
+                }
+                else
+                {
+                    $this->load->view('Admin/header');
+                    $this->load->view('Admin/OrderSearchForm');
+                    $this->load->view('Admin/footer');
+                }
             }
         }
         else

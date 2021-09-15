@@ -2,7 +2,6 @@
         // Création d'une variable de session avec l'URI de la page actuelle
         // if($this->session->userdata('uri')){$this->session->set_userdata('prev_uri', $this->session->userdata('uri'));}
         if(isset($_SERVER['PATH_INFO'])){$this->session->set_userdata('uri', $_SERVER['PATH_INFO']);}
-        var_dump($_SESSION);?>
 ?>
 
 

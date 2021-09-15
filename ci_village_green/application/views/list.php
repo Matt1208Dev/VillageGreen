@@ -61,7 +61,7 @@
                                                                             {
                                                                                 if($customer[0]->cus_type === "Particulier")
                                                                                 {
-                                                                                    echo number_format(round((($row->pro_spet + ($row->pro_spet * $customer[0]->cus_coef/100)) * 1.20), 1),2, ",", " ") . ' € TTC'; 
+                                                                                    echo number_format(round(($row->pro_spet * 1.20), 1),2, ",", " ") . ' € TTC'; 
                                                                                 }
                                                                                 else if($customer[0]->cus_type === "Professionnel")
                                                                                 {

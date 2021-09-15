@@ -29,7 +29,9 @@
         <div class="row justify-content-center m-0">
             <div class="item-categories col-6 col-sm-3 px-0">
                 <img class=" img-fluid" src="<?php echo base_url('assets/images/BODY/CATEGORIES_guitare.png'); ?>" alt="photo de la catégorie guitare" title="catégorie guitare">
-                <img class=" img-fluid rollover" src="<?php echo base_url('assets/images/BODY/CATEGORIES_ROLL_OVER_guitare.png'); ?>" alt="photo de la catégorie guitare" title="catégorie guitare">
+                <a href="<?php echo site_url('Products/list/8');?>">
+                    <img class=" img-fluid rollover" src="<?php echo base_url('assets/images/BODY/CATEGORIES_ROLL_OVER_guitare.png'); ?>" alt="photo de la catégorie guitare" title="catégorie guitare">
+                </a>
             </div>
             <div class="item-categories col-6 col-sm-3 px-0">
                 <img class=" img-fluid" src="<?php echo base_url('assets/images/BODY/CATEGORIES_batterie.png'); ?>" alt="photo de la catégorie batterie" title="catégorie batterie">

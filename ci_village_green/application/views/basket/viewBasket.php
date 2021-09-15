@@ -29,24 +29,23 @@
 
                         <tbody>
                             <?php
-                            $iTotal = 0;
-                            $totalItems = 0;
-                            $iTotalGlobal = 0;
+                            $iTotalHT = 0;
+                            $iTotalTTC = 0;
+                            $totalItemsHT = 0;
+                            $totalItemsTTC = 0;
 
                             // Boucle d'affichage de chaque ligne du panier
                             foreach ($this->session->basket as $row) {
 
 
-                                // $iTotal = round($row['pro_spet'] * $row['pro_qty'], 2);
-                                if (isset($row['pro_ppet']) && isset($row['cus_type'])) {
-                                    if ($row['cus_type'] === "Particulier") {
-                                        $iTotal = round(((($row['pro_ppet'] + ($row['pro_ppet'] * $row['cus_coef'] / 100)) * $row['pro_qty']) * 1.20), 1);
-                                    } else if ($row['cus_type'] === "Professionnel") {
-                                        $iTotal = (($row['pro_ppet'] + ($row['pro_ppet'] * $row['cus_coef'] / 100)) * $row['pro_qty']);
-                                    }
+                                // $iTotalHT = round($row['pro_spet'] * $row['pro_qty'], 2);
+                                if (isset($row['pro_ppet']) && isset($row['cus_type'])) 
+                                {
+                                    $iTotalHT = round($row['pro_qty'] * ($row['pro_ppet'] + ($row['pro_ppet'] *  $row['cus_coef'] / 100)));
+                                    $iTotalTTC = round($iTotalHT + ($iTotalHT * 0.2));
                                 }
-                                $totalItems = $totalItems + $iTotal;
-                                $iTotalGlobal = $iTotalGlobal + $totalItems;
+                                $totalItemsHT = $totalItemsHT + $iTotalHT;
+                                $totalItemsTTC = $totalItemsTTC + $iTotalTTC;
                             ?>
                                 <!-- ligne produit -->
                                 <tr class="table-light">
@@ -83,9 +82,9 @@
                                     <td class="align-middle">
                                         <?php if (isset($row['pro_ppet']) && isset($row['cus_type'])) {
                                             if ($row['cus_type'] === "Particulier") {
-                                                echo number_format(round((($row['pro_ppet'] + ($row['pro_ppet'] * $row['cus_coef'] / 100)) * 1.20), 1), 2, ",", " ");
+                                                echo number_format(round($row['pro_ppet'] + ($row['pro_ppet'] *  $row['cus_coef'] / 100)) + (($row['pro_ppet'] + ($row['pro_ppet'] *  $row['cus_coef'] / 100)) * 0.2), 2, ',', ' ');
                                             } else if ($row['cus_type'] === "Professionnel") {
-                                                echo number_format(($row['pro_ppet'] + ($row['pro_ppet'] * $row['cus_coef'] / 100)), 2, ",", " ");
+                                                echo number_format(round($row['pro_ppet'] + ($row['pro_ppet'] *  $row['cus_coef'] / 100)), 2, ",", " ");
                                             }
                                         }
                                         ?>
@@ -119,7 +118,16 @@
                                     </td>
                                     </form>
                                     <!-- Prix total ligne -->
-                                    <td class="align-middle"> <?php echo number_format($iTotal, 2, ',', ' '); ?> </td>
+                                    <td class="align-middle">   <?php   if(isset($row['cus_type']) && $row['cus_type'] === 'Particulier')
+                                                                        {
+                                                                            echo number_format($iTotalTTC, 2, ',', ' ');
+                                                                        }
+                                                                        else if(isset($row['cus_type']) && $row['cus_type'] === 'Professionnel')
+                                                                        {
+                                                                            echo number_format($iTotalHT, 2, ',', ' ');
+                                                                        }
+                                                                ?> 
+                                    </td>
 
                                     <!-- Suppression de la ligne produit -->
                                     <td class="align-middle">
@@ -173,32 +181,61 @@
                             <!-- Total articles -->
                             <tr class="table-light">
                                 <td class="col-6 text-end">Articles :</td>
-                                <td class="col"><?php echo number_format($totalItems, 2, ',', ' '); ?> €</td>
+                                <td class="col"><?php   if(isset($row['cus_type']) && $row['cus_type'] === 'Particulier')
+                                                        {
+                                                            echo number_format($totalItemsTTC, 2, ',', ' ');
+                                                        }
+                                                        else if(isset($row['cus_type']) && $row['cus_type'] === 'Professionnel')
+                                                        {
+                                                            echo number_format($totalItemsHT, 2, ',', ' ');
+                                                        } 
+                                                ?> €
+                                </td>
                             </tr>
                             <!-- Frais de livraison -->
                             <tr class="table-light">
                                 <td class="col-6 text-end">Livraison :</td>
-                                <td class="col"><?php if ($totalItems > 19) {
-                                                    $delivery = 0;
-                                                    echo number_format($delivery, 2, ',', ' ') . " €";
-                                                } else {
-                                                    $delivery = 5.90;
-                                                    echo number_format($delivery, 2, ',', ' ') . " €";
-                                                } ?>
+                                <td class="col"><?php if(isset($row['cus_type']) && $row['cus_type'] === 'Particulier')
+                                                        {
+                                                            if ($totalItemsTTC > 19) 
+                                                            {
+                                                                $delivery = 0;
+                                                                echo number_format($delivery, 2, ',', ' ') . " €";
+                                                            } 
+                                                            else 
+                                                            {
+                                                                $delivery = 5.90;
+                                                                echo number_format($delivery, 2, ',', ' ') . " €";
+                                                            } 
+                                                        }
+                                                        else if(isset($row['cus_type']) && $row['cus_type'] === 'Professionnel')
+                                                        {
+                                                            if ($totalItemsHT > 19) 
+                                                            {
+                                                                $delivery = 0;
+                                                                echo number_format($delivery, 2, ',', ' ') . " €";
+                                                            } 
+                                                            else 
+                                                            {
+                                                                $delivery = 5.90;
+                                                                echo number_format($delivery, 2, ',', ' ') . " €";
+                                                            } 
+                                                        } ?>
                                 </td>
                             </tr>
                             <!-- TVA -->
                             <tr class="table-light">
                                 <td class="col-6 text-end">TVA estimée :</td>
-                                <td class="col"><?php echo number_format(($iTotalGlobal + $delivery) - (($iTotalGlobal + $delivery) * 0.8), 2, ',', ' '); ?> €</td>
+                                <td class="col"><?php echo number_format(($totalItemsHT + $delivery * 0.8) * 0.2, 2, ',', ' '); ?> €</td>
                             </tr>
 
                             <!-- Total global TTC pour les professionnels -->
-                            <?php if (isset($row['cus_type']) && $row['cus_type'] == 'Professionnel') {
+                            <?php if (isset($row['cus_type']) && $row['cus_type'] == 'Professionnel') 
+                            {
                             ?>
                                 <tr class="table-light">
                                     <td class="col-6 text-end">Total TTC :</td>
-                                    <td class="col"><?php echo number_format(($iTotalGlobal + $delivery) * 1.20, 2, ',', ' '); ?> €</td>
+                                    <td class="col"><?php echo number_format($totalItemsTTC + $delivery, 2, ',', ' '); ?> €</td>
                                 </tr>
                             <?php
                             }
@@ -206,12 +243,24 @@
 
                             <!-- Total global HT ou TTC selon profil -->
                             <tr class="table-light">
-                                <td class="col-6 text-end">Total <?php if (isset($row['cus_type']) && $row['cus_type'] == 'Particulier') {
-                                                                        echo 'TTC';
-                                                                    } else {
-                                                                        echo 'HT';
-                                                                    } ?> :</td>
-                                <td class="col fw-bold text-danger"><?php echo number_format($iTotalGlobal + $delivery, 2, ',', ' '); ?> €</td>
+                                <td class="col-6 text-end">Total <?php  if (isset($row['cus_type']) && $row['cus_type'] == 'Particulier') 
+                                                                        {
+                                                                            echo 'TTC';
+                                                                        } else {
+                                                                            echo 'HT';
+                                                                        } 
+                                                                ?> :
+                                </td>
+                                <td class="col fw-bold text-danger"><?php   if (isset($row['cus_type']) && $row['cus_type'] == 'Particulier') 
+                                                                            {
+                                                                                echo number_format($totalItemsTTC + $delivery, 2, ',', ' ');
+                                                                            }
+                                                                            else if (isset($row['cus_type']) && $row['cus_type'] == 'Professionnel') 
+                                                                            {
+                                                                                echo number_format($totalItemsHT + $delivery * 0.8, 2, ',', ' ');
+                                                                            }
+                                                                    ?> €
+                                </td>
                             </tr>
 
                         </tbody>
@@ -259,3 +308,5 @@
         </div>
     <?php
     } ?>
+
+    <?php var_dump($totalItemsHT, $totalItemsTTC);?>

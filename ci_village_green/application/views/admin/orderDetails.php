@@ -9,11 +9,13 @@ $total = 0;
     <div class="row">
         <header>
             <h3 class="mt-3">
-                Liste des commandes > Détails commande N° : <?php   if (isset($order[0]->ord_id)) 
+            <a class="text-white text-decoration-none" href="<?php echo site_url('Orders/OrderList'); ?>">Liste des commandes</a> > 
+            <a class="text-white text-decoration-none" href="<?php echo site_url('Orders/OrderDetails/' . $order[0]->ord_id); ?>">Détails commande N° : <?php   if (isset($order[0]->ord_id)) 
                                                                     {
                                                                     echo $order[0]->ord_id;
                                                                     }; 
                                                             ?>
+            </a>
             </h3>
         </header>
     </div>
@@ -123,7 +125,7 @@ $total = 0;
 
                             <!-- Product details-->
                             <tr class="bg-white border-0 border-top border-4">
-                                <td class="bg-white">
+                                <td scope="row" class="bg-white">
                                     <a href="<?php if (isset($product->pro_id)) {
                                                     echo site_url("Products/productDetails/" . $product->pro_id);
                                                 }; ?>">
@@ -138,33 +140,60 @@ $total = 0;
                                                                                                             } ?>" class="img-fluid img-thumbnail" style="max-height: 100px;">
                                     </a>
                                 </td>
-                                <td scope="col"><?php if (isset($product->pro_ref)) {
-                                                    echo $product->pro_ref;
-                                                } ?></td>
-                                                <td scope="col"><?php if (isset($product->ost_label)){echo $product->ost_label;}?></td>
-                                <td scope="col"><?php if (isset($product->ode_qty)) {
-                                                    echo $product->ode_qty;
-                                                } ?></td>
-                                <td scope="col"><?php if (isset($product->ode_tot_exc_tax)) {
-                                                    echo number_format($product->ode_tot_exc_tax, 2, '.', ' ');
-                                                } ?></td>
-                                <td scope="col"><?php if (isset($product->ord_discount)) {
-                                                    echo $product->ord_discount;
-                                                } ?></td>
-                                <td scope="col"><?php   if ((isset($product->ode_qty) && isset($product->ode_tot_exc_tax)) && isset($product->ord_discount)) 
-                                                        {
-                                                            $totalRow = $product->ode_qty * ($product->ode_tot_exc_tax - ($product->ode_tot_exc_tax * $product->ord_discount / 100));
-                                                            $total = $total + $totalRow;
-                                                            settype($totalRow, "float");
-                                                            echo number_format(($totalRow), 2, ".", " ");
-                                                        }
-                                                        else
-                                                        {
-                                                            $totalRow = $product->ode_qty * $product->ode_tot_exc_tax;
-                                                            $total = $total + $totalRow;
-                                                            settype($totalRow, "float");
-                                                            echo number_format(($totalRow), 2, ".", " ");
-                                                        } ?></td>
+                                <td><?php   if (isset($product->pro_ref)) 
+                                            {
+                                                echo $product->pro_ref;
+                                            } 
+                                    ?>
+                                </td>
+                                <td><?php   if (isset($product->ost_label))
+                                            {
+                                                echo $product->ost_label;
+                                            }
+                                    ?>
+                                </td>
+                                <td><?php   if (isset($product->ode_qty)) 
+                                            {
+                                                echo $product->ode_qty;
+                                            } 
+                                    ?>
+                                </td>
+                                <td><?php   if (isset($product->ode_tot_exc_tax)) 
+                                            {
+                                                echo number_format($product->ode_tot_exc_tax, 2, '.', ' ');
+                                            } 
+                                    ?>
+                                </td>
+                                <td><?php   if (isset($product->ord_discount)) 
+                                            {
+                                                echo $product->ord_discount;
+                                            } 
+                                    ?>
+                                </td>
+                                <td><?php   if(isset($product->ode_ost_id) && $product->ode_ost_id === '8')
+                                            {
+                                                $totalRow = 0;
+                                                echo number_format(($totalRow), 2, ".", " ");
+                                            }
+                                            else
+                                            {
+                                                if ((isset($product->ode_qty) && isset($product->ode_tot_exc_tax)) && isset($product->ord_discount)) 
+                                                {
+                                                    $totalRow = $product->ode_qty * ($product->ode_tot_exc_tax - ($product->ode_tot_exc_tax * $product->ord_discount / 100));
+                                                    $total = $total + $totalRow;
+                                                    settype($totalRow, "float");
+                                                    echo number_format(($totalRow), 2, ".", " ");
+                                                }
+                                                else
+                                                {
+                                                    $totalRow = $product->ode_qty * $product->ode_tot_exc_tax;
+                                                    $total = $total + $totalRow;
+                                                    settype($totalRow, "float");
+                                                    echo number_format(($totalRow), 2, ".", " ");
+                                                }
+                                            } 
+                                    ?>
+                                </td>
                             </tr>
 
                         <?php
@@ -176,16 +205,22 @@ $total = 0;
                         <tr class="bg-white border-0 border-top border-4">
                             <td colspan="5" class="pt-2"></td>
                             <td class="pt-2">Total HT : </td>
-                            <td class="pt-2 px-0"><?php if (isset($total)) {
-                                                        echo 'EUR ' . number_format($total, 2, ".", " ");
-                                                    } ?></td>
+                            <td class="pt-2 px-0">  <?php   if(isset($total))
+                                                            {
+                                                                echo 'EUR ' . number_format($total, 2, ".", " ");
+                                                            } 
+                                                    ?>
+                            </td>
                         </tr>
                         <tr class="bg-white">
                             <td colspan="5" class="pt-0"></td>
                             <td class="pt-0">TVA : </td>
-                            <td class="pt-0 px-0"><?php if (isset($total)) {
-                                                        echo 'EUR ' . number_format($total * $product->ode_tax_rate / 100, 2, ".", " ");
-                                                    } ?></td>
+                            <td class="pt-0 px-0">  <?php if (isset($total)) 
+                                                        {
+                                                            echo 'EUR ' . number_format($total * $product->ode_tax_rate / 100, 2, ".", " ");
+                                                        } 
+                                                    ?>
+                            </td>
                         </tr>
 
                         <tr>
@@ -208,3 +243,5 @@ $total = 0;
 
     <a class="btn blue-link text-white mb-3 border border-white border-3" href="<?php echo site_url('Orders/OrderList'); ?>" role="button">Retour à la liste</a>
 </div>
+
+<?php var_dump($order);?>
