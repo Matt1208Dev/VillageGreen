@@ -24,17 +24,17 @@
         <!-- Login Form -->
         <div id="adm-form">
             <?php echo form_open('Admin/login');?>
-                <!-- User Id -->
+                <!-- Username -->
                 <div>
-                    <input id="id" name="id" type="text" placeholder="Identifiant" value="<?php echo set_value('id');?>">
+                    <input id="com_username" name="com_username" type="text" placeholder="Identifiant" value="<?php echo set_value('com_username');?>">
                 </div>
-                <?php echo form_error('id'); ?>
+                <?php echo form_error('com_username'); ?>
 
                 <!-- User pass  -->
                 <div>
-                    <input id="pass" name="pass" type="password" placeholder="Mot de passe">
+                    <input id="com_pass" name="com_pass" type="password" placeholder="Mot de passe">
                 </div>
-                <?php echo form_error('pass'); ?>
+                <?php echo form_error('com_pass'); ?>
 
                 <!-- Submit button -->
                 <div>

@@ -55,7 +55,7 @@
                                 <?php if (isset($product[0]->pro_phy_stk) && $product[0]->pro_phy_stk > 0) {
                                     echo $product[0]->pro_phy_stk . ' pièce(s) disponible(s)</p>';
                                 } else {
-                                    echo 'Actuellement indisponible</p>';
+                                    echo 'Actuellement indisponible<br>Délai moyen de réapprovisionnement 2 à 3 semaines.</p>';
                                 } ?>
                         </div>
                         <div class="col-12">
@@ -127,7 +127,7 @@
                                             if ($customer[0]->cus_type === "Particulier") 
                                             {
                                 ?>
-                                                <?php echo number_format(round((($product[0]->pro_spet + ($product[0]->pro_spet * $customer[0]->cus_coef / 100)) * 1.20), 1), 2, ",", " "); ?> € TTC
+                                                <?php echo number_format(round(($product[0]->pro_spet * 1.20), 1),2, ",", " ");?> € TTC 
                                 <?php
                                             } 
                                             else if ($customer[0]->cus_type === "Professionnel") 

@@ -20,11 +20,11 @@ $total = 0;
         </header>
     </div>
 
-    <!-- Customer Infos -->
+    <!-- Infos client -->
     <div class="row">
         <div class="col">
 
-            <!-- Billing Information -->
+            <!-- Informations de faxcturation -->
             <div class="row mt-3">
                 <div class="col-sm-4 mt-3">
                     <div class="col-sm-12 card mt-2 border border-4 h-100 text-dark">
@@ -40,7 +40,7 @@ $total = 0;
                     </div>
                 </div>
 
-                <!-- Contact Information -->
+                <!-- Informations de contact -->
                 <div class="col-sm-4 mt-3">
                     <div class="col-sm-12 card mt-2 border border-4 h-100 text-dark">
                         <div class="card-header border-bottom border-4 bg-grey">
@@ -53,7 +53,7 @@ $total = 0;
                     </div>
                 </div>
 
-                <!-- Delivery Information -->
+                <!-- Informations de livraison -->
                 <div class="col-sm-4 mt-3">
                     <div class="col-sm-12 card mt-2 border border-4 h-100 text-dark">
                         <div class="card-header border-bottom border-4 bg-grey">
@@ -68,7 +68,7 @@ $total = 0;
                     </div>
                 </div>
 
-                <!-- Payment Information -->
+                <!-- Information de paiement -->
                 <div class="col-sm-4 mt-3">
                     <div class="col-sm-12 card mt-2 border border-4 h-100 text-dark">
                         <div class="card-header border-bottom border-4 bg-grey">
@@ -80,7 +80,7 @@ $total = 0;
                     </div>
                 </div>
 
-                <!-- Order status -->
+                <!-- Statut commande -->
                 <div class="col-sm-4 mt-3">
                     <div class="col-sm-12 card mt-2 border border-4 h-100 text-dark">
                         <div class="card-header border-bottom border-4 bg-grey">
@@ -94,9 +94,9 @@ $total = 0;
             </div>
         </div>
     </div>
-    <!-- END Customer Infos -->
+    <!-- FIN Infos client -->
 
-    <!-- Order details -->
+    <!-- Details commande -->
     <div class="row mt-3">
         <header>
             <h4 class="mt-3">
@@ -105,7 +105,7 @@ $total = 0;
         </header>
     </div>
 
-    <!-- Order details table -->
+    <!-- Tableau -->
     <div class="row px-3">
         <div class="col-sm-12 table-responsive-sm mt-3 px-0 mb-3 border border-4 rounded">
             <table id="table-order-details" class="table table-hover table-borderless align-middle text-center overflow-hidden mb-0">
@@ -123,7 +123,7 @@ $total = 0;
                     <tbody>
                         <?php foreach ($order as $product) { ?>
 
-                            <!-- Product details-->
+                            <!-- Ligne détails produit-->
                             <tr class="bg-white border-0 border-top border-4">
                                 <td scope="row" class="bg-white">
                                     <a href="<?php if (isset($product->pro_id)) {
@@ -239,9 +239,7 @@ $total = 0;
             </table>
         </div>
     </div>
-    <!-- END Order details -->
+    <!-- FIN Détails commande -->
 
     <a class="btn blue-link text-white mb-3 border border-white border-3" href="<?php echo site_url('Orders/OrderList'); ?>" role="button">Retour à la liste</a>
 </div>
-
-<?php var_dump($order);?>

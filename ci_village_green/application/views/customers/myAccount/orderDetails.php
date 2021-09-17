@@ -49,7 +49,7 @@
                 </div>
             </div>
             <div class="row">
-                <!-- Début Tableau Détails commande-->
+                <!-- Tableau Détails commande-->
                 <div class="col-12">
                     <div class="table-responsive">
                         <table class="table table-hover text-center">
@@ -66,125 +66,131 @@
 
                             <tbody>
                                 <?php
-                                $iTotal = 0; // Global ligne
-                                $totalItems = 0; // Global articles
-                                // $iTotalGlobal = 0; // Global articles, livraison et Taxes
+                                    $iTotalHT = 0;
+                                    $iTotalTTC = 0;
+                                    $totalItemsHT = 0;
+                                    $totalItemsTTC = 0;
 
-                                // Boucle d'affichage de chaque ligne de la commande
-                                foreach ($order as $row) 
-                                {
-
-                                    // Total ligne HT ou TTC selon typologie client
-                                    if (isset($row->ode_ost_id) && $row->ode_ost_id !== '8') 
+                                    // Boucle d'affichage de chaque ligne de la commande
+                                    foreach ($order as $row) 
                                     {
-                                        if (isset($row->pro_ppet) && isset($row->cus_type)) 
+
+                                        // Total ligne HT ou TTC selon typologie client
+                                        if (isset($row->ode_ost_id) && $row->ode_ost_id !== '8') 
                                         {
-                                            if ($row->cus_type === "Particulier") 
+                                            if (isset($row->pro_ppet) && isset($row->cus_type)) 
                                             {
-                                                $iTotal = round(((($row->pro_ppet + ($row->pro_ppet * $row->cus_coef / 100)) * $row->ode_qty) * 1.20), 1);
-                                            } 
-                                            else if ($row->cus_type === "Professionnel") 
-                                            {
-                                                $iTotal = (($row->pro_ppet + ($row->pro_ppet * $row->cus_coef / 100)) * $row->ode_qty);
+                                                $iTotalHT = round($row->ode_qty * ($row->pro_ppet + ($row->pro_ppet *  $row->cus_coef / 100)));
+                                                $iTotalTTC = round($iTotalHT + ($iTotalHT * 0.2));
                                             }
+                                            $totalItemsHT = $totalItemsHT + $iTotalHT;
+                                            $totalItemsTTC = $totalItemsTTC + $iTotalTTC;
+                                        } 
+                                        else 
+                                        {
+                                            $iTotalHT = 0;
+                                            $iTotalTTC = 0;
                                         }
-                                    } 
-                                    else 
-                                    {
-                                        $iTotal = 0;
-                                    }
-                                    $totalItems = $totalItems + $iTotal;
-                                    // $iTotalGlobal = $iTotalGlobal + $totalItems;
-                                ?>
-                                    <!-- ligne produit -->
-                                    <tr class="table-light">
-                                        <!-- Visuel produit -->
-                                        <td class="col-xl-2">
-                                            <a href="<?php if (isset($row->pro_id)) {
-                                                            echo site_url('Products/productDetails/' . $row->pro_id);
-                                                        } ?>">
-                                                <div class="col-12">
-                                                    <img class="img-mini" src=" <?php    if(isset($row->pro_id) && (isset($row->pro_photo))) 
-                                                                                        {
-                                                                                            echo base_url('assets/images/products/' . $row->pro_id . '.' . $row->pro_photo);
-                                                                                        } 
-                                                                                ?>" alt="photo du produit   <?php   if(isset($row->pro_label)) 
-                                                                                                                    {
-                                                                                                                        echo $row->pro_label;
-                                                                                                                    } 
-                                                                                                            ?>" title="<?php    if(isset($row->pro_label)) 
-                                                                                                                                {
-                                                                                                                                    echo $row->pro_label;
-                                                                                                                                } ?>">
-                                                </div>
-                                            </a>
-                                        </td>
 
-                                        <!-- Libellé produit -->
-                                        <td class="align-middle">
-                                            <p class="mb-0"><?php echo $row->pro_label; ?></p>
-                                            <!-- Statut ligne affichage mobile -->
-                                            <?php   if (isset($row->ode_ost_id) && $row->ode_ost_id !== '8') 
-                                                    { 
-                                            ?> 
-                                                        <p class="d-block d-md-none text-success mb-0"><?php echo $row->ost_label;?></p>
-                                            <?php 
-                                                    }
-                                                    else
-                                                    { 
-                                            ?>
-                                                        <p class="d-block d-md-none text-danger mb-0"><?php echo $row->ost_label;?></p>
-                                            <?php 
-                                                    } 
-                                            ?>
+                                    ?>
+                                        <!-- ligne produit -->
+                                        <tr class="table-light">
+                                            <!-- Visuel produit -->
+                                            <td class="col-xl-2">
+                                                <a href="<?php if (isset($row->pro_id)) {
+                                                                echo site_url('Products/productDetails/' . $row->pro_id);
+                                                            } ?>">
+                                                    <div class="col-12">
+                                                        <img class="img-mini" src=" <?php    if(isset($row->pro_id) && (isset($row->pro_photo))) 
+                                                                                            {
+                                                                                                echo base_url('assets/images/products/' . $row->pro_id . '.' . $row->pro_photo);
+                                                                                            } 
+                                                                                    ?>" alt="photo du produit   <?php   if(isset($row->pro_label)) 
+                                                                                                                        {
+                                                                                                                            echo $row->pro_label;
+                                                                                                                        } 
+                                                                                                                ?>" title="<?php    if(isset($row->pro_label)) 
+                                                                                                                                    {
+                                                                                                                                        echo $row->pro_label;
+                                                                                                                                    } ?>">
+                                                    </div>
+                                                </a>
+                                            </td>
 
-                                        </td>
-
-                                        <!-- Statut ligne -->
-                                        <td class="align-middle d-none d-md-table-cell">
-                                            <?php   if (isset($row->ode_ost_id) && $row->ode_ost_id !== '8') 
-                                                    { 
-                                            ?>      
-                                                        <p class=" col-12 text-success mb-0"><?php echo $row->ost_label;?></p>
-                                            <?php 
-                                                    }
-                                                    else
-                                                    { 
-                                            ?>
-                                                        <p class="d-none d-md-block text-danger mb-0"><?php echo $row->ost_label;?></p>
-                                            <?php 
-                                                    } 
-                                            ?>
-                                        </td>
-
-                                        <!-- Affichage du prix de vente selon typologie et coef client -->
-                                        <td class="align-middle text-nowrap">
-                                            <?php   if (isset($row->pro_ppet) && isset($row->cus_type)) 
-                                                    {
-                                                        if ($row->cus_type === "Particulier") 
-                                                        {
-                                                            echo number_format(round((($row->pro_ppet + ($row->pro_ppet * $row->cus_coef / 100)) * 1.20), 1), 2, ",", " ");
-                                                        } 
-                                                        else if ($row->cus_type === "Professionnel") 
-                                                        {
-                                                            echo number_format(($row->pro_ppet + ($row->pro_ppet * $row->cus_coef / 100)), 2, ",", " ");
+                                            <!-- Libellé produit -->
+                                            <td class="align-middle">
+                                                <p class="mb-0"><?php echo $row->pro_label; ?></p>
+                                                <!-- Statut ligne affichage mobile -->
+                                                <?php   if (isset($row->ode_ost_id) && $row->ode_ost_id !== '8') 
+                                                        { 
+                                                ?> 
+                                                            <p class="d-block d-md-none text-success mb-0"><?php echo $row->ost_label;?></p>
+                                                <?php 
                                                         }
-                                                    }
-                                            ?>
-                                        </td>
-                                        <!-- Quantité -->
-                                        <td class="col align-middle">                                                                          
-                                            <?php echo $row->ode_qty; ?>
+                                                        else
+                                                        { 
+                                                ?>
+                                                            <p class="d-block d-md-none text-danger mb-0"><?php echo $row->ost_label;?></p>
+                                                <?php 
+                                                        } 
+                                                ?>
 
-                                        </td>
-                                        </form>
-                                        <!-- Prix total ligne -->
-                                        <td class="align-middle text-nowrap"> <?php echo number_format($iTotal, 2, ',', ' ');?> </td>
-                                    </tr>
+                                            </td>
 
-                                <?php
-                                }
-                                ?>
+                                            <!-- Statut ligne -->
+                                            <td class="align-middle d-none d-md-table-cell">
+                                                <?php   if (isset($row->ode_ost_id) && $row->ode_ost_id !== '8') 
+                                                        { 
+                                                ?>      
+                                                            <p class=" col-12 text-success mb-0"><?php echo $row->ost_label;?></p>
+                                                <?php 
+                                                        }
+                                                        else
+                                                        { 
+                                                ?>
+                                                            <p class="d-none d-md-block text-danger mb-0"><?php echo $row->ost_label;?></p>
+                                                <?php 
+                                                        } 
+                                                ?>
+                                            </td>
+
+                                            <!-- Affichage du prix de vente selon typologie et coef client -->
+                                            <td class="align-middle text-nowrap">
+                                                <?php   if (isset($row->pro_ppet) && isset($row->cus_type)) 
+                                                        {
+                                                            if ($row->cus_type === "Particulier") 
+                                                            {
+                                                                echo number_format(round($row->pro_ppet + ($row->pro_ppet *  $row->cus_coef / 100)) + (($row->pro_ppet + ($row->pro_ppet *  $row->cus_coef / 100)) * 0.2), 2, ',', ' ');
+                                                            } 
+                                                            else if ($row->cus_type === "Professionnel") 
+                                                            {
+                                                                echo number_format(round($row->pro_ppet + ($row->pro_ppet *  $row->cus_coef / 100)), 2, ",", " ");
+                                                            }
+                                                        }
+                                                ?>
+                                            </td>
+                                            <!-- Quantité -->
+                                            <td class="col align-middle">                                                                          
+                                                <?php echo $row->ode_qty; ?>
+
+                                            </td>
+                                            </form>
+                                            <!-- Prix total ligne -->
+                                            <td class="align-middle text-nowrap">   <?php   if(isset($row->cus_type) && $row->cus_type === 'Particulier')
+                                                                                            {
+                                                                                                echo number_format($iTotalTTC, 2, ',', ' ');
+                                                                                            }
+                                                                                            else if(isset($row->cus_type) && $row->cus_type === 'Professionnel')
+                                                                                            {
+                                                                                                echo number_format($iTotalHT, 2, ',', ' ');
+                                                                                            }
+                                                                                    ?>  
+                                            </td>
+                                        </tr>
+
+                                    <?php
+                                    }
+                                    ?>
                             </tbody>
                         </table>
                     </div>
@@ -193,7 +199,7 @@
 
             <div class="row m-0 justify-content-end">
                 <!-- Début Tableau Récapitulatif-->
-                <div class="col-12 col-md-6 col-md-4 p-0">
+                <div class="col-12 col-md-6 col-xl-4 p-0">
                     <div class="table-responsive">
                         <table class="table table-hover text-center">
                             <thead>
@@ -206,82 +212,102 @@
                                 <!-- Total articles -->
                                 <tr class="table-light">
                                     <td class="col-6 text-end">Articles :</td>
-                                    <td class="col"><?php echo number_format($totalItems, 2, ',', ' '); ?> €</td>
+                                    <td class="col"><?php   if(isset($row->cus_type) && $row->cus_type === 'Particulier')
+                                                            {
+                                                                echo number_format($totalItemsTTC, 2, ',', ' ');
+                                                            }
+                                                            else if(isset($row->cus_type) && $row->cus_type === 'Professionnel')
+                                                            {
+                                                                echo number_format($totalItemsHT, 2, ',', ' ');
+                                                            } 
+                                                    ?> €
+                                </td>
                                 </tr>
                                 <!-- Frais de livraison -->
                                 <tr class="table-light">
                                     <td class="col-6 text-end">Livraison :</td>
-                                    <td class="col"><?php 
-                                                    // Si la commande n'est pas en statut "Annulée"
-                                                    if (isset($row->ord_ost_id) && $row->ord_ost_id !== '8') 
-                                                    {
-                                                        // On vérifie l'éligibilité à la livraison gratuite
-                                                        if ($totalItems > 19) 
-                                                        {
-                                                            $delivery = 0;
-                                                            echo number_format($delivery, 2, ',', ' ') . " €";
-                                                        } 
-                                                        else 
-                                                        {
-                                                            $delivery = 5.90;
-                                                            echo number_format($delivery, 2, ',', ' ') . " €";
-                                                        } 
-                                                    } 
-                                                    else 
-                                                    {
-                                                        // Sinon les frais sont mis à 0
-                                                        $delivery = 0;
-                                                        echo number_format($delivery, 2, ',', ' ') . " €";
-                                                    }
+                                    <td class="col"><?php   if((isset($row->cus_type) && $row->cus_type === 'Particulier') && (isset($row->ode_ost_id) &&  $row->ode_ost_id !=='8'))
+                                                            {
+                                                                if ($totalItemsTTC > 19) 
+                                                                {
+                                                                    $delivery = 0;
+                                                                    echo number_format($delivery, 2, ',', ' ') . " €";
+                                                                } 
+                                                                else 
+                                                                {
+                                                                    $delivery = 5.90;
+                                                                    echo number_format($delivery, 2, ',', ' ') . " €";
+                                                                } 
+                                                            }
+                                                            else if((isset($row->cus_type) && $row->cus_type === 'Professionnel') && (isset($row->ode_ost_id) &&  $row->ode_ost_id !=='8'))
+                                                            {
+                                                                if ($totalItemsHT > 19) 
+                                                                {
+                                                                    $delivery = 0;
+                                                                    echo number_format($delivery, 2, ',', ' ') . " €";
+                                                                } 
+                                                                else 
+                                                                {
+                                                                    $delivery = 5.90;
+                                                                    echo number_format($delivery, 2, ',', ' ') . " €";
+                                                                } 
+                                                            }
+                                                            else
+                                                            {
+                                                                $delivery = 0;
+                                                                echo number_format($delivery, 2, ',', ' ') . " €";
+                                                            }
                                                     ?>
                                     </td>
                                 </tr>
                                 <!-- TVA -->
                                 <tr class="table-light">
                                     <td class="col-6 text-end">TVA estimée :</td>
-                                    <td class="col"><?php   if(isset($row->cus_type) && $row->cus_type == 'Professionnel') 
-                                                            {
-                                                                echo number_format(($totalItems + $delivery) - (($totalItems + $delivery) * 0.2), 2, ',', ' ');
-                                                            }
-                                                            else
-                                                            {
-                                                                echo number_format(($totalItems + $delivery) - (($totalItems + $delivery) * 0.8), 2, ',', ' ');
-                                                            } 
-                                                    ?> €
+                                    <td class="col"><?php echo number_format(($totalItemsHT + $delivery * 0.8) * 0.2, 2, ',', ' '); ?> €
                                     </td>
                                 </tr>
 
                                 <!-- Total global TTC pour les professionnels -->
-                                <?php if (isset($row->cus_type) && $row->cus_type == 'Professionnel') 
-                                {
+                                <?php   if (isset($row->cus_type) && $row->cus_type == 'Professionnel') 
+                                        {
                                 ?>
-                                    <tr class="table-light">
-                                        <td class="col-6 text-end">Total TTC :</td>
-                                        <td class="col"><?php echo number_format(($totalItems + $delivery) * 1.20, 2, ',', ' '); ?> €</td>
-                                    </tr>
+                                        <tr class="table-light">
+                                            <td class="col-6 text-end">Total TTC :</td>
+                                            <td class="col"><?php echo number_format($totalItemsTTC + $delivery, 2, ',', ' '); ?> €</td>
+                                        </tr>
                                 <?php
-                                }
+                                        }
                                 ?>
 
                                 <!-- Total global HT ou TTC selon profil client -->
                                 <tr class="table-light">
-                                    <td class="col-6 text-end">Total <?php  if (isset($row->cus_type) && $row->cus_type == 'Particulier') 
+                                <td class="col-6 text-end">Total <?php  if (isset($row->cus_type) && $row->cus_type == 'Particulier') 
+                                                                        {
+                                                                            echo 'TTC';
+                                                                        } else {
+                                                                            echo 'HT';
+                                                                        } 
+                                                                ?> :
+                                </td>
+                                <td class="col fw-bold text-danger"><?php   if (isset($row->cus_type) && $row->cus_type == 'Particulier') 
                                                                             {
-                                                                                echo 'TTC';
+                                                                                echo number_format($totalItemsTTC + $delivery, 2, ',', ' ');
                                                                             }
-                                                                            else 
+                                                                            else if (isset($row->cus_type) && $row->cus_type == 'Professionnel') 
                                                                             {
-                                                                                echo 'HT';
-                                                                            } 
-                                                                    ?> :
-                                    </td>
-                                    <td class="col fw-bold text-danger"><?php echo number_format($totalItems + $delivery, 2, ',', ' '); ?> €</td>
-                                </tr>
+                                                                                echo number_format($totalItemsHT + $delivery * 0.8, 2, ',', ' ');
+                                                                            }
+                                                                    ?> €
+                                </td>
+                            </tr>
 
                             </tbody>
                         </table>
                     </div>
                 </div>
+            </div>
+            <div class="row">
+                <img class="img-fluid mt-5 px-0" src="<?php echo base_url('assets/images/BODY/ESPACE_CLIENT/bas_de_page_pictos.png');?>" alt="Logos de nos partenaires Yamaha, Roland, Sennheiser et Behringer" title="Nos partenaires et services">
             </div>
         </div>
     </div>

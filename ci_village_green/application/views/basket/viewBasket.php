@@ -12,14 +12,14 @@
     ?>
         <div class="row">
             <!-- Début Tableau Mon Panier-->
-            <div class="col-12">
+            <div id="basket" class="col-12">
                 <div class="table-responsive">
                     <table class="table table-hover text-center">
                         <thead>
                             <tr class="table-secondary" style="border-bottom: 1px solid black;">
                                 <th></th>
                                 <th><i>Produit</i></th>
-                                <th class="d-none d-md-block border-0"><i>Disponibilité</i></th>
+                                <th class="d-none d-md-table-cell border-0"><i>Disponibilité</i></th>
                                 <th><i>Prix</i></th>
                                 <th><i>Quantité</i></th>
                                 <th><i>Prix total</i></th>
@@ -75,7 +75,7 @@
 
                                     <!-- Disponibilité -->
                                     <td class="align-middle d-none d-md-table-cell">
-                                        <?php if (isset($row['pro_phy_stk']) && $row['pro_phy_stk'] > 0) { ?> <p class=" col-12 text-success mb-0">Disponible</p> <?php } else { ?><p class="col-md-8 text-warning mb-0 mx-auto">Indisponible. Délai de réapprovisionnement variable.</p><?php } ?>
+                                        <?php if (isset($row['pro_phy_stk']) && $row['pro_phy_stk'] > 0) { ?> <p class=" col-12 text-success mb-0">Disponible</p> <?php } else { ?><p class="col-md-8 text-warning mb-0 mx-auto">Indisponible. Délai de réapprovisionnement 2 à 3 semaines.</p><?php } ?>
                                     </td>
 
                                     <!-- Affichage du prix de vente selon typologie et coef client -->
@@ -220,7 +220,8 @@
                                                                 $delivery = 5.90;
                                                                 echo number_format($delivery, 2, ',', ' ') . " €";
                                                             } 
-                                                        } ?>
+                                                        } 
+                                                ?>
                                 </td>
                             </tr>
                             <!-- TVA -->
@@ -308,5 +309,3 @@
         </div>
     <?php
     } ?>
-
-    <?php var_dump($totalItemsHT, $totalItemsTTC);?>

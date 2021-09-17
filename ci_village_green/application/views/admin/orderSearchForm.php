@@ -17,7 +17,7 @@
             <a class="col-lg-2 btn btn-success me-2 mt-2" href="<?php echo site_url('Orders/OrderByMonthInterval/12');?>">12 derniers mois</a>
             <a class="col-lg-2 btn btn-success me-2 mt-2" href="<?php echo site_url('Orders/OrderByMonthInterval/6');?>">6 derniers mois</a>
             <a class="col-lg-2 btn btn-success me-2 mt-2" href="<?php echo site_url('Orders/OrderByMonthInterval/3');?>">3 derniers mois</a>
-            <a class="col-lg-2 btn btn-success me-2 mt-2" href="<?php echo site_url('Orders/OrderByDayInterval/1');?>">30 derniers jours</a>
+            <a class="col-lg-2 btn btn-success me-2 mt-2" href="<?php echo site_url('Orders/OrderByDayInterval/30');?>">30 derniers jours</a>
             <a class="col-lg-2 btn btn-success me-2 mt-2" href="<?php echo site_url('Orders/OrderByDayInterval/7');?>">7 derniers jours</a>
             <a class="col-lg-2 btn btn-success me-2 mt-2" href="<?php echo site_url('Orders/OrderByDayInterval/1');?>">Aujourd'hui</a>
             <a class="col-lg-2 btn btn-success me-2 mt-2" href="<?php echo site_url('Orders/RunningOrder');?>">En cours</a>
