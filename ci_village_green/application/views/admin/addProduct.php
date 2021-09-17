@@ -1,6 +1,6 @@
 <div class="container-fluid">
     <div class="row justify-content-evenly">
-        <!-- Titre catégorie et libellé article -->
+        <!-- Titre -->
         <header>
             <h3 class="py-3 m-0">
                 Création produit

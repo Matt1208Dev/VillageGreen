@@ -461,4 +461,21 @@ class Admin extends CI_Controller
             }
         }
     }
+
+    public function dashboard()
+    {
+        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+        if (isset($this->session->com_username))
+        {
+            $this->load->model('dashboardModel');
+            $View['caGlobalAllSuppliers'] = $this->dashboardModel->caGlobalAllSuppliers();
+            $View['caGlobalBySuppliers'] = $this->dashboardModel->caGlobalBySuppliers();
+            $View['productsSoldInTheYear'] = $this->dashboardModel->productsSoldInTheYear();
+
+            // Chargment de la vue dashboard
+            $this->load->view('admin/header');
+            $this->load->view('admin/dashboard.php', $View);
+            $this->load->view('admin/footer');
+        }
+    }
 }

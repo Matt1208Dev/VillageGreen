@@ -2,22 +2,23 @@
 
     -- TOTAL CA HT sans critère (fournisseur, produit, période)
 
-SELECT SUM(`ode_tot_exc_tax`) 
-FROM `order_details`;
+SELECT SUM(`ode_tot_exc_tax`) AS `totalCA`
+FROM `order_details`
+WHERE `ode_ost_id` != 8;
 
 
     -- TOTAL VENTES CA HT par fournisseur sans critère de temps trié par ordre décroissant
 
 SELECT  `sup_id` AS `idFournisseur`,
         `sup_name` AS `Fournisseur`,
-        SUM(`ode_tot_exc_tax`) AS `Total CA HT`
+        SUM(`ode_tot_exc_tax`) AS `TotalCaHt`
 FROM `order_details` 
 JOIN `products` 
     ON `ode_pro_id` = `pro_id` 
 JOIN `suppliers` 
     ON `pro_sup_id` = `sup_id` 
 GROUP BY `idFournisseur` 
-ORDER BY `Total CA HT` DESC;
+ORDER BY `TotalCaHt` DESC;
 
 
 -- 3.1.4 - liste des produits commandés pour une année sélectionnée (référence et nom du produit, quantité commandée, fournisseur)
