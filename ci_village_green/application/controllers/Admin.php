@@ -134,7 +134,9 @@ class Admin extends CI_Controller
                     $this->load->view('admin/footer');
                 }
             }
-        } else {
+        } 
+        else
+        {
             redirect('Products/home');
         }
     }
@@ -157,6 +159,10 @@ class Admin extends CI_Controller
             $this->load->view('admin/ProductSearchForm', $View);
             $this->load->view('admin/ProductList', $View);
             $this->load->view('admin/footer');
+        }
+        else
+        {
+            redirect('Products/home');
         }
     }
 
@@ -271,6 +277,10 @@ class Admin extends CI_Controller
                 }
             }
         }
+        else
+        {
+            redirect('Products/home');
+        }
     }
 
     public function updateProductSuccess()
@@ -289,6 +299,10 @@ class Admin extends CI_Controller
             $this->load->view('admin/updateProductSuccess');
             $this->load->view('admin/footer');
         }
+        else
+        {
+            redirect('Products/home');
+        }
     }
 
     public function addProductSuccess()
@@ -306,6 +320,10 @@ class Admin extends CI_Controller
             $this->load->view('admin/ProductSearchForm', $View);
             $this->load->view('admin/addProductSuccess');
             $this->load->view('admin/footer');
+        }
+        else
+        {
+            redirect('Products/home');
         }
     }
 
@@ -419,6 +437,10 @@ class Admin extends CI_Controller
                 }
             }
         }
+        else
+        {
+            redirect('Products/home');
+        }
     }
 
     public function deleteProduct($id)
@@ -460,6 +482,10 @@ class Admin extends CI_Controller
                 }
             }
         }
+        else
+        {
+            redirect('Products/home');
+        }
     }
 
     public function dashboard()
@@ -471,11 +497,18 @@ class Admin extends CI_Controller
             $View['caGlobalAllSuppliers'] = $this->dashboardModel->caGlobalAllSuppliers();
             $View['caGlobalBySuppliers'] = $this->dashboardModel->caGlobalBySuppliers();
             $View['productsSoldInTheYear'] = $this->dashboardModel->productsSoldInTheYear();
+            $View['caByCustomerType'] = $this->dashboardModel->caByCustomerType();
+            $View['averageDeliveryTime'] = $this->dashboardModel->averageDeliveryTime();
+            $View['lastFiveDeliveries'] = $this->dashboardModel->lastFiveDeliveries();
 
             // Chargment de la vue dashboard
             $this->load->view('admin/header');
             $this->load->view('admin/dashboard.php', $View);
             $this->load->view('admin/footer');
+        }
+        else
+        {
+            redirect('Products/home');
         }
     }
 }

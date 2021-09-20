@@ -65,6 +65,11 @@ body
     min-height: 6.5rem;
 }
 
+.table-rounded
+{
+    border-radius: 10px;
+}
+
 @media screen and (max-width: 1024px) {
     
     #submit, #table-orders, #table-order-details

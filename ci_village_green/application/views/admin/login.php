@@ -10,7 +10,6 @@
 </head>
 <body>
 
-
 <section id="main-container">
     <div id="adm">
         <div id="logo-vg">
@@ -39,6 +38,9 @@
                 <!-- Submit button -->
                 <div>
                     <input id="submit" name="submit" type="submit" value="Envoi">
+                </div>
+                <div id="prev-page">
+                    <a href="<?php echo site_url('Products/home');?>">Retour</a>
                 </div>
             </form>
         </div>
