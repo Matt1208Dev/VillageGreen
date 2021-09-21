@@ -20,6 +20,11 @@ body
     width: auto;
 }
 
+#navbar .text-deco-hover
+{
+    transition: all 0.2s;
+}
+
 #navbar .text-deco-hover:hover
 {
     text-decoration: underline;

@@ -1,5 +1,4 @@
-<div class="container-fluid container-md">
-    <div class="row mb-4">
+    <div class="row m-0 mb-4">
         <!-- Titre -->
         <header>
             <h1 class="py-3 m-0">
@@ -7,7 +6,8 @@
             </h1>
         </header>
     </div>
-
+<div class="container-fluid container-md">
+    <!-- Tableau CA Global -->
     <div class="row mb-4">
         <Section class="col-12 col-md-6 d-flex flex-column align-items-center">
             <h4>
@@ -34,6 +34,7 @@
             </div>
         </Section>
 
+        <!-- Tableau CA par type client -->
         <Section class="col-12 col-md-6 d-flex flex-column align-items-center">
             <h4>
             CA HT par type client sur l'année en cours
@@ -73,6 +74,7 @@
         </Section>
     </div>
 
+    <!-- Tableau CA par Fournisseur  -->
     <div class="row mb-4">
         <Section class="col-12 d-flex flex-column align-items-center">
             <h4>
@@ -119,6 +121,7 @@
         </Section>
     </div>
 
+    <!-- Tableau des produits vendus dans l'année -->
     <div class="row mb-4">
         <Section class="col-12 d-flex flex-column align-items-center">
             <h4>
@@ -185,6 +188,7 @@
         </Section>
     </div>
 
+    <!-- Tableau objectif et délai de livraison -->
     <div class="row">
         <Section class="col-12 col-md-6 d-flex flex-column align-items-center">
             <h4>
@@ -217,6 +221,7 @@
             </div>
         </Section>
 
+        <!-- Tableau des 5 dernières livraisons -->
         <Section class="col-12 col-md-6 d-flex flex-column align-items-center">
             <h4>
             Délai moyen des 5 dernières livraisons

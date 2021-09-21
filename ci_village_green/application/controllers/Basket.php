@@ -195,12 +195,6 @@ class Basket extends CI_Controller
         // Suppression de la variable de session basket
         $this->session->unset_userdata('basket');
 
-        // Suppression du cookie basket si initialisé
-        if (isset($_COOKIE['basket'])) 
-        {
-            delete_cookie('basket');
-        }
-
         // Reaffichage du panier
         redirect('Basket/viewBasket');
     }
@@ -362,9 +356,8 @@ class Basket extends CI_Controller
                 // $this->ProductsModel->updateProductStk($ode_pro_id, $newStk);
             }
 
-            // Suppression des variables basket de $_SESSION et $_COOKIE
+            // Suppression de la variable basket de $_SESSION
             unset($_SESSION['basket']);
-            delete_cookie('basket');
 
             // Redirection vers la page de succès
             redirect('Basket/orderSuccess');

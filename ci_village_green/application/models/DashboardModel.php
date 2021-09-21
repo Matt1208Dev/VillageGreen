@@ -7,7 +7,9 @@ class DashboardModel extends CI_Model
     {
         $query = $this->db->query("SELECT SUM(`ode_tot_exc_tax`) AS totalCA 
                                     FROM `order_details`
-                                    WHERE `ode_ost_id` != 8;");
+                                    JOIN `order_status`
+                                        ON `ode_ost_id` = `ost_id`
+                                    WHERE `ost_label` != \"Annulée\";");
         $result = $query->result();
 
         return $result;
@@ -21,7 +23,9 @@ class DashboardModel extends CI_Model
                                         ON `ode_pro_id` = `pro_id` 
                                     JOIN `suppliers` 
                                         ON `pro_sup_id` = `sup_id`
-                                    WHERE `ode_ost_id` != 8 
+                                    JOIN `order_status`
+                                        ON `ode_ost_id` = `ost_id`
+                                    WHERE `ost_label` != \"Annulée\"
                                     GROUP BY `idFournisseur` 
                                     ORDER BY `TotalCaHt` DESC;");
         $result = $query->result();
@@ -40,7 +44,9 @@ class DashboardModel extends CI_Model
                                         ON `ode_pro_id` = `pro_id`
                                     JOIN `suppliers`
                                         ON `pro_sup_id` = `sup_id`
-                                    WHERE `ode_ost_id` != 8 AND `ord_date` LIKE \"$currentYear%\"
+                                    JOIN `order_status`
+                                        ON `ode_ost_id` = `ost_id`
+                                    WHERE `ost_label` != \"Annulée\" AND `ord_date` LIKE \"$currentYear%\"
                                     GROUP BY `libelle_produit`
                                     ORDER BY `quantite` DESC;");
         $result = $query->result();
@@ -58,7 +64,9 @@ class DashboardModel extends CI_Model
                                         ON `ode_ord_id` = `ord_id`
                                     JOIN `customers` 
                                         ON `ord_cus_id` = `cus_id`  
-                                    WHERE `ode_ost_id` != 8 AND `ord_date` LIKE \"$currentYear%\"
+                                    JOIN `order_status`
+                                        ON `ode_ost_id` = `ost_id`
+                                    WHERE `ost_label` != \"Annulée\" AND `ord_date` LIKE \"$currentYear%\"
                                     GROUP BY `type_client`
                                     ORDER BY `total_ca_ht` DESC;");
         $result = $query->result();
