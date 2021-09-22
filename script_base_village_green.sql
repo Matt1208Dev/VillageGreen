@@ -36,13 +36,13 @@ ENGINE = innoDB;
 
 -- CREATION DE LA TABLE brands --
 
-CREATE TABLE `brands` (
-     `bra_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-     `bra_label` varchar(50) NOT NULL,
-     `bra_sup_id` INT NOT NULL,
-     FOREIGN KEY (`bra_sup_id`) REFERENCES `suppliers`(`sup_id`),
-)
-ENGINE = innoDB;
+-- CREATE TABLE `brands` (
+--      `bra_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
+--      `bra_label` varchar(50) NOT NULL,
+--      `bra_sup_id` INT NOT NULL,
+--      FOREIGN KEY (`bra_sup_id`) REFERENCES `suppliers`(`sup_id`),
+-- )
+-- ENGINE = innoDB;
 
 -- CREATION DE LA TABLE products --
 
@@ -56,14 +56,14 @@ CREATE TABLE `products` (
      `pro_photo` VARCHAR(255),
      `pro_phy_stk` INT NOT NULL,
      `pro_lock` INT NOT NULL,
-     `pro_add_date` DATETIME NOT NULL,
+     `pro_add_date` DATE NOT NULL,
      `pro_modif_date` DATE DEFAULT NULL,
      `pro_sup_id` INT NOT NULL,
      `pro_cat_id` INT NOT NULL,
-     `pro_bra_id` INT NOT NULL,
+     -- `pro_bra_id` INT NOT NULL,
      FOREIGN KEY (`pro_sup_id`) REFERENCES `suppliers`(`sup_id`),
-     FOREIGN KEY (`pro_cat_id`) REFERENCES `categories`(`cat_id`),
-     FOREIGN KEY (`pro_bra_id`) REFERENCES `brands`(`bra_id`)
+     FOREIGN KEY (`pro_cat_id`) REFERENCES `categories`(`cat_id`)
+     -- FOREIGN KEY (`pro_bra_id`) REFERENCES `brands`(`bra_id`)
 )
 ENGINE = innoDB;
 
@@ -73,9 +73,9 @@ CREATE TABLE `commercials` (
      `com_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY,
      `com_lastname` varchar(50) NOT NULL,
      `com_firstname` varchar(50) NOT NULL,
-     `com_type` VARCHAR(15) NOT NULL,
-     `com_username` VARCHAR(50) NOT NULL,
-     `com_pass` VARCHAR(255) NOT NULL
+     `com_type` VARCHAR(15),
+     `com_username` VARCHAR(50),
+     `com_pass` VARCHAR(255)
 )
 ENGINE = innoDB;
 
@@ -143,9 +143,11 @@ CREATE TABLE `order_details` (
      `ode_pro_id` INT NOT NULL,
      `ode_ord_id` INT NOT NULL,
      `ode_ost_id` INT NOT NULL,
+     `ode_com_id` INT NOT NULL,
      FOREIGN KEY (`ode_pro_id`) REFERENCES `products`(`pro_id`) ON DELETE SET NULL,
      FOREIGN KEY (`ode_ord_id`) REFERENCES `orders`(`ord_id`),
-     FOREIGN KEY (`ode_ost_id`) REFERENCES `order_status`(`ost_id`)
+     FOREIGN KEY (`ode_ost_id`) REFERENCES `order_status`(`ost_id`),
+     FOREIGN KEY (`ode_com_id`) REFERENCES `commercials`(`com_id`)
 )
 ENGINE = innoDB;
 

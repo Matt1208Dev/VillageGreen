@@ -202,11 +202,14 @@ class Basket extends CI_Controller
     public function isLogged()
     {
         // On vérifie dans $_SESSION la présence de 'logged_in'
-        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) {
+        if (isset($_SESSION['logged_in']) && $_SESSION['logged_in'] === true) 
+        {
             return true;
         }
         // On vérifie la présence de cookies de log
-        else if (get_cookie('logged_in', true) === '1') {
+        else if (get_cookie('logged_in', true) === '1') 
+        {
+            // Le second paramètre (true) de get_cookie() échappe les valeurs récupérées
             $cus_id =  get_cookie('user_id', true);
             $cus_firstname = get_cookie('username', true);
             $cus_mail = get_cookie('email', true);
@@ -218,10 +221,11 @@ class Basket extends CI_Controller
             $checkCookies = $this->CustomersModel->checkCustomerCookieLogin($cus_id, $cus_firstname, $cus_mail, $cus_type);
 
             // Elles correspondent
-            if ($checkCookies === true) {
-                // On initialise les variables de sessions
+            if ($checkCookies === true) 
+            {
+                // On groupe les variables de sessions dans un tableau
                 $userInfos = array(
-                    // Le second paramètre (true) de get_cookie() échappe les valeurs récupérées
+                    
                     'user_id'   => $cus_id,
                     'username'  => $cus_firstname,
                     'email'     => $cus_mail,
@@ -229,17 +233,34 @@ class Basket extends CI_Controller
                     'logged_in' => $logged_in
                 );
 
+                // et on les initialise
                 $this->session->set_userdata($userInfos);
+
+                // On renouvelle les cookies
+                set_cookie('user_id', $cus_id, 3600 * 24 * 7, 'localhost', '/', '', false, true);
+                set_cookie('username', $cus_firstname, 3600 * 24 * 7, 'localhost', '/', '', false, true);
+                set_cookie('email', $cus_mail, 3600 * 24 * 7, 'localhost', '/', '', false, true);
+                set_cookie('type', $cus_type, 3600 * 24 * 7, 'localhost', '/', '', false, true);
+                set_cookie('logged_in', TRUE, 3600 * 24 * 7, 'localhost', '/', '', false, true);
 
                 return true;
             }
             // Elles ne correspondent pas
-            else {
+            else 
+            {
+                // On supprime les cookies erronés
+                delete_cookie('user_id');
+                delete_cookie('username');
+                delete_cookie('email');
+                delete_cookie('type');
+                delete_cookie('logged_in');
+
                 return false;
             }
         }
         // Pas de cookie trouvé, ni de variable de session 'logged_in'
-        else {
+        else 
+        {
             return false;
         }
     }
@@ -282,6 +303,10 @@ class Basket extends CI_Controller
             // On récupère les infos utilisateur dans la session pour la création de la commande
             $user_id = $_SESSION['user_id'];
             $user_type = $_SESSION['type'];
+
+            // On récupère les infos du formulaire d'adresse en lecture seule confirmé par le client
+            $user_data = $this->input->post();
+
             // Création de la commande
             $ord_date = date('Y-m-d');
 
@@ -296,12 +321,29 @@ class Basket extends CI_Controller
             
             $ord_status = 9; // 1er statut de la commande : "En cours"
 
+            // On génère le délai de livraison estimé à 5 jours
+            date_default_timezone_set("Europe/Paris"); // Paramètrage sur le fuseau horaire de Paris.
+            $ord_del_time = date('Y-m-d', strtotime('+5 days'));
+            // Si le délai de livraison de 5 jours tombe un dimanche
+            if(strftime('%A', strtotime('+5 days')) == 'Sunday')
+            {
+                // On passe le délai à 6 jours
+                $ord_del_time = date('Y-m-d', strtotime('+6 days'));
+            }
+            
+
             $data = array(
 
                 'ord_date' => $ord_date,
                 'ord_pay_method' => $pay_method,
                 'ord_ost_id' => $ord_status,
-                'ord_cus_id' => $user_id
+                'ord_cus_id' => $user_id,
+                'ord_del_time' => $ord_del_time,
+                'ord_com_id' => $user_data['com_id'],
+                'ord_del_address' => $user_data['ord_del_address'],
+                'ord_del_postalcode' => $user_data['ord_del_postalcode'],
+                'ord_del_city' => $user_data['ord_del_city'],
+                'ord_del_phone' => $user_data['ord_del_phone']
             );
 
             $this->load->model('OrdersModel');
@@ -336,7 +378,8 @@ class Basket extends CI_Controller
                     'ode_tot_all_tax_inc' => $ode_tot_all_tax_inc,
                     'ode_pro_id' => $ode_pro_id,
                     'ode_ord_id' => $id,
-                    'ode_ost_id' => $ode_status
+                    'ode_ost_id' => $ode_status,
+                    'ode_com_id' => $user_data['com_id']
 
                 );
 
