@@ -15,16 +15,16 @@
             </h4>
 
             <div class="col-12 col-sm-8 col-md-6">
-                <table class="table table-striped bg-white table-rounded">
-                    <thead>
-                        <tr class="text-center fst-italic">
+                <table class="table table-striped bg-white border border-3 table-rounded overflow-hidden">
+                    <thead class="blue">
+                        <tr class="text-center fst-italic text-white border-bottom border-3">
                             <th class="text-center">
                                 CA global HT (€) <?php echo date('Y');?>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        <tr class="border-0">
+                        <tr class="border-0 bg-secondary text-white">
                             <td class="text-center fw-bold border-0">
                                 <?php echo number_format($caGlobalAllSuppliers[0]->totalCA, 2, ',', ' ');?>
                             </td>
@@ -40,10 +40,10 @@
             CA HT par type client sur l'année en cours
             </h4>
 
-            <div class="col-12">
-                <table class="table table-striped bg-white table-rounded">
-                    <thead>
-                        <tr class="text-center fst-italic">
+            <div class="col-12 col-lg-8">
+                <table class="table table-striped border border-3 border-white bg-white overflow-hidden table-rounded">
+                    <thead class="blue">
+                        <tr class="text-center fst-italic text-white border-bottom border-3">
                             <th class="col-4 col-md-3">
                                 Type Client
                             </th>
@@ -57,7 +57,7 @@
                             foreach($caByCustomerType as $row)
                             {
                         ?>
-                                <tr class="border-0">
+                                <tr class="border-0 bg-secondary text-white">
                                     <td class="border-0">
                                         <?php echo $row->type_client;?>
                                     </td>
@@ -75,16 +75,16 @@
     </div>
 
     <!-- Tableau CA par Fournisseur  -->
-    <div class="row mb-4">
-        <Section class="col-12 d-flex flex-column align-items-center">
+    <div class="row mb-4 justify-content-center">
+        <Section class="col-12 col-lg-8 d-flex flex-column align-items-center">
             <h4>
                 CA global généré par fournisseur
             </h4>
 
             <div class="col-12 table-responsive">
-                <table class="table table-striped bg-white table-rounded">
-                    <thead>
-                        <tr class="text-center fst-italic">
+                <table class="table table-striped bg-white table-rounded border border-3 border-white bg-white overflow-hidden">
+                    <thead class="blue">
+                        <tr class="text-center fst-italic text-white border-bottom border-3">
                             <th>
                                 ID fournisseur
                             </th>
@@ -92,7 +92,7 @@
                                 Fournisseur
                             </th>
                             <th>
-                                CA global HT (€) <?php echo date('Y');?>
+                                CA HT (€) <?php echo date('Y');?>
                             </th>
                         </tr>
                     </thead>
@@ -101,7 +101,7 @@
                             foreach($caGlobalBySuppliers as $row)
                             {
                         ?>
-                                <tr class="border-0">
+                                <tr class="border-0 bg-secondary text-white">
                                     <td class="text-center border-0">
                                         <?php echo $row->idFournisseur;?>
                                     </td>
@@ -129,9 +129,9 @@
             </h4>
 
             <div class="col-12 table-responsive">
-                <table class="col-6 table table-striped bg-white table-rounded">
-                    <thead>
-                        <tr class="text-center fst-italic">
+                <table class="col-6 table table-striped bg-white table-rounded border border-3 border-white overflow-hidden">
+                    <thead class="blue">
+                        <tr class="text-center fst-italic text-white border-bottom border-3">
                             <th>
                                 ID Produit
                             </th>
@@ -157,25 +157,25 @@
                             foreach($productsSoldInTheYear as $row)
                             {
                         ?>
-                                <tr class="border-0">
-                                    <td class="text-center border-0">
+                                <tr class="border-0 bg-secondary text-white">
+                                    <td class="text-center border-0 text-white">
                                         <?php echo $row->id_produit;?>
                                     </td>
-                                    <td class="border-0">
+                                    <td class="border-0 text-white">
                                         <?php echo $row->reference_produit;?>
                                     </td>
-                                    <td class="border-0">
-                                        <a class="text-dark text-decoration-none" href="<?php echo site_url('Products/productDetails/' . $row->id_produit);?>" target="_blank">
+                                    <td class="border-0 text-white">
+                                        <a class="text-white text-decoration-none" href="<?php echo site_url('Products/productDetails/' . $row->id_produit);?>" target="_blank">
                                             <?php echo $row->libelle_produit;?>
                                         </a>
                                     </td>
-                                    <td class="text-center fw-bold border-0">
+                                    <td class="text-center fw-bold border-0 text-white">
                                         <?php echo $row->quantite;?>
                                     </td>
-                                    <td class="text-center border-0">
+                                    <td class="text-center border-0 text-white">
                                         <?php echo $row->id_fournisseur;?>
                                     </td>
-                                    <td class="border-0">
+                                    <td class="border-0 text-white">
                                         <?php echo $row->fournisseur;?>
                                     </td> 
                                 </tr>
@@ -196,9 +196,9 @@
             </h4>
 
             <div class="col-12 col-sm-8">
-                <table class="table table-striped bg-white table-rounded overflow-hidden">
-                    <thead>
-                        <tr class="text-center fst-italic">
+                <table class="table table-striped bg-white table-rounded border border-3 border-white bg-white overflow-hidden">
+                    <thead class="blue">
+                        <tr class="text-center fst-italic text-white border-bottom border-3">
                             <th class="col-4 col-md-3">
                                 Objectif
                             </th>
@@ -228,9 +228,9 @@
             </h4>
 
             <div class="col-12 table-responsive">
-                <table class="table table-striped bg-white table-rounded overflow-hidden">
-                    <thead>
-                        <tr class="text-center fst-italic">
+                <table class="table table-striped bg-white table-rounded border border-3 border-white bg-white overflow-hidden">
+                    <thead class="blue">
+                        <tr class="text-center fst-italic text-white border-bottom border-3">
                             <th>
                                 Commande
                             </th>
@@ -250,9 +250,9 @@
                             foreach($lastFiveDeliveries as $row)
                             {
                         ?>
-                                <tr class="border-0">
+                                <tr class="border-0 bg-secondary text-white">
                                     <td class="text-center border-0">
-                                        <?php echo $row->ord_id;?>
+                                        <a class="text-white text-decoration-none" href="<?php echo site_url('Orders/orderDetails/' . $row->ord_id);?>"><?php echo $row->ord_id;?></a>
                                     </td>
                                     <td class="text-center border-0">
                                         <?php echo date('d/m/Y', strtotime($row->ord_date));?>

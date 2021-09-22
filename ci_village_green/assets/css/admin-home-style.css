@@ -43,7 +43,7 @@ body
     box-shadow: none;
 }
 
-.blue-link
+.blue-link, .blue
 {
     background-color: #002B53; 
 }

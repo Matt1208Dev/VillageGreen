@@ -268,4 +268,17 @@ class OrdersModel extends CI_Model
         $this->db->where('ode_id', $id);
         $this->db->update('order_details');
     }
+
+    public function getOrderStatus($id)
+    {
+        $query = $this->db->query("SELECT `ord_ost_id`, `ost_label`
+                                    FROM `orders`
+                                    JOIN `order_status`
+                                    ON `ord_ost_id` = `ost_id`
+                                    WHERE ord_id = $id");
+                                    
+        $status = $query->result();  
+
+        return $status;
+    }
 }

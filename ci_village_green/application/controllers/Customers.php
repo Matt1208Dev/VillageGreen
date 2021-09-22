@@ -126,15 +126,15 @@ class Customers extends CI_Controller
                     $this->session->set_userdata($userInfos);
 
                     // On initialise des cookies
-                    set_cookie('user_id', $checkLogin[0]->cus_id, 3600 * 24 * 7, 'localhost', '/', '', false, true);
-                    set_cookie('username', $checkLogin[0]->cus_firstname, 3600 * 24 * 7, 'localhost', '/', '', false, true);
-                    set_cookie('email', $checkLogin[0]->cus_mail, 3600 * 24 * 7, 'localhost', '/', '', false, true);
-                    set_cookie('type', $checkLogin[0]->cus_type, 3600 * 24 * 7, 'localhost', '/', '', false, true);
+                    set_cookie('user_id', $checkLogin[0]->cus_id, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
+                    set_cookie('username', $checkLogin[0]->cus_firstname, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
+                    set_cookie('email', $checkLogin[0]->cus_mail, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
+                    set_cookie('type', $checkLogin[0]->cus_type, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
 
                     // Si "Rester connecté" est coché
                     if ($stayConnected == 'yes') 
                     {
-                        set_cookie('logged_in', TRUE, 3600 * 24 * 7, 'localhost', '/', '', false, true);
+                        set_cookie('logged_in', TRUE, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
                     }
 
                     // On recharge la vue actuelle
@@ -221,11 +221,11 @@ class Customers extends CI_Controller
                 $this->session->set_userdata($userInfos);
 
                 // On renouvelle les cookies
-                set_cookie('user_id', $cus_id, 3600 * 24 * 7, 'localhost', '/', '', false, true);
-                set_cookie('username', $cus_firstname, 3600 * 24 * 7, 'localhost', '/', '', false, true);
-                set_cookie('email', $cus_mail, 3600 * 24 * 7, 'localhost', '/', '', false, true);
-                set_cookie('type', $cus_type, 3600 * 24 * 7, 'localhost', '/', '', false, true);
-                set_cookie('logged_in', TRUE, 3600 * 24 * 7, 'localhost', '/', '', false, true);
+                set_cookie('user_id', $cus_id, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
+                set_cookie('username', $cus_firstname, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
+                set_cookie('email', $cus_mail, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
+                set_cookie('type', $cus_type, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
+                set_cookie('logged_in', TRUE, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
 
                 return true;
             }

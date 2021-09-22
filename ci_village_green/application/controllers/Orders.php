@@ -259,8 +259,11 @@ class Orders extends CI_Controller
         {
             $this->load->model('OrdersModel');
             $query = $this->OrdersModel->OrderDetails($id);
+            $order_status = $this->OrdersModel->getOrderStatus($id);
 
             $aView["order"] = $query;
+            $aView["order_status"] = $order_status;
+
 
             $this->load->view('Admin/header');
             $this->load->view('Admin/OrderSearchForm', $aView);

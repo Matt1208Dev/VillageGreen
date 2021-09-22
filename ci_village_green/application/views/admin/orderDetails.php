@@ -68,7 +68,7 @@ $total = 0;
                     </div>
                 </div>
 
-                <!-- Information de paiement -->
+                <!-- Informations de paiement -->
                 <div class="col-sm-4 mt-3">
                     <div class="col-sm-12 card mt-2 border border-4 h-100 text-dark">
                         <div class="card-header border-bottom border-4 bg-grey">
@@ -87,7 +87,7 @@ $total = 0;
                             <h5>Statut commande</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text"><?php echo $order[0]->ost_label; ?></p>
+                            <p class="card-text"><?php echo $order_status[0]->ost_label; ?></p>
                         </div>
                     </div>
                 </div>
@@ -226,7 +226,7 @@ $total = 0;
                         <tr>
                             <td colspan="5" class="rounded-bottom bg-white pt-0"></td>
                             
-                                <td class="fw-bold pt-0">Total : </td>
+                                <td class="fw-bold pt-0">Total TTC: </td>
                                 <td class=" fw-bold text-danger pt-0 px-0">
                                 <?php   if (isset($total)) 
                                         {
