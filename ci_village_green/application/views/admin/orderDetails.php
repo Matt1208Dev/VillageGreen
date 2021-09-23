@@ -10,11 +10,14 @@ $total = 0;
         <header>
             <h3 class="mt-3">
             <a class="text-white text-decoration-none" href="<?php echo site_url('Orders/OrderList'); ?>">Liste des commandes</a> > 
-            <a class="text-white text-decoration-none" href="<?php echo site_url('Orders/OrderDetails/' . $order[0]->ord_id); ?>">Détails commande N° : <?php   if (isset($order[0]->ord_id)) 
+            <a class="text-white text-decoration-none" href="<?php echo site_url('Orders/OrderDetails/' . $order[0]->ord_id); ?>">Détails commande N° <?php   if (isset($order[0]->ord_id)) 
                                                                     {
                                                                     echo $order[0]->ord_id;
                                                                     }; 
-                                                            ?>
+                                                            ?> du <?php if (isset($order[0]->ord_date)) 
+                                                                        {
+                                                                        echo date('d/m/Y', strtotime($order[0]->ord_date));
+                                                                        }; ?>
             </a>
             </h3>
         </header>
@@ -87,7 +90,7 @@ $total = 0;
                             <h5>Statut commande</h5>
                         </div>
                         <div class="card-body">
-                            <p class="card-text"><?php echo $order_status[0]->ost_label; ?></p>
+                            <p class="card-text <?php if($order_status[0]->ost_label == "Retard de paiement"){echo 'fw-bold text-danger';}?>"><?php echo $order_status[0]->ost_label; ?></p>
                         </div>
                     </div>
                 </div>

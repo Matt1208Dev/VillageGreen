@@ -102,7 +102,8 @@
                                         if ($customer[0]->cus_type === "Particulier") 
                                         {
                             ?>
-                                            <p class="your-price"><?php echo number_format(round((($product[0]->pro_ppet + ($product[0]->pro_ppet * $customer[0]->cus_coef / 100)) * 1.20), 1), 2, ",", " "); ?>€ <span class="fs-5">TTC</span></p>
+                                            <p class="your-price"><?php echo number_format($product[0]->pro_ppet + ($product[0]->pro_ppet *  $customer[0]->cus_coef / 100) + (($product[0]->pro_ppet + ($product[0]->pro_ppet *  $customer[0]->cus_coef / 100)) * 0.2), 2, ',', ' '); ?>€ <span class="fs-5">TTC</span></p>
+                                            
                             <?php 
                                         }
                                         else if ($customer[0]->cus_type === "Professionnel") 

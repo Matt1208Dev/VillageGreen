@@ -41,8 +41,8 @@
                                 // $iTotalHT = round($row['pro_spet'] * $row['pro_qty'], 2);
                                 if (isset($row['pro_ppet']) && isset($row['cus_type'])) 
                                 {
-                                    $iTotalHT = round($row['pro_qty'] * ($row['pro_ppet'] + ($row['pro_ppet'] *  $row['cus_coef'] / 100)));
-                                    $iTotalTTC = round($iTotalHT + ($iTotalHT * 0.2));
+                                    $iTotalHT = $row['pro_qty'] * ($row['pro_ppet'] + ($row['pro_ppet'] *  $row['cus_coef'] / 100));
+                                    $iTotalTTC = $iTotalHT + ($iTotalHT * 0.2);
                                 }
                                 $totalItemsHT = $totalItemsHT + $iTotalHT;
                                 $totalItemsTTC = $totalItemsTTC + $iTotalTTC;
@@ -82,9 +82,9 @@
                                     <td class="align-middle">
                                         <?php if (isset($row['pro_ppet']) && isset($row['cus_type'])) {
                                             if ($row['cus_type'] === "Particulier") {
-                                                echo number_format(round($row['pro_ppet'] + ($row['pro_ppet'] *  $row['cus_coef'] / 100)) + (($row['pro_ppet'] + ($row['pro_ppet'] *  $row['cus_coef'] / 100)) * 0.2), 2, ',', ' ');
+                                                echo number_format($row['pro_ppet'] + ($row['pro_ppet'] *  $row['cus_coef'] / 100) + (($row['pro_ppet'] + ($row['pro_ppet'] *  $row['cus_coef'] / 100)) * 0.2), 2, ',', ' ');
                                             } else if ($row['cus_type'] === "Professionnel") {
-                                                echo number_format(round($row['pro_ppet'] + ($row['pro_ppet'] *  $row['cus_coef'] / 100)), 2, ",", " ");
+                                                echo number_format($row['pro_ppet'] + ($row['pro_ppet'] *  $row['cus_coef'] / 100), 2, ",", " ");
                                             }
                                         }
                                         ?>

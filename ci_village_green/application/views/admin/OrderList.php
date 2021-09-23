@@ -37,7 +37,22 @@
                         <td><?php echo $row->ord_discount; ?></td>
                         <td><?php echo $row->ord_pay_method; ?></td>
                         <td><?php if($row->ord_bil_date === NULL){echo '';}else{echo strftime("%d/%m/%Y", strtotime($row->ord_bil_date));}?></td>
-                        <td class="<?php if($row->ost_label === "Facturée"){echo "text-success";}else if($row->ost_label === "Annulée"){echo "text-danger";}else{echo "text-warning";}?>"><?php echo $row->ost_label; ?></td>
+                        <td class="<?php    switch($row->ost_label)
+                                                    {
+                                                        case "Soldée":  
+                                                                        echo "text-success";
+                                                                        break;
+                                                        case "Retard de paiement":  
+                                                                        echo "fw-bold text-danger";
+                                                                        break;
+                                                        case "Annulée":  
+                                                                        echo "text-secondary";
+                                                                        break;
+                                                        default : 
+                                                                        echo "text-dark";
+                                                    }?>">
+                                            <?php echo $row->ost_label;?>
+                        </td>
                         <td><a class="nav-link" href="<?php echo site_url('Orders/OrderDetails/' . $row->ord_id);?>">Détails</a></td>
                     </tr>
                 <?php

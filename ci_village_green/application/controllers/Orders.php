@@ -7,7 +7,7 @@ class Orders extends CI_Controller
     {
         // Contrôle de la variable de session userId
         // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
-        if (isset($this->session->username))
+        if (isset($this->session->com_username))
         {
             // $_POST ne contient pas de valeurs
             if(!$this->input->post())
@@ -128,7 +128,7 @@ class Orders extends CI_Controller
     public function RunningOrder()
     {
         // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
-        if (isset($this->session->username))
+        if (isset($this->session->com_username))
         {
             $this->load->model('OrdersModel');
             $query = $this->OrdersModel->RunningOrder();
@@ -159,7 +159,7 @@ class Orders extends CI_Controller
     {
         // Contrôle de la variable de session userId
         // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
-        if (isset($this->session->username))
+        if (isset($this->session->com_username))
         {
             // On charge toutes les commandes
             $this->load->model('OrdersModel');
@@ -177,7 +177,7 @@ class Orders extends CI_Controller
     public function OrderByMonthInterval($nb)
     {
         // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
-        if (isset($this->session->username))
+        if (isset($this->session->com_username))
         {
             if(!is_numeric($nb))
             {
@@ -216,7 +216,7 @@ class Orders extends CI_Controller
     public function OrderByDayInterval($nb)
     {
         // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
-        if (isset($this->session->username))
+        if (isset($this->session->com_username))
         {
             if(!is_numeric($nb))
             {
@@ -255,7 +255,7 @@ class Orders extends CI_Controller
     public function orderDetails($id)
     {
         // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
-        if (isset($this->session->username))
+        if (isset($this->session->com_username))
         {
             $this->load->model('OrdersModel');
             $query = $this->OrdersModel->OrderDetails($id);

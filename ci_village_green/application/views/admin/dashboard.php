@@ -10,7 +10,7 @@
     <!-- Tableau CA Global -->
     <div class="row mb-4">
         <Section class="col-12 col-md-6 d-flex flex-column align-items-center">
-            <h4>
+            <h4 class="mb-4">
                 CA global généré pour l'ensemble des fournisseurs
             </h4>
 
@@ -36,7 +36,7 @@
 
         <!-- Tableau CA par type client -->
         <Section class="col-12 col-md-6 d-flex flex-column align-items-center">
-            <h4>
+            <h4 class="mb-4">
             CA HT par type client sur l'année en cours
             </h4>
 
@@ -77,7 +77,7 @@
     <!-- Tableau CA par Fournisseur  -->
     <div class="row mb-4 justify-content-center">
         <Section class="col-12 col-lg-8 d-flex flex-column align-items-center">
-            <h4>
+            <h4 class="mb-4">
                 CA global généré par fournisseur
             </h4>
 
@@ -124,7 +124,7 @@
     <!-- Tableau des produits vendus dans l'année -->
     <div class="row mb-4">
         <Section class="col-12 d-flex flex-column align-items-center">
-            <h4>
+            <h4 class="mb-4">
                 Produits vendus dans l'année
             </h4>
 
@@ -191,7 +191,7 @@
     <!-- Tableau objectif et délai de livraison -->
     <div class="row">
         <Section class="col-12 col-md-6 d-flex flex-column align-items-center">
-            <h4>
+            <h4 class="mb-4">
             Délai moyen de livraison
             </h4>
 
@@ -223,7 +223,7 @@
 
         <!-- Tableau des 5 dernières livraisons -->
         <Section class="col-12 col-md-6 d-flex flex-column align-items-center">
-            <h4>
+            <h4 class="mb-4">
             Délai moyen des 5 dernières livraisons
             </h4>
 
