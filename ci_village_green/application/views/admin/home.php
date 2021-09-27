@@ -12,11 +12,11 @@
 
     <!-- Infos -->
     <p>Vous pouvez dans cette espace :</p>
-    <ul>
-      <li>Gérer les produits du site : ajouter, modifier, supprimer.</li>
-      <li>Accéder au tableau de bord : état des stocks, délais moyens de livraison etc.</li>
-      <li>Gérer les commandes clients</li>
-      <li>Créer/modifier les fiches clients</li>
+    <ul class="col-12 col-xl-6">
+      <li><a class="nav-link text-white ps-3 ps-lg-2" href="<?php echo site_url('Admin/dashboard'); ?>"><span class="text-deco-hover">Accéder au tableau de bord</span> : état des stocks, délais moyens de livraison etc.</a></li>
+      <li><a class="nav-link text-white ps-3 ps-lg-2" href="<?php echo site_url('Admin/productList'); ?>"><span class="text-deco-hover">Gérer les produits du site</span> : ajouter, modifier, supprimer.</a></li>
+      <li><a class="nav-link text-white ps-3 ps-lg-2 text-deco-hover" href="<?php echo site_url('Orders/OrderList'); ?>">Visualiser et suivre les commandes clients</a></li>
+      <li><a class="nav-link text-white ps-3 ps-lg-2 text-deco-hover" href="#">Créer/modifier les fiches clients <span class="fst-italic">(À venir)</span></a></li>
     </ul>
 </section>
 </div>

@@ -48,7 +48,7 @@ ENGINE = innoDB;
 
 CREATE TABLE `products` (
      `pro_id` INT NOT NULL AUTO_INCREMENT PRIMARY KEY,
-     `pro_ref` VARCHAR(15) NOT NULL,
+     `pro_ref` VARCHAR(30) NOT NULL,
      `pro_label` VARCHAR(50) NOT NULL,
      `pro_desc` VARCHAR(255) NOT NULL,
      `pro_ppet` DECIMAL(7,2) NOT NULL,
@@ -140,7 +140,7 @@ CREATE TABLE `order_details` (
      `ode_tot_exc_tax` DECIMAL(7,2) NOT NULL,
      `ode_tax_rate` DECIMAL(4,2) NOT NULL,
      `ode_tot_all_tax_inc` DECIMAL(7,2) NOT NULL,
-     `ode_pro_id` INT NOT NULL,
+     `ode_pro_id` INT,
      `ode_ord_id` INT NOT NULL,
      `ode_ost_id` INT NOT NULL,
      `ode_com_id` INT NOT NULL,

@@ -115,7 +115,7 @@
                         <input id="pro_add_date" name="pro_add_date" class="form-control mb-2 bg-transparent" value="<?php echo set_value('pro_add_date', strftime('%Y-%m-%d')); ?>" hidden>
                     <div class="col-sm-12 border-top border-4">
                         <label for="pro_sup_id" class="mb-0 mt-2 fw-bold product-card-title">FOURNISSEUR</label>
-                        <select id="pro_sup_id" name="pro_sup_id" class="form-control mb-2 bg-transparent" value="<?php echo set_value('pro_sup_id') ?>"> 
+                        <select id="pro_sup_id" name="pro_sup_id" class="form-select mb-2 bg-transparent" value="<?php echo set_value('pro_sup_id') ?>"> 
                             <option value="">-- Sélectionner un fournisseur --</option>
                             <?php foreach ($suppliers as $supplier)
                             {

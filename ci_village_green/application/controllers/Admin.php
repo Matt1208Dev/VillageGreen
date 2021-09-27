@@ -91,26 +91,38 @@ class Admin extends CI_Controller
         // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
         if (isset($this->session->com_username))
         {
+            // Chargement des catégories et sous-catégories au chargement de la page
             $this->load->model('ProductsModel');
             $categories = $this->ProductsModel->getCategories();
             $View["categories"] = $categories;
             $subCategories = $this->ProductsModel->getSubCategories();
             $View["subCategories"] = $subCategories;
-
             // 1er chargement de la page ou soumission sans valeurs
-            if (!$this->input->post() || ($this->input->post('subcategory-selector') === '' && $this->input->post('keyword-search') === '')) {
+            if (!$this->input->post() || (!$this->input->post('category-selector') && !$this->input->post('subcategory-selector') && $this->input->post('keyword-search') === '')) 
+            {
+                
+                // On réaffiche la page
                 $this->load->view('admin/header');
                 $this->load->view('admin/ProductSearchForm', $View);
                 $this->load->view('admin/footer');
             } else {
                 // Si pas de saisie dans le champ de recherche par référence
-                if ($this->input->post('keyword-search') === '') {
+               
+                if ($this->input->post('keyword-search') === '')
+                {
                     $this->load->model('ProductsModel');
 
-                    $categories = $this->ProductsModel->getCategories();
-                    $View["categories"] = $categories;
-
-                    $catId = $this->input->post('subcategory-selector');
+                    // $categories = $this->ProductsModel->getCategories();
+                    // $View["categories"] = $categories;
+                    
+                    if($this->input->post('subcategory-selector'))
+                    {
+                        $catId = $this->input->post('subcategory-selector');
+                    }
+                    else if($this->input->post('category-selector'))
+                    {
+                        $catId = $this->input->post('category-selector');
+                    }
                     $list = $this->ProductsModel->productList($catId);
                     $View["list"] = $list;
 
@@ -118,7 +130,9 @@ class Admin extends CI_Controller
                     $this->load->view('admin/ProductSearchForm', $View);
                     $this->load->view('admin/productList', $View);
                     $this->load->view('admin/footer');
-                } else {
+                } 
+                else 
+                {
                     $keyword = $this->input->post('keyword-search');
                     $this->load->model('ProductsModel');
 
@@ -127,6 +141,7 @@ class Admin extends CI_Controller
 
                     $list = $this->ProductsModel->productByKeyword($keyword);
                     $View["list"] = $list;
+
 
                     $this->load->view('admin/header');
                     $this->load->view('admin/ProductSearchForm', $View);
@@ -201,16 +216,15 @@ class Admin extends CI_Controller
                 $data = $this->input->post();
 
                 $this->form_validation->set_error_delimiters('<div class="fw-bold text-danger">', '</div>');
-                $this->form_validation->set_rules('pro_label', 'Libellé', 'required|regex_match[/[a-zA-Zéèàêëäï\\-\\ ]{1,50}/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Pas plus de 50 caractères.'));
-                $this->form_validation->set_rules('pro_ref', 'Référence', 'required|regex_match[/[a-zA-Zéèàêëäï\\-\\ ]{1,15}/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Pas plus de 15 caractères.'));
+                $this->form_validation->set_rules('pro_label', 'Libellé', 'required|regex_match[/^[0-9a-zA-Zéèàêëäï\\-\\ ]{1,50}$/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Pas plus de 50 caractères.'));
+                $this->form_validation->set_rules('pro_ref', 'Référence', 'required|regex_match[/^[0-9a-zA-Z\\-\\ ]{1,30}$/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Pas plus de 15 caractères.'));
                 $this->form_validation->set_rules('pro_cat_id', 'Sous-catégorie', 'required', array('required' => 'Le choix d\'une %s est requis'));
-                $this->form_validation->set_rules('pro_desc', 'description', 'required|regex_match[/[a-zA-Zéèàêëäï,.\'\"\\-\\ ]{1,255}/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'La description ne doit pas excéder 255 caractères.'));
-                $this->form_validation->set_rules('pro_ppet', 'prix d\'achat HT', 'required|regex_match[/[0-9]{1,5}\.[0-9]{2}/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Le prix doit être au format 1000.00'));
-                $this->form_validation->set_rules('pro_spet', 'prix de vente HT', 'required|regex_match[/[0-9]{1,5}\.[0-9]{2}/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Le prix doit être au format 1000.00'));
-                $this->form_validation->set_rules('pro_phy_stk', 'stock', 'required|regex_match[/[0-9]{1,5}/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Le nombre doit être un entier.'));
-                $this->form_validation->set_rules('pro_lock', 'verrou produit', 'required', array('required' => 'Le champ %s est requis'));
+                $this->form_validation->set_rules('pro_desc', 'description', 'required|regex_match[/[0-9a-zA-Zéèàêëäï,:\.\'"\(\) ]{1,255}/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'La description ne doit pas excéder 255 caractères.'));
+                $this->form_validation->set_rules('pro_ppet', 'prix d\'achat HT', 'required|regex_match[/^[0-9]{1,5}([.,][0-9]{1,2})?$/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Le prix doit être au format 1000.00'));
+                $this->form_validation->set_rules('pro_spet', 'prix de vente HT', 'required|regex_match[/^[0-9]{1,5}([.,][0-9]{1,2})?$/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Le prix doit être au format 1000.00'));
+                $this->form_validation->set_rules('pro_phy_stk', 'stock', 'required|regex_match[/^[0-9]{1,5}$/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Le nombre doit être un entier.'));
                 $this->form_validation->set_rules('pro_sup_id', 'fournisseur', 'required', array('required' => 'Le choix d\'un %s est requis'));
-
+                
                 if ($this->form_validation->run() == FALSE) // Echec de la validation, on réaffiche la vue formulaire
                 {
                     $this->load->view('admin/header');
@@ -327,6 +341,28 @@ class Admin extends CI_Controller
         }
     }
 
+    public function deleteProductSuccess()
+    {
+        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+        if (isset($this->session->com_username))
+        {
+            $this->load->model('ProductsModel');
+            $categories = $this->ProductsModel->getCategories();
+            $View["categories"] = $categories;
+            $subCategories = $this->ProductsModel->getSubCategories();
+            $View["subCategories"] = $subCategories;
+
+            $this->load->view('admin/header');
+            $this->load->view('admin/ProductSearchForm', $View);
+            $this->load->view('admin/deleteProductSuccess');
+            $this->load->view('admin/footer');
+        }
+        else
+        {
+            redirect('Products/home');
+        }
+    }
+
     public function addProduct()
     {
         // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
@@ -353,14 +389,13 @@ class Admin extends CI_Controller
                 $data = $this->input->post();
 
                 $this->form_validation->set_error_delimiters('<div class="fw-bold text-danger">', '</div>');
-                $this->form_validation->set_rules('pro_label', 'Libellé', 'required|regex_match[/[0-9a-zA-Zéèàêëäï\\-\\ ]{1,50}/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Pas plus de 50 caractères.'));
-                $this->form_validation->set_rules('pro_ref', 'Référence', 'required|regex_match[/[0-9a-zA-Zéèàêëäï\\-\\ ]{1,15}/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Pas plus de 15 caractères.'));
+                $this->form_validation->set_rules('pro_label', 'Libellé', 'required|regex_match[/^[0-9a-zA-Zéèàêëäï\\-\\ ]{1,50}$/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Pas plus de 50 caractères.'));
+                $this->form_validation->set_rules('pro_ref', 'Référence', 'required|regex_match[/^[0-9a-zA-Z\\-\\ ]{1,30}$/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Pas plus de 15 caractères.'));
                 $this->form_validation->set_rules('pro_cat_id', 'Sous-catégorie', 'required', array('required' => 'Le choix d\'une %s est requis'));
-                $this->form_validation->set_rules('pro_desc', 'description', 'required|regex_match[/[0-9a-zA-Zéèàêëäï,.\'\"\\-\\ ]{1,255}/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'La description ne doit pas excéder 255 caractères.'));
-                $this->form_validation->set_rules('pro_ppet', 'prix d\'achat HT', 'required|regex_match[/[0-9]{1,5}[0-9]{2}/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Le prix doit être au format 1000.00'));
-                $this->form_validation->set_rules('pro_spet', 'prix de vente HT', 'required|regex_match[/[0-9]{1,5}[0-9]{2}/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Le prix doit être au format 1000.00'));
-                $this->form_validation->set_rules('pro_phy_stk', 'stock', 'required|regex_match[/[0-9]{1,5}/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Le nombre doit être un entier.'));
-                $this->form_validation->set_rules('pro_lock', 'verrou produit', 'required', array('required' => 'Le champ %s est requis'));
+                $this->form_validation->set_rules('pro_desc', 'description', 'required|regex_match[/^[0-9a-zA-Zéèàêëäï,.:\'\"\\-\\ ]{1,255}$/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'La description ne doit pas excéder 255 caractères.'));
+                $this->form_validation->set_rules('pro_ppet', 'prix d\'achat HT', 'required|regex_match[/^[0-9]{1,5}([.,][0-9]{1,2})?$/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Le prix doit être au format 1000.00'));
+                $this->form_validation->set_rules('pro_spet', 'prix de vente HT', 'required|regex_match[/^[0-9]{1,5}([.,][0-9]{1,2})?$/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Le prix doit être au format 1000.00'));
+                $this->form_validation->set_rules('pro_phy_stk', 'stock', 'required|regex_match[/^[0-9]{1,5}$/]', array('required' => 'Le champ %s est requis', 'regex_match' => 'Le nombre doit être un entier.'));
                 $this->form_validation->set_rules('pro_sup_id', 'fournisseur', 'required', array('required' => 'Le choix d\'un %s est requis'));
 
                 if ($this->form_validation->run() == FALSE) // Echec de la validation, on réaffiche la vue formulaire
@@ -475,10 +510,8 @@ class Admin extends CI_Controller
                     $this->load->model('ProductsModel');
                     $this->ProductsModel->DeleteProduct($data['pro_id']);
 
-                    // Chargment de la page de succès
-                    $this->load->view('admin/header');
-                    $this->load->view('admin/deleteProductSuccess');
-                    $this->load->view('admin/footer');
+                    // Chargement de la page de succès
+                    redirect('Admin/deleteProductSuccess');
                 }
             }
         }

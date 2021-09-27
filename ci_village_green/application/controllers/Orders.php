@@ -179,6 +179,7 @@ class Orders extends CI_Controller
         // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
         if (isset($this->session->com_username))
         {
+            $nb = $this->security->xss_clean($nb);
             if(!is_numeric($nb))
             {
                 $this->load->view('Admin/header');
@@ -218,6 +219,7 @@ class Orders extends CI_Controller
         // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
         if (isset($this->session->com_username))
         {
+            $nb = $this->security->xss_clean($nb);
             if(!is_numeric($nb))
             {
                 $this->load->view('Admin/header');
@@ -257,18 +259,28 @@ class Orders extends CI_Controller
         // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
         if (isset($this->session->com_username))
         {
-            $this->load->model('OrdersModel');
-            $query = $this->OrdersModel->OrderDetails($id);
-            $order_status = $this->OrdersModel->getOrderStatus($id);
+            $id = $this->security->xss_clean($id);
+            if(!is_numeric($id))
+            {
+                $this->load->view('Admin/header');
+                $this->load->view('Admin/OrderSearchForm');
+                $this->load->view('Admin/footer');
+            }
+            else
+            {
+                $this->load->model('OrdersModel');
+                $query = $this->OrdersModel->OrderDetails($id);
+                $order_status = $this->OrdersModel->getOrderStatus($id);
 
-            $aView["order"] = $query;
-            $aView["order_status"] = $order_status;
+                $aView["order"] = $query;
+                $aView["order_status"] = $order_status;
 
 
-            $this->load->view('Admin/header');
-            $this->load->view('Admin/OrderSearchForm', $aView);
-            $this->load->view('Admin/orderDetails', $aView);
-            $this->load->view('Admin/footer');
+                $this->load->view('Admin/header');
+                $this->load->view('Admin/OrderSearchForm', $aView);
+                $this->load->view('Admin/orderDetails', $aView);
+                $this->load->view('Admin/footer');
+            }
         }
         else
         {

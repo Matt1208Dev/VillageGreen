@@ -165,7 +165,7 @@
                                         <?php echo $row->reference_produit;?>
                                     </td>
                                     <td class="border-0 text-white">
-                                        <a class="text-white text-decoration-none" href="<?php echo site_url('Products/productDetails/' . $row->id_produit);?>" target="_blank">
+                                        <a class="text-white" href="<?php echo site_url('Products/productDetails/' . $row->id_produit);?>" target="_blank">
                                             <?php echo $row->libelle_produit;?>
                                         </a>
                                     </td>

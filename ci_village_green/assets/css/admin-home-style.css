@@ -20,12 +20,12 @@ body
     width: auto;
 }
 
-#navbar .text-deco-hover
+#navbar .text-deco-hover, .text-deco-hover
 {
     transition: all 0.2s;
 }
 
-#navbar .text-deco-hover:hover
+#navbar .text-deco-hover:hover, .text-deco-hover:hover
 {
     text-decoration: underline;
 }

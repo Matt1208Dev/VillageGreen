@@ -16,8 +16,8 @@
                     <div class="col-lg-12 d-flex flex-column justify-content-center-center">
                         <label for="pro_label" class="mb-0 mt-2 fw-bold product-card-title">MODELE</label>
                         <input id="pro_label" name="pro_label" class="form-control mb-2 bg-transparent" value="<?php echo set_value('pro_label', $product[0]->pro_label) ?>">
+                        <?php echo form_error('pro_label'); ?>
                     </div>
-                    <?php echo form_error('pro_label'); ?>
                 </div>
 
                 <!-- Row 2/6 -->
@@ -29,8 +29,8 @@
                     <div class="col-sm-6 border-top border-bottom border-4 bord-cus">
                         <label for="pro_ref" class="mb-0 mt-2 fw-bold product-card-title">REFERENCE</label>
                         <input id="pro_ref" name="pro_ref" class="form-control mb-2 bg-transparent" value="<?php echo set_value('pro_ref', $product[0]->pro_ref) ?>">
+                        <?php echo form_error('pro_ref'); ?>
                     </div>
-                    <?php echo form_error('pro_ref'); ?>
                     <div class="row p-0">
                         <div class="col-sm-6 mx-auto">
                             <label for="pro_cat_id" class="mb-0 mt-2 fw-bold product-card-title">CATEGORIE</label>
@@ -61,8 +61,8 @@
                                 }
                                 ?>
                             </select>
+                            <?php echo form_error('pro_cat_id'); ?>
                         </div>
-                        <?php echo form_error('pro_cat_id'); ?>
                     </div>
                 </div>
 
@@ -80,8 +80,8 @@
                     <div class="col-sm-12">
                         <label for="pro_desc" class="mb-0 mt-2 fw-bold product-card-title">DESCRIPTION</label>
                         <textarea id="pro_desc" name="pro_desc" class="form-control mb-2 bg-transparent"><?php echo set_value('pro_desc', $product[0]->pro_desc) ?></textarea>
+                        <?php echo form_error('pro_desc'); ?>
                     </div>
-                    <?php echo form_error('pro_desc'); ?>
                 </div>
 
                 <!-- Row 4/6 -->
@@ -103,8 +103,8 @@
                     <div class="col-sm-6 border-top border-4">
                         <label for="pro_phy_stk" class="mb-0 mt-2 fw-bold product-card-title">STOCK</label>
                         <input id="pro_phy_stk" name="pro_phy_stk" class="form-control mb-2 bg-transparent" value="<?php echo set_value('pro_phy_stk', $product[0]->pro_phy_stk) ?>">               
+                        <?php echo form_error('pro_phy_stk'); ?>
                     </div>
-                    <?php echo form_error('pro_phy_stk'); ?>
                     <div class="col-sm-6 border-top border-4 pb-2">
                     <label for="pro_lock" class="mb-0 mt-2 fw-bold product-card-title">VERROUILLAGE</label>
                         <p class="mb-2 <?php if(isset($product[0]->pro_lock) && $product[0]->pro_lock === "1"){echo "bg-danger";}else{echo "bg-success";} ?> badge rounded-pill text-white d-inline"><?php if(isset($product[0]->pro_lock) && $product[0]->pro_lock === "1"){echo "OUI";}else{echo "NON";} ?></p>
@@ -112,7 +112,6 @@
                             <option value="1" <?php if(isset($_POST['pro_lock']) && $_POST['pro_lock'] === "1"){echo "selected";}else if(isset($product[0]->pro_lock) && $product[0]->pro_lock === "1"){echo "selected";}?>>Oui</option>
                             <option value="0" <?php if(isset($_POST['pro_lock']) && $_POST['pro_lock'] === "0"){echo "selected";}else if(isset($product[0]->pro_lock) && $product[0]->pro_lock === "0"){echo "selected";}?>>Non</option>
                         </select>
-                        <?php echo form_error('pro_lock'); ?>
                     </div>
                 </div>
 
@@ -124,7 +123,7 @@
                     </div>
                     <div class="col-sm-6 border-top border-4">
                         <label for="pro_sup_id" class="mb-0 mt-2 fw-bold product-card-title">FOURNISSEUR</label>
-                        <select id="pro_sup_id" name="pro_sup_id" class="form-control mb-2 bg-transparent" value="<?php echo set_value('pro_sup_id', $product[0]->pro_sup_id) ?>"> 
+                        <select id="pro_sup_id" name="pro_sup_id" class="form-select mb-2 bg-transparent" value="<?php echo set_value('pro_sup_id', $product[0]->pro_sup_id) ?>"> 
                             <option value="">-- Sélectionner un fournisseur --</option>
                             <?php foreach ($suppliers as $supplier)
                             {
@@ -136,8 +135,8 @@
                             }
                             ?>
                         </select>
+                        <?php echo form_error('pro_sup_id'); ?>
                     </div>
-                    <?php echo form_error('pro_sup_id'); ?>
                     <div class="col-sm-6 border-4 bord-cus">
                         <label for="pro_modif_date" class="mb-0 mt-2 fw-bold product-card-title">DERNIERE MODIFICATION</label>
                         <input id="pro_modif_date" name="pro_modif_date" class="form-control mb-2 bg-transparent" value="<?php if(isset($product[0]->pro_modif_date)){echo date_format(new DateTime($product[0]->pro_modif_date), 'd/m/Y');}else{echo 'Aucune';}?>" disabled>
