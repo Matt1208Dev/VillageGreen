@@ -94,7 +94,7 @@ CREATE TABLE `customers` (
      `cus_del_city`  VARCHAR(30) NOT NULL,        
      `cus_phone`   VARCHAR(20) NOT NULL,         
      `cus_mail`   VARCHAR(255) NOT NULL UNIQUE,
-     `cus_pass`   VARCHAR(255) NOT NULL        
+     `cus_pass`   VARCHAR(255) NOT NULL,        
      `cus_type`   VARCHAR(15) NOT NULL,            
      `cus_coef`   INT(3) NOT NULL,
      `cus_com_id` INT,
@@ -140,7 +140,7 @@ CREATE TABLE `order_details` (
      `ode_tot_exc_tax` DECIMAL(7,2) NOT NULL,
      `ode_tax_rate` DECIMAL(4,2) NOT NULL,
      `ode_tot_all_tax_inc` DECIMAL(7,2) NOT NULL,
-     `ode_pro_id` INT NOT NULL,
+     `ode_pro_id` INT,
      `ode_ord_id` INT NOT NULL,
      `ode_ost_id` INT NOT NULL,
      `ode_com_id` INT NOT NULL,
