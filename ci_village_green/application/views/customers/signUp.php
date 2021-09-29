@@ -1,6 +1,6 @@
 <section class="container-fluid">
     <!-- FORM -->
-    <?php echo form_open('Customers/signUp', 'class="row"');?>
+    <?php echo form_open('Customers/signUp', 'id="form" class="row"');?>
         <div class="col-12">
             <!-- Title -->
             <header>
@@ -18,6 +18,7 @@
                         <label class="form-label col-md-5 col-lg-4 text-md-end pe-2 me-2" for="cus_mail">E-mail</label>
                         <input class="form-control col bg-grey" type="text" name="cus_mail" id="cus_mail" value="<?php echo set_value('cus_mail');?>">                       
                     </div>
+                    <span id="mail-error" class="d-block fw-bold text-danger text-center"></span>
                     <?php echo form_error('cus_mail');?>
                 </div>
             </div>
@@ -28,6 +29,7 @@
                         <label class="form-label col-md-5 col-lg-4 text-md-end pe-2" for="password">Créer votre mot de passe</label>
                         <input class="form-control col bg-grey" type="password" name="cus_pass" id="password" value="<?php echo set_value('cus_pass');?>">                     
                     </div>
+                    <span id="pass-error" class="d-block fw-bold text-danger text-center"></span>
                     <?php echo form_error('cus_pass');?>
                 </div>
                 <!-- Password confirmation field -->
@@ -36,6 +38,7 @@
                         <label class="form-label col-md-5 col-lg-4 text-md-end pe-2" for="passwordConfirm">Confirmation mot de passe</label>
                         <input class="form-control col bg-grey" type="password" name="cus_pass_confirm" id="passwordConfirm" value="<?php echo set_value('cus_pass_confirm');?>">                       
                     </div>
+                    <span id="pass-confirm-error" class="d-block fw-bold text-danger text-center"></span>
                     <?php echo form_error('cus_pass_confirm');?>
                 </div>
             </div>                  
@@ -56,6 +59,7 @@
             <div class="row align-items-center mt-sm-1 px-sm-0">
                 <label class="form-label text-md-end col-md-4" for="cus_firstname">Prénom</label>
                 <input class="form-control col bg-grey" type="text" name="cus_firstname" id="cus_firstname" value="<?php echo set_value('cus_firstname');?>">
+                <span id="firstname-error" class="d-block fw-bold text-danger text-center"></span>
                 <?php echo form_error('cus_firstname');?>
             </div>
 
@@ -63,6 +67,7 @@
             <div class="row align-items-center mt-sm-1 px-sm-0">
                 <label class="form-label text-md-end col-md-4" for="cus_lastname">Nom</label>
                 <input class="form-control col bg-grey" type="text" name="cus_lastname" id="cus_lastname" value="<?php echo set_value('cus_lastname');?>">
+                <span id="lastname-error" class="d-block fw-bold text-danger text-center"></span>
                 <?php echo form_error('cus_lastname');?>
             </div>
 
@@ -77,6 +82,7 @@
                     <input class="form-check-input bg-grey" type="radio" value="1" name="cus_sex" id="woman" <?php echo set_radio('cus_sex', '1');?>>
                     <label class="form-check-label" for="woman">Femme</label>
                 </div>
+                <span id="sex-error" class="d-block fw-bold text-danger text-center"></span>
                 <?php echo form_error('cus_sex');?>
             </div>
 
@@ -84,6 +90,7 @@
             <div class="row align-items-center mt-sm-1 px-sm-0">
                 <label class="form-label text-md-end col-md-4" for="cus_bil_address">Adresse</label>
                 <input class="form-control col bg-grey" type="text" name="cus_bil_address" id="cus_bil_address" value="<?php echo set_value('cus_bil_address');?>">
+                <span id="address-error" class="d-block fw-bold text-danger text-center"></span>
                 <?php echo form_error('cus_bil_address');?>
             </div>
 
@@ -91,6 +98,7 @@
             <div class="row align-items-center mt-sm-1 px-sm-0">
                 <label class="form-label text-md-end col-md-4" for="cus_bil_postalcode">Code postal</label>
                 <input class="form-control col bg-grey" type="text" name="cus_bil_postalcode" id="cus_bil_postalcode" value="<?php echo set_value('cus_bil_postalcode');?>">
+                <span id="postalcode-error" class="d-block fw-bold text-danger text-center"></span>
                 <?php echo form_error('cus_bil_postalcode');?>
             </div>
 
@@ -98,6 +106,7 @@
             <div class="row align-items-center mt-sm-1 px-sm-0">
                 <label class="form-label text-md-end col-md-4" for="cus_bil_city">Ville</label>
                 <input class="form-control col bg-grey" type="text" name="cus_bil_city" id="cus_bil_city" value="<?php echo set_value('cus_bil_city');?>">
+                <span id="city-error" class="d-block fw-bold text-danger text-center"></span>
                 <?php echo form_error('cus_bil_city');?>
             </div>
 
@@ -112,6 +121,7 @@
                     <input class="form-check-input bg-grey" type="radio" value="Professionnel" name="cus_type" id="pro" <?php echo set_radio('cus_type', 'Professionnel');?>>
                     <label class="form-check-label" for="pro">Professionnel</label>
                 </div>
+                <span id="type-error" class="d-block fw-bold text-danger text-center"></span>
                 <?php echo form_error('cus_type');?>
             </div>
             </div>
@@ -131,11 +141,12 @@
                     <div class="row align-items-center mb-3">
                         <label class="form-label text-end col-4" for="cus_phone">Numéro de portable</label>
                         <input class="form-control col bg-grey me-5" type="tel" name="cus_phone" id="cus_phone" value="<?php echo set_value('cus_phone');?>">
+                        <span id="phone-error" class="d-block fw-bold text-danger text-center"></span>
                         <?php echo form_error('cus_phone');?>
                     </div>
                     <div class="row align-items-center mb-3">
                         <label class="form-label text-end col-4" for="cus_xxx">Numéro de téléphone fixe</label>
-                        <input class="form-control col bg-grey me-5" id="cus_xxx" type="text">
+                        <input class="form-control col bg-grey me-5" id="cus_xxx" type="text" placeholder="(facultatif)">
                     </div>
                 </div>
 
