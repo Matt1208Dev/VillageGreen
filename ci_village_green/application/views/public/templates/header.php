@@ -1,6 +1,5 @@
 <?php  
         // Création d'une variable de session avec l'URI de la page actuelle
-        // if($this->session->userdata('uri')){$this->session->set_userdata('prev_uri', $this->session->userdata('uri'));}
         if(isset($_SERVER['PATH_INFO'])){$this->session->set_userdata('uri', $_SERVER['PATH_INFO']);}
 ?>
 
@@ -311,7 +310,22 @@
                                 <div class="container navbar d-flex justify-content-end p-0" id="nav-first-row-div">
                                     <a class="nav-link" href="#">Infos</a>
                                     <div id="item-client" class="d-inline-block">
-                                        <a class="nav-link" href="#">Espace Client</a>
+                                        <a class="nav-link" href="#">
+                                            <?php
+                                                if (isset($_SESSION['logged_in'])) 
+                                                {
+                                            ?>
+                                                Bonjour <span class="fw-bold"><?php echo $_SESSION['username'];?></span>
+                                            <?php
+                                                } 
+                                                else 
+                                                {
+                                            ?>  
+                                                <span><?php echo 'Espace Client';?></span>
+                                            <?php
+                                                } 
+                                            ?>
+                                        </a>
 
                                         <?php
                                         if (!isset($_SESSION['logged_in']) || (!$_SESSION['logged_in'])) :
@@ -373,7 +387,6 @@
                                                         </h6>
                                                     </header>
                                                     <div class="d-flex flex-column justify-content-center align-content-center px-2 mt-2">
-                                                        <p class="mb-2">Bonjour, <span class="fw-bold"><?php echo ($_SESSION['username']); ?></span></p>
                                                         <div class="d-grid">
                                                             <a class="btn text-white fw-bold mt-1 orange-gradient" role="button" href="<?php echo site_url('Customers/myAccount'); ?>">Accéder à mon espace</a>
                                                             <a class="btn" role="button" href="<?php echo site_url('Customers/logOut'); ?>">Me déconnecter</a>

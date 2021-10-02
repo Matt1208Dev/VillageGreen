@@ -1,6 +1,14 @@
 
 <div class="container-fluid">
     <hr class="my-sm-1 my-md-4">
+
+    <!-- Number of results -->
+    <div class="row">
+        <div class="col">
+            <p class="ms-3">Nombre de lignes : <?php if(isset($list)){echo $this->db->affected_rows();} ?></p>
+        </div>
+    </div>
+
     <div class="row justify-content-evenly">
     <?php   foreach($list AS $product)
             {

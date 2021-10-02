@@ -32,6 +32,7 @@
           <a class="nav-link text-dark text-deco-hover ps-3 ps-lg-2" href="<?php echo site_url('Admin/productList'); ?>">Gestion des produits</a>
           <a class="nav-link text-dark text-deco-hover ps-3 ps-lg-2" href="<?php echo site_url('Orders/OrderList'); ?>">Commandes clients</a>
           <a class="nav-link text-dark text-deco-hover ps-3 ps-lg-2" href="#">Base de données clients</a>
+          <a class="nav-link text-dark text-deco-hover ps-3 ps-lg-2" href="<?php echo site_url('Products/home'); ?>">Accès site</a>
           <a class="nav-link text-dark text-deco-hover ps-3 ps-lg-2" href="<?php echo site_url('Admin/sessionDestroy'); ?>">Déconnexion</a>
         </div>
       </div>

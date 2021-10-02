@@ -3,17 +3,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class ProductsModel extends CI_Model
 {
-    // function list()
-    // {
-    //     $requete = $this->db->query("SELECT * FROM `products` 
-    //                                     JOIN `categories`
-    //                                     ON `pro_cat_id` = `cat_id`
-    //                                     WHERE cat_name like \"guitare%\";");
-    //     $aProducts = $requete->result();  
-
-    //     return $aProducts; 
-    // }
-
     function list($catId)
     {
         $requete = $this->db->query("SELECT * FROM `products` 
@@ -37,18 +26,6 @@ class ProductsModel extends CI_Model
         return $aProducts;
     }
 
-    // function productList()
-    // {
-    //     $requete = $this->db->query("SELECT * FROM `products` 
-    //                                     JOIN `categories`
-    //                                     ON `pro_cat_id` = `cat_id`
-    //                                     JOIN `suppliers`
-    //                                     ON `pro_sup_id` = `sup_id`;");
-    //     $list = $requete->result();  
-
-    //     return $list; 
-    // }
-
     function productList($catId)
     {
         $requete = $this->db->query("SELECT `pro_id`, `pro_ref`, `pro_label`, `cat_name`, `pro_photo`, `pro_desc`, `pro_ppet`, `pro_spet`, `pro_phy_stk`, `pro_lock`, `pro_add_date`, `sup_name` FROM `products` 
@@ -56,7 +33,7 @@ class ProductsModel extends CI_Model
                                         ON `pro_cat_id` = `cat_id`
                                         JOIN `suppliers`
                                         ON `pro_sup_id` = `sup_id`
-                                        WHERE pro_cat_id = $catId;");
+                                        WHERE pro_cat_id = $catId OR cat_parent_id = $catId;");
         $list = $requete->result();
 
         return $list;
@@ -69,7 +46,7 @@ class ProductsModel extends CI_Model
                                         ON `pro_cat_id` = `cat_id`
                                         JOIN `suppliers`
                                         ON `pro_sup_id` = `sup_id`
-                                        WHERE pro_ref LIKE \"%$keyword%\";");
+                                        WHERE `pro_ref` LIKE \"%$keyword%\" OR `pro_label` LIKE \"%$keyword%\";");
         $list = $requete->result();
 
         return $list;
