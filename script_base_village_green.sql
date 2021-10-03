@@ -94,7 +94,7 @@ CREATE TABLE `customers` (
      `cus_del_city`  VARCHAR(30) NOT NULL,        
      `cus_phone`   VARCHAR(20) NOT NULL,         
      `cus_mail`   VARCHAR(255) NOT NULL UNIQUE,
-     `cus_pass`   VARCHAR(255) NOT NULL        
+     `cus_pass`   VARCHAR(255) NOT NULL,        
      `cus_type`   VARCHAR(15) NOT NULL,            
      `cus_coef`   INT(3) NOT NULL,
      `cus_com_id` INT,
