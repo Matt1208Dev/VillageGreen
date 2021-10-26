@@ -137,10 +137,10 @@
                         <input type="submit" id="submit" value="Créer" class="col-12 btn block nav-link text-white blue-link green-hover">
                     </div>
                     <div class="col-sm-6 border-top border-end border-4 text-center px-0 py-auto bord-cus">
-                        <a href="" class="btn nav-link text-white btn-secondary" role="button">Retour à la page produit</a>
+                        <a href="<?php echo site_url('Admin/productList'); ?>" class="btn nav-link text-white btn-secondary" role="button">Retour à la page produit</a>
                     </div>
                     <div class="col-sm-6 border-top border-4 text-center px-0 py-auto">
-                        <a href="" class="btn nav-link text-white btn-danger" role="button">Supprimer le produit</a>
+                        <input type="reset" class="btn nav-link text-white btn-danger col-12" value="Réinitialiser"></input>
                     </div>
                 </div>
 

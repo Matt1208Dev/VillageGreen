@@ -22,7 +22,7 @@
             <div class="row">
                 <?php echo form_open('Admin/deleteProduct/' . $product[0]->pro_id);?>
                     <div class="col-12 my-2">
-                        <p class="mb-0">Avertissement : Cette action est définitive et les informations ne pourront être récupérées. Cela peut également causer des problèmes d'affichage dans les historiques de commandes des clients ayant acheté le produit. Préférez le verrouillage à la suppression du produit.</p>
+                        <p class="mb-0">Avertissement : Cette action est définitive et les informations ne pourront être récupérées. Cela peut également causer des problèmes d'affichage et/ou d'informations dans les historiques de commandes des clients ayant acheté le produit. Préférez le verrouillage à la suppression du produit.</p>
                         <div class="form-check mb-2">
                             <input type="text" name="pro_id" id="pro_id" value="<?php echo $product[0]->pro_id;?>" hidden>
                             <input class="form-check-input" type="checkbox" value="ok" name="confirm" id="confirm">

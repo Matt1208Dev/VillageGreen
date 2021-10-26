@@ -119,7 +119,7 @@ h4 {
   z-index: 10;
   left: 0%;
   top: 100%;
-  min-width: 15vw;
+  min-width: 12vw;
 }
 
 #item-client-submenu input,
@@ -136,6 +136,13 @@ h4 {
 
 #item-client-submenu h6 {
   font-size: 0.8rem;
+}
+
+.focus-orange:focus
+{
+    border-color: rgba(206, 82, 0, 1);
+    outline: rgba(206, 82, 0, 1) solid 3px;
+    box-shadow: none;
 }
 
 #nav-second-row {

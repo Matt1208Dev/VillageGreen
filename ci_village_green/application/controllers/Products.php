@@ -14,52 +14,81 @@ class Products extends CI_Controller
 
     public function list($catId)
     {
-
-        // Requête de chargement de tous les produits d'une catégorie selectionnée
-        $this->load->model('ProductsModel');
-        $list = $this->ProductsModel->list($catId);
-        $View["liste"] = $list;
-
-        // Vérification d'un log client
-        if ($this->isLogged()) {
-            // Requête de chargement de la typologie et coef du client loggé
-            $this->load->model('CustomersModel');
-            $id = $_SESSION['user_id'];
-            $customer = $this->CustomersModel->getCustomerCoef($id);
-            $View["customer"] = $customer;
-
+        $catId = $this->security->xss_clean($catId);
+        if(!is_numeric($catId))
+        {
+            redirect('Products/home');
         }
+        else
+        {
+            // Requête de chargement de tous les produits d'une catégorie selectionnée
+            $this->load->model('ProductsModel');
+            $list = $this->ProductsModel->list($catId);
+            $View["liste"] = $list;
 
-        // Chargement de la vue list
-        $this->load->view('public/templates/header');
-        $this->load->view('list', $View);
-        $this->load->view('public/templates/footer');
+            if ($this->db->affected_rows() === 0)
+            {
+                redirect('Products/home');
+            }
+            else
+            {
+                // Vérification d'un log client
+                if ($this->isLogged()) {
+                    // Requête de chargement de la typologie et coef du client loggé
+                    $this->load->model('CustomersModel');
+                    $id = $_SESSION['user_id'];
+                    $customer = $this->CustomersModel->getCustomerCoef($id);
+                    $View["customer"] = $customer;
+
+                }
+
+                // Chargement de la vue list
+                $this->load->view('public/templates/header');
+                $this->load->view('list', $View);
+                $this->load->view('public/templates/footer');
+            }
+        }
     }
 
     public function productDetails($id)
     {
+        $id = $this->security->xss_clean($id);
+        if(!is_numeric($id))
+        {
+            redirect('Products/home');
+        }
+        else
+        {
         // Requête de chargement du produit
         $this->load->model('ProductsModel');
         $product = $this->ProductsModel->productDetails($id);
         $View["product"] = $product;
 
-        // Vérification d'un log client
-        if ($this->isLogged()) {
-            // Requête de chargement de la typologie et coef du client loggé
-            $this->load->model('CustomersModel');
-            $id = $_SESSION['user_id'];
-            $customer = $this->CustomersModel->getCustomerCoef($id);
-            $View["customer"] = $customer;
+        if ($this->db->affected_rows() === 0)
+            {
+                redirect('Products/home');
+            }
+            else
+            {
+                // Vérification d'un log client
+                if ($this->isLogged()) {
+                    // Requête de chargement de la typologie et coef du client loggé
+                    $this->load->model('CustomersModel');
+                    $id = $_SESSION['user_id'];
+                    $customer = $this->CustomersModel->getCustomerCoef($id);
+                    $View["customer"] = $customer;
 
-            // Chargement de la vue productDetails
-            $this->load->view('public/templates/header');
-            $this->load->view('productDetails', $View);
-            $this->load->view('public/templates/footer');
-        } else {
-            // Chargement de la vue productDetails
-            $this->load->view('public/templates/header');
-            $this->load->view('productDetails', $View);
-            $this->load->view('public/templates/footer');
+                    // Chargement de la vue productDetails
+                    $this->load->view('public/templates/header');
+                    $this->load->view('productDetails', $View);
+                    $this->load->view('public/templates/footer');
+                } else {
+                    // Chargement de la vue productDetails
+                    $this->load->view('public/templates/header');
+                    $this->load->view('productDetails', $View);
+                    $this->load->view('public/templates/footer');
+                }
+            }
         }
     }
 

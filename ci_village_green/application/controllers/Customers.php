@@ -97,9 +97,9 @@ class Customers extends CI_Controller
         else 
         {
             // On récupère les données saisies par l'utilisateur
-            $mail = $this->input->post('cus_mail');
-            $pass = $this->input->post('cus_pass');
-            $stayConnected = $this->input->post('stay-connected');
+            $mail = html_escape($this->input->post('cus_mail'));
+            $pass = html_escape($this->input->post('cus_pass'));
+            $stayConnected = html_escape($this->input->post('stay-connected'));
 
             // On récupère l'URI de la page qui appelle la fonction
             $current_uri = substr($this->session->uri, 1);
@@ -125,16 +125,15 @@ class Customers extends CI_Controller
 
                     $this->session->set_userdata($userInfos);
 
-                    // On initialise des cookies
-                    set_cookie('user_id', $checkLogin[0]->cus_id, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
-                    set_cookie('username', $checkLogin[0]->cus_firstname, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
-                    set_cookie('email', $checkLogin[0]->cus_mail, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
-                    set_cookie('type', $checkLogin[0]->cus_type, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
-
                     // Si "Rester connecté" est coché
                     if ($stayConnected == 'yes') 
                     {
-                        set_cookie('logged_in', TRUE, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
+                        // On initialise des cookies
+                        set_cookie('user_id', $checkLogin[0]->cus_id, time() + (3600 * 24 * 7), 'localhost', '/', '', false, true);
+                        set_cookie('username', $checkLogin[0]->cus_firstname, time() + (3600 * 24 * 7), 'localhost', '/', '', false, true);
+                        set_cookie('email', $checkLogin[0]->cus_mail, time() + (3600 * 24 * 7), 'localhost', '/', '', false, true);
+                        set_cookie('type', $checkLogin[0]->cus_type, time() + (3600 * 24 * 7), 'localhost', '/', '', false, true);
+                        set_cookie('logged_in', TRUE, time() + (3600 * 24 * 7), 'localhost', '/', '', false, true);
                     }
 
                     // On recharge la vue actuelle
@@ -221,11 +220,11 @@ class Customers extends CI_Controller
                 $this->session->set_userdata($userInfos);
 
                 // On renouvelle les cookies
-                set_cookie('user_id', $cus_id, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
-                set_cookie('username', $cus_firstname, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
-                set_cookie('email', $cus_mail, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
-                set_cookie('type', $cus_type, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
-                set_cookie('logged_in', TRUE, time() + 3600 * 24 * 7, 'localhost', '/', '', false, true);
+                set_cookie('user_id', $cus_id, time() + (3600 * 24 * 7), 'localhost', '/', '', false, true);
+                set_cookie('username', $cus_firstname, time() + (3600 * 24 * 7), 'localhost', '/', '', false, true);
+                set_cookie('email', $cus_mail, time() + (3600 * 24 * 7), 'localhost', '/', '', false, true);
+                set_cookie('type', $cus_type, time() + (3600 * 24 * 7), 'localhost', '/', '', false, true);
+                set_cookie('logged_in', TRUE, time() + (3600 * 24 * 7), 'localhost', '/', '', false, true);
 
                 return true;
             }
@@ -311,7 +310,7 @@ class Customers extends CI_Controller
                 {
                     // On énonce les règles de validation le concernant
                     $this->form_validation->set_rules('cus_pass', 'mot de passe', 'required|regex_match[/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}/]', array('required' => 'Le champ %s n\'est pas complété.', 'regex_match' => 'Le mot de passe doit contenir au moins 8 caractères, 1 majuscule, 1 minuscule et un caractères spécial.'));
-                    $this->form_validation->set_rules('cus_pass_confirm', 'confirmation mot de passe', "required|regex_match[/" . $_POST['cus_pass'] . "/]", array('required' => 'Le champ %s n\'est pas complété.', 'regex_match' => 'Le mot de passe ne correspond pas à celui saisi précédemment.'));
+                    $this->form_validation->set_rules('cus_pass_confirm', 'confirmation mot de passe', "required|regex_match[/^" . $_POST['cus_pass'] . "$/]", array('required' => 'Le champ %s n\'est pas complété.', 'regex_match' => 'Le mot de passe ne correspond pas à celui saisi précédemment.'));
                 } 
                 else 
                 {

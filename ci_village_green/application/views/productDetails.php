@@ -1,6 +1,6 @@
-<section class="container-fluid p-0">
+<main class="container-fluid p-0">
     <!-- Fil d'Ariane -->
-    <div>
+    <nav>
         <p class="fw-light ps-5"><a class="text-dark text-decoration-none" href="<?php echo site_url('Products/home'); ?>">Home</a> > <a class="text-dark text-decoration-none" href="<?php echo site_url('Products/list/' . $product[0]->cat_id); ?>">
         <?php if (isset($product[0]->cat_name)) {
                                                     echo $product[0]->cat_name;
@@ -8,7 +8,7 @@
                                                                 echo $product[0]->pro_label;
                                                             } ?>
         </p>
-    </div>
+    </nav>
 
     <!-- Titre catégorie et libellé article -->
     <header>
@@ -166,7 +166,7 @@
             </p>
         </div>
     </article>
-</section>
+</main>
 
 <!-- Bannière services -->
 <div id="banner-services" class="row m-0">

@@ -1,4 +1,4 @@
-<div id="mainContent" class="container-fluid px-0">
+<main id="mainContent" class="container-fluid px-0">
 
     <!-- Bannière promotionnelle -->
     <header id="banner" class="d-flex flex-column flex-sm-row justify-content-evenly m-0 mt-2">
@@ -114,4 +114,4 @@
         </div>
     </div>
 
-</div>
+</main>

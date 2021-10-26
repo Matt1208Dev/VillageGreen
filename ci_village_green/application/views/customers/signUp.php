@@ -10,39 +10,39 @@
             </header>
         </div>
         <div class="row justify-content-center justify-self-end p-0">
-        <div class="row">
-            <!-- Email field -->
-            <div class="col-sm-12 col-md-6 px-0">
-                <div class="col-sm-12 col-lg-9 mx-lg-auto mb-sm-4 d-flex flex-column align-items-center">
-                    <div class="col-12 d-md-flex flex-row">
-                        <label class="form-label col-md-5 col-lg-4 text-md-end ps-3 pe-2" for="cus_mail">E-mail</label>
-                        <input class="form-control col bg-grey" type="text" name="cus_mail" id="cus_mail" value="<?php echo set_value('cus_mail');?>">
-                    </div>                      
-                    <span id="mail-error" class="d-block col-12 fw-bold text-danger text-center"></span>
-                    <?php echo form_error('cus_mail');?>
+            <div class="row">
+                <!-- Email field -->
+                <div class="col-sm-12 col-md-6 px-0">
+                    <div class="col-sm-12 col-lg-9 mx-lg-auto mb-sm-4 d-flex flex-column align-items-center">
+                        <div class="col-12 d-md-flex flex-row">
+                            <label class="form-label col-md-5 col-lg-4 text-md-end ps-3 pe-2" for="cus_mail">E-mail</label>
+                            <input class="form-control col bg-grey" type="text" name="cus_mail" id="cus_mail" value="<?php echo set_value('cus_mail');?>">
+                        </div>                      
+                        <span id="mail-error" class="d-block col-12 fw-bold text-danger text-center"></span>
+                        <?php echo form_error('cus_mail');?>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="row">
-            <!-- Password field -->
-            <div class="col-sm-12 col-md-6 mb-2 mb-md-4 px-0">
-                <div  class="col-sm-12 col-lg-9 mx-auto row align-items-center">
-                    <label class="form-label col-md-5 col-lg-4 text-md-end pe-2" for="password">Créer votre mot de passe</label>
-                    <input class="form-control col bg-grey" type="password" name="cus_pass" id="password" value="<?php echo set_value('cus_pass');?>">                     
+            <div class="row">
+                <!-- Password field -->
+                <div class="col-sm-12 col-md-6 mb-2 mb-md-4 px-0">
+                    <div  class="col-sm-12 col-lg-9 mx-auto row align-items-center">
+                        <label class="form-label col-md-5 col-lg-4 text-md-end pe-2" for="password">Créer votre mot de passe</label>
+                        <input class="form-control col bg-grey" type="password" name="cus_pass" id="password" value="<?php echo set_value('cus_pass');?>">                     
+                    </div>
+                    <span id="pass-error" class="d-block fw-bold text-danger text-center"></span>
+                    <?php echo form_error('cus_pass');?>
                 </div>
-                <span id="pass-error" class="d-block fw-bold text-danger text-center"></span>
-                <?php echo form_error('cus_pass');?>
-            </div>
-            <!-- Password confirmation field -->
-            <div class="col-sm-12 col-md-6 mb-2 mb-md-4 px-0">
-                <div class="col-sm-12 col-lg-9 mx-auto row align-items-center">
-                    <label class="form-label col-md-5 col-lg-4 text-md-end pe-2" for="passwordConfirm">Confirmation mot de passe</label>
-                    <input class="form-control col bg-grey" type="password" name="cus_pass_confirm" id="passwordConfirm" value="<?php echo set_value('cus_pass_confirm');?>">                       
+                <!-- Password confirmation field -->
+                <div class="col-sm-12 col-md-6 mb-2 mb-md-4 px-0">
+                    <div class="col-sm-12 col-lg-9 mx-auto row align-items-center">
+                        <label class="form-label col-md-5 col-lg-4 text-md-end pe-2" for="passwordConfirm">Confirmation mot de passe</label>
+                        <input class="form-control col bg-grey" type="password" name="cus_pass_confirm" id="passwordConfirm" value="<?php echo set_value('cus_pass_confirm');?>">                       
+                    </div>
+                    <span id="pass-confirm-error" class="d-block fw-bold text-danger text-center"></span>
+                    <?php echo form_error('cus_pass_confirm');?>
                 </div>
-                <span id="pass-confirm-error" class="d-block fw-bold text-danger text-center"></span>
-                <?php echo form_error('cus_pass_confirm');?>
             </div>
-        </div>
         </div>                  
 
 

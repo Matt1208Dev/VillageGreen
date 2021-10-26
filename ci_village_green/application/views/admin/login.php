@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -33,7 +32,15 @@
                 <div>
                     <input id="com_pass" name="com_pass" type="password" placeholder="Mot de passe">
                 </div>
-                <?php echo form_error('com_pass'); ?>
+                <?php   echo form_error('com_pass');
+                        if(isset($this->session->passError))
+                        {
+                ?>
+                            <div class="error"><?php echo $this->session->passError; ?></div>
+                <?php
+                        }
+                ?>
+
 
                 <!-- Submit button -->
                 <div>

@@ -11,6 +11,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Un lieu unique où vous trouverez une large sélection d'instruments de musiques pour tous les budgets. Que vous soyez particulier ou professionnel, votre futur instrument vous y attends">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -66,21 +67,21 @@
                                     </header>
                                     <div class="d-flex flex-column justify-content-center align-content-center px-2">
                                         <div class="mb-3">
-                                            <input class="form-control py-2" type="text" name="cus_mail" id="login-email" placeholder="Adresse E-mail" autocomplete="off" value="<?php echo set_value('cus_mail'); ?>">
+                                            <input class="form-control py-2 focus-orange" type="text" name="cus_mail" id="login-email" placeholder="Adresse E-mail" autocomplete="off" value="<?php echo set_value('cus_mail'); ?>">
                                             <?php if (isset($errorMsg['cus_mail'])) { ?><div class="fw-bold text-danger"><?php echo $errorMsg['cus_mail']; ?></div><?php }; ?>
                                         </div>
                                         <div class="mb-3">
-                                            <input class="form-control py-2" type="password" name="cus_pass" id="login-password" placeholder="Mot de passe" <?php echo set_value('cus_pass'); ?>>
+                                            <input class="form-control py-2 focus-orange" type="password" name="cus_pass" id="login-password" placeholder="Mot de passe" <?php echo set_value('cus_pass'); ?>>
                                             <?php if (isset($errorMsg['cus_pass'])) { ?><div class="fw-bold text-danger"><?php echo $errorMsg['cus_pass']; ?></div><?php }; ?>
                                         </div>
                                         <div class="d-flex align-content-center mb-3">
-                                            <input class="form-check-input me-1" type="checkbox" name="stay-connected" id="stay-connected" value="yes" <?php echo set_checkbox('stay-connected', 'yes'); ?>>
+                                            <input class="form-check-input me-1 focus-orange" type="checkbox" name="stay-connected" id="stay-connected" value="yes" <?php echo set_checkbox('stay-connected', 'yes'); ?>>
                                             <label class="form-check-label" for="stay-connected">Rester connecté</label>
                                         </div>
                                         <div class="d-grid">
                                             <input class="nav-link btn mb-1 px-2 text-white fw-bold orange-gradient" type="submit" value="Se connecter maintenant">
                                         </div>
-                                        <a class="nav-link px-2 text-center" href="#">Vous avez oublié votre mot de passe ?</a>
+                                        <a class="nav-link px-2 text-center text-dark" href="#">Vous avez oublié votre mot de passe ?</a>
                                     </div>
                                     </form>
                                 </div>
@@ -97,7 +98,7 @@
                                     <div>
                                         <a class="nav-link btn  text-white fw-bold mb-1 px-2 orange-gradient" href="<?php echo site_url('Customers/signUp'); ?>">S'inscrire</a>
                                     </div>
-                                    <a class="nav-link btn" href="#">Plus d'informations</a>
+                                    <a class="nav-link btn text-dark" href="#">Plus d'informations</a>
                                 </div>
                             </div>
                             <!-- Le client est loggé, affichage du modal d'accès à son compte -->
@@ -341,16 +342,16 @@
                                                     </header>
                                                     <div class="d-flex flex-column justify-content-center align-content-center px-2">
                                                         <div class="mb-3">
-                                                            <input class="form-control py-2" type="text" name="cus_mail" placeholder="Adresse E-mail" autocomplete="off" value="<?php echo set_value('cus_mail'); ?>">
+                                                            <input class="form-control py-2 focus-orange" type="text" name="cus_mail" placeholder="Adresse E-mail" autocomplete="off" value="<?php echo set_value('cus_mail'); ?>">
                                                             <?php if (isset($errorMsg['cus_mail'])) { ?><div class="fw-bold text-danger"><?php echo $errorMsg['cus_mail']; ?></div><?php }; ?>
                                                         </div>
                                                         <div class="mb-3">
-                                                            <input class="form-control py-2" type="password" name="cus_pass" placeholder="Mot de passe" <?php echo set_value('cus_pass'); ?>>
+                                                            <input class="form-control py-2 focus-orange" type="password" name="cus_pass" placeholder="Mot de passe" <?php echo set_value('cus_pass'); ?>>
                                                             <?php if (isset($errorMsg['cus_pass'])) { ?><div class="fw-bold text-danger"><?php echo $errorMsg['cus_pass']; ?></div><?php }; ?>
                                                         </div>
                                                         <div class="d-flex align-content-center mb-3">
-                                                            <input class="form-check-input me-1" type="checkbox" name="stay-connected" value="yes" <?php echo set_checkbox('stay-connected', 'yes'); ?>>
-                                                            <label class="form-check-label" for="stay-connected">Rester connecté</label>
+                                                            <input class="form-check-input me-1 focus-orange" type="checkbox" name="stay-connected" value="yes" <?php echo set_checkbox('stay-connected', 'yes'); ?>>
+                                                            <label class="form-check-label background-orange" for="stay-connected">Rester connecté</label>
                                                         </div>
                                                         <div class="d-grid py-2">
                                                             <input class="nav-link btn mb-1 px-2 text-white fw-bold orange-gradient" type="submit" value="Se connecter maintenant">

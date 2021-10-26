@@ -5,8 +5,7 @@ class Admin extends CI_Controller
 {
 
     public function login()
-    {
-        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+    { 
         if (isset($this->session->com_username))
         {
             redirect('Admin/home');;
@@ -54,6 +53,12 @@ class Admin extends CI_Controller
                         // $this->session->set_userdata('userId', 'Admin');
                         redirect('Admin/home');
                     }
+                    else 
+                    {
+                        $passError = 'Mot de passe erroné. Veuillez réessayer.';
+                        $this->session->set_flashdata('passError', $passError);
+                        $this->load->view('admin/login');
+                    }
                 } 
                 else 
                 {
@@ -75,7 +80,7 @@ class Admin extends CI_Controller
 
     public function home()
     {
-        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+         
         if (isset($this->session->com_username))
         {
             $this->load->view('admin/header');
@@ -88,7 +93,6 @@ class Admin extends CI_Controller
 
     public function productList()
     {
-        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
         if (isset($this->session->com_username))
         {
             // Chargement des catégories et sous-catégories au chargement de la page
@@ -98,7 +102,7 @@ class Admin extends CI_Controller
             $subCategories = $this->ProductsModel->getSubCategories();
             $View["subCategories"] = $subCategories;
             // 1er chargement de la page ou soumission sans valeurs
-            if (!$this->input->post() || (!$this->input->post('category-selector') && !$this->input->post('subcategory-selector') && $this->input->post('keyword-search') === '')) 
+            if (!$this->input->post() || ($this->input->post('category-selector') === '' && $this->input->post('subcategory-selector') === '' && $this->input->post('keyword-search') === '')) 
             {
                 
                 // On réaffiche la page
@@ -109,12 +113,7 @@ class Admin extends CI_Controller
                 // Si pas de saisie dans le champ de recherche par référence
                
                 if ($this->input->post('keyword-search') === '')
-                {
-                    $this->load->model('ProductsModel');
-
-                    // $categories = $this->ProductsModel->getCategories();
-                    // $View["categories"] = $categories;
-                    
+                {                   
                     if($this->input->post('subcategory-selector'))
                     {
                         $catId = $this->input->post('subcategory-selector');
@@ -134,10 +133,6 @@ class Admin extends CI_Controller
                 else 
                 {
                     $keyword = $this->input->post('keyword-search');
-                    $this->load->model('ProductsModel');
-
-                    $categories = $this->ProductsModel->getCategories();
-                    $View["categories"] = $categories;
 
                     $list = $this->ProductsModel->productByKeyword($keyword);
                     $View["list"] = $list;
@@ -158,7 +153,6 @@ class Admin extends CI_Controller
 
     public function viewProduct($id)
     {
-        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
         if (isset($this->session->com_username)) 
         {
             $this->load->model('ProductsModel');
@@ -182,8 +176,7 @@ class Admin extends CI_Controller
     }
 
     public function updateProduct($id)
-    {
-        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+    {  
         if (isset($this->session->com_username))
         {
             // On charge les informations du produits
@@ -210,7 +203,9 @@ class Admin extends CI_Controller
                 $this->load->view('admin/header');
                 $this->load->view('admin/updateProduct', $View);
                 $this->load->view('admin/footer');
-            } else {
+            } 
+            else 
+            {
                 // On va effectuer le contrôle des saisies utilisateur
 
                 $data = $this->input->post();
@@ -230,7 +225,9 @@ class Admin extends CI_Controller
                     $this->load->view('admin/header');
                     $this->load->view('admin/updateProduct', $View);
                     $this->load->view('admin/footer');
-                } else {
+                } 
+                else 
+                {
                     if ($_FILES && $_FILES['pro_photo']['error'] === 0) // Y a-t-il eu upload de fichiers ?
                     {
                         $this->load->library('upload');
@@ -255,7 +252,8 @@ class Admin extends CI_Controller
                         $this->upload->initialize($config);
 
                         // Validation du fichier
-                        if (!$this->upload->do_upload('pro_photo')) {
+                        if (!$this->upload->do_upload('pro_photo')) 
+                        {
                             // Echec
                             // Récupération des erreurs
                             $uploadErrors = $this->upload->display_errors();
@@ -270,7 +268,9 @@ class Admin extends CI_Controller
                             $this->load->view('admin/header');
                             $this->load->view('admin/updateProduct', $View);
                             $this->load->view('admin/footer');
-                        } else {
+                        } 
+                        else 
+                        {
                             $data['pro_photo'] = $extension;
 
                             // Formulaire validé et upload validé, on met à jour la BDD
@@ -280,7 +280,9 @@ class Admin extends CI_Controller
 
                             redirect("Admin/productList");
                         }
-                    } else {
+                    } 
+                    else 
+                    {
                         // Formulaire validé, on met à jour la BDD
                         $this->load->model('ProductsModel');
                         $this->ProductsModel->UpdateProduct($id, $data);
@@ -298,8 +300,7 @@ class Admin extends CI_Controller
     }
 
     public function updateProductSuccess()
-    {
-        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+    {   
         if (isset($this->session->com_username))
         {
             $this->load->model('ProductsModel');
@@ -320,8 +321,7 @@ class Admin extends CI_Controller
     }
 
     public function addProductSuccess()
-    {
-        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+    {   
         if (isset($this->session->com_username))
         {
             $this->load->model('ProductsModel');
@@ -342,8 +342,7 @@ class Admin extends CI_Controller
     }
 
     public function deleteProductSuccess()
-    {
-        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+    { 
         if (isset($this->session->com_username))
         {
             $this->load->model('ProductsModel');
@@ -364,10 +363,10 @@ class Admin extends CI_Controller
     }
 
     public function addProduct()
-    {
-        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+    {   
         if (isset($this->session->com_username))
         {
+            // Chargement des catégories et founisseurs 
             $this->load->model('ProductsModel');
             $categories = $this->ProductsModel->getCategories();
             $View["categories"] = $categories;
@@ -379,12 +378,15 @@ class Admin extends CI_Controller
             $suppliers = $this->SuppliersModel->getSuppliers();
             $View["suppliers"] = $suppliers;
 
+            // Si pas de valeurs dans $_POST, on affiche le formulaire
             if (!$this->input->post()) {
                 $this->load->view('admin/header');
                 $this->load->view('admin/addProduct', $View);
                 $this->load->view('admin/footer');
-            } else {
-                // On va effectuer le contrôle des saisies utilisateur
+            } 
+            else 
+            {
+                // Sinon on va effectuer le contrôle des saisies utilisateur
 
                 $data = $this->input->post();
 
@@ -403,9 +405,12 @@ class Admin extends CI_Controller
                     $this->load->view('admin/header');
                     $this->load->view('admin/addProduct', $View);
                     $this->load->view('admin/footer');
-                } else {
+                } 
+                else 
+                {
                     if ($_FILES && $_FILES['pro_photo']['error'] === 0) // Y a-t-il eu upload de fichiers ?
                     {
+                        // On charge la librairie pour gérer l'upload
                         $this->load->library('upload');
 
                         // Récupération de l'extension du fichier uploadé
@@ -436,7 +441,8 @@ class Admin extends CI_Controller
                         $this->upload->initialize($config);
 
                         // Validation du fichier
-                        if (!$this->upload->do_upload('pro_photo')) {
+                        if (!$this->upload->do_upload('pro_photo')) 
+                        {
                             // Echec
                             // Récupération des erreurs
                             $uploadErrors = $this->upload->display_errors();
@@ -445,13 +451,17 @@ class Admin extends CI_Controller
                             // Récupération des erreurs dans le fichier php_error.log
                             error_log($uploadErrors, 0);
 
+                            // On crée une variable à "usage unique" pour passer le message d'échec à l'utiisateur
                             $this->load->library('session');
                             $this->session->set_flashdata('uploadErrorUser', 'Le téléchargement de la photo a échoué. Veuiller réessayer.');
 
+                            // On réaffiche le formulaire
                             $this->load->view('admin/header');
                             $this->load->view('admin/addProduct', $View);
                             $this->load->view('admin/footer');
-                        } else {
+                        } 
+                        else 
+                        {
                             $View['newId'] = $id;
                             $this->load->view('admin/header');
                             $this->load->view('admin/addProductSuccess', $View);
@@ -480,7 +490,6 @@ class Admin extends CI_Controller
 
     public function deleteProduct($id)
     {
-        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
         if (isset($this->session->com_username))
         {
             // Chargement des infos relative au produit spécifié en paramètre
@@ -498,7 +507,7 @@ class Admin extends CI_Controller
                 $data = $this->input->post();
 
                 $this->form_validation->set_error_delimiters('<div class="fw-bold text-danger">', '</div>');
-                $this->form_validation->set_rules('confirm', 'case', 'required|regex_match[/[ok]/]', array('required' => 'Vous devez cocher la %s pour lancer la suppression.', 'regex-match' => 'Merci de cocher la case.'));
+                $this->form_validation->set_rules('confirm', 'case', 'required|regex_match[/ok/]', array('required' => 'Vous devez cocher la %s pour lancer la suppression.', 'regex-match' => 'Merci de cocher la case.'));
 
                 // Si échec de la validation, on réaffiche la vue formulaire
                 if ($this->form_validation->run() == FALSE) {
@@ -523,7 +532,6 @@ class Admin extends CI_Controller
 
     public function dashboard()
     {
-        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
         if (isset($this->session->com_username))
         {
             $this->load->model('dashboardModel');

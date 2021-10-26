@@ -23,7 +23,7 @@ ON order_details FOR EACH ROW
 BEGIN
     -- Si le statut d'une ligne produit passe à "8" ("Annulée")
     IF NEW.ode_ost_id = 8
-    -- Alors on ajoute la quantité commandée de cette ligne pour au stock du produit enregistré en bdd
+    -- Alors on ajoute la quantité commandée de cette ligne au stock du produit enregistré en bdd
     THEN
     UPDATE products
     SET pro_phy_stk = products.pro_phy_stk + NEW.ode_qty

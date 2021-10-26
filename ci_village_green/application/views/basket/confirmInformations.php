@@ -1,7 +1,7 @@
-<section id="delivery-infos">
-    <div>
+<main id="delivery-infos">
+    <nav>
         <p class="fw-light ps-5"><a class="text-dark text-decoration-none" href="<?php echo site_url('Products/home'); ?>">Home</a> > <a class="text-dark text-decoration-none" href="<?php echo site_url('Basket/viewBasket'); ?>">Votre Panier</a> > Vos informations</p>
-    </div>
+    </nav>
     <header>
         <h3 class="fw-light ps-5 mb-0">Vos informations</h3>
         <p class=" ms-5">Merci de confirmer les informations suivantes, ou de les corriger si nécessaire.</p>
@@ -75,3 +75,4 @@
                 </div>
             </form>
         </div>
+</main>

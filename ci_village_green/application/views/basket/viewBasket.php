@@ -1,14 +1,37 @@
-<section id="basket">
-    <div>
+<main id="basket">
+    <nav>
         <p class="fw-light ps-5"><a class="text-dark text-decoration-none" href="<?php echo site_url('Products/home'); ?>">Home</a> > Votre panier</p>
-    </div>
+    </nav>
     <header>
         <h3 class="fw-light ps-5 mb-0">Votre panier</h3>
     </header>
 
     <?php
+    // Si le client n'est pas connecté
+    if($this->session->logged_in != true)
+    {
+    ?>
+        <div class="row m-0">
+            <!-- Image panier vide -->
+            <div id="bag" class="col-12 d-flex flex-column mb-4 me-0 p-0 mt-4">
+                <div id="bag-img" class="d-flex flex-column align-items-center mb-4">
+                    <p class="text-center bag-text fw-light mb-4">
+                    <a class="text-dark text-decoration-none" href="<?php echo site_url('Customers/signUp'); ?>">Inscrivez-vous</a>/Connectez-vous pour profiter du panier et effectuer vos achats !</p>
+                </div>
+            </div>
+
+                <!-- Bannière services -->
+                <div id="banner-services" class="row m-0">
+                    <img class="img-fluid w-100 px-0 pt-3 pb-2 d-none d-sm-flex" src="<?php echo base_url('assets/images/BODY/banniere_centre_4_pictos.png'); ?>" alt="bannière de nos services" title="Nos services">
+                    <img class="img-fluid w-100 pt-3 px-0 d-flex d-sm-none" src="<?php echo base_url('assets/images/BODY/banniere_centre_2_pictos1.png'); ?>" alt="bannière de nos services" title="Nos services">
+                    <img class="img-fluid w-100 pb-2 px-0 d-flex d-sm-none" src="<?php echo base_url('assets/images/BODY/banniere_centre_2_pictos2.png'); ?>" alt="bannière de nos services" title="Nos services">
+                </div>
+        </div>
+    <?php
+    } 
+
     // Si le panier existe
-    if ($this->session->basket != null) {
+    else if ($this->session->basket != null) {
     ?>
         <div class="row">
             <!-- Début Tableau Mon Panier-->
@@ -79,7 +102,7 @@
                                     </td>
 
                                     <!-- Affichage du prix de vente selon typologie et coef client -->
-                                    <td class="align-middle">
+                                    <td class="align-middle text-nowrap">
                                         <?php if (isset($row['pro_ppet']) && isset($row['cus_type'])) {
                                             if ($row['cus_type'] === "Particulier") {
                                                 echo number_format($row['pro_ppet'] + ($row['pro_ppet'] *  $row['cus_coef'] / 100) + (($row['pro_ppet'] + ($row['pro_ppet'] *  $row['cus_coef'] / 100)) * 0.2), 2, ',', ' ');
@@ -226,7 +249,7 @@
                             </tr>
                             <!-- TVA -->
                             <tr class="table-light">
-                                <td class="col-6 text-end">TVA estimée :</td>
+                                <td class="col-6 text-end text-nowrap">TVA estimée :</td>
                                 <td class="col"><?php echo number_format(($totalItemsHT + $delivery * 0.8) * 0.2, 2, ',', ' '); ?> €</td>
                             </tr>
 
@@ -287,7 +310,8 @@
     <?php
     }
     // Si le panier n'existe pas encore 
-    else {
+    else 
+    {
 
     ?>
         <div class="row m-0">
@@ -298,7 +322,7 @@
                     <img class="img-fluid col-9 col-md-6 mb-3 mb-md-0 rounded-3" src="<?php echo base_url('assets/images/BODY/shopping-cart.jpeg'); ?>" alt="Sac vide" title="Votre panier est vide !">
                 </div>
                 <!-- Texte sous image  -->
-                <p class="text-center bag-text">Parcourez nos catégories. Vous trouverez votre à coup sûr votre futur instrument.</p>
+                <p class="text-center bag-text">Parcourez nos catégories. Votre futur instrument vous attend.</p>
             </div>
 
             <!-- Bannière rappel livraison gratuite -->
@@ -308,4 +332,6 @@
             </div>
         </div>
     <?php
-    } ?>
+    } 
+    ?>
+</main>

@@ -1,14 +1,14 @@
 
 <section id="myAccount" class="container-fluid">
     <!-- Fil d'Ariane -->
-    <div>
+    <nav>
         <p class="fw-light ps-5">
             <a class="text-dark text-decoration-none" href="<?php echo site_url('Products/home'); ?>">Accueil</a> >
             <a class="text-dark text-decoration-none" href="<?php echo site_url('Customers/myAccount'); ?>">Mon compte</a> > 
             <a class="text-dark text-decoration-none" href="<?php echo site_url('Customers/myOrders'); ?>">Mes commandes</a> > 
             <a class="text-dark text-decoration-none" href="<?php echo site_url('Customers/orderDetails/' . $order[0]->ord_id); ?>">Détails commande</a>
         </p>
-    </div>
+    </nav>
     <!-- Header -->
     <div class="row mt-md-3">
         <header>
@@ -48,13 +48,29 @@
                     <p class="ps-2 d-inline-block">(<?php if(isset($order) && count($order) > 1 ){echo count($order) . ' articles';} else {echo count($order) . ' article';}?>)</p>
                 </div>
             </div>
+            
+            <div class="row m-0 bg-light justify-content-around mb-3">
+                <div class="col-md-5 bg-light py-2 p-0">
+                    <h6 class="fw-bold fst-italic border-bottom border-3 border-dark ps-3 py-2">Adresse de facturation</h6>
+                    <p class="ps-3 mb-1"><?php if(isset($order[0]->cus_firstname) && isset($order[0]->cus_lastname)){echo $order[0]->cus_firstname . ' ' . $order[0]->cus_lastname;}?></p>
+                    <p class="ps-3 mb-1"><?php if(isset($order[0]->cus_bil_address)){echo $order[0]->cus_bil_address;}?></p>
+                    <p class="ps-3 mb-1"><?php if(isset($order[0]->cus_bil_postalcode) && isset($order[0]->cus_bil_city)){echo $order[0]->cus_bil_postalcode . ' ' . $order[0]->cus_bil_city;}?></p>
+                </div>
+                <div class="col-md-5 bg-light py-2 p-0">
+                    <h6 class="fw-bold fst-italic border-bottom border-3 border-dark ps-3 py-2">Adresse de Livraison</h6>
+                    <p class="ps-3 mb-1"><?php if(isset($order[0]->cus_firstname) && isset($order[0]->cus_lastname)){echo $order[0]->cus_firstname . ' ' . $order[0]->cus_lastname;}?></p>
+                    <p class="ps-3 mb-1"><?php if(isset($order[0]->ord_del_address)){echo $order[0]->ord_del_address;}?></p>
+                    <p class="ps-3 mb-1"><?php if(isset($order[0]->ord_del_postalcode) && isset($order[0]->ord_del_city)){echo $order[0]->ord_del_postalcode . ' ' . $order[0]->ord_del_city;}?></p>
+                </div>
+            </div>
+
             <div class="row">
                 <!-- Tableau Détails commande-->
                 <div class="col-12">
                     <div class="table-responsive">
                         <table class="table table-hover text-center">
                             <thead>
-                                <tr class="table-secondary" style="border-bottom: 1px solid black;">
+                                <tr class="table-secondary border-2 border-top-0 border-start-0 border-end-0 border-dark">
                                     <th></th>
                                     <th><i>Produit</i></th>
                                     <th class="d-none d-md-table-cell border-0 "><i>Statut ligne</i></th>
@@ -80,8 +96,8 @@
                                         {
                                             if (isset($row->pro_ppet) && isset($row->cus_type)) 
                                             {
-                                                $iTotalHT = round($row->ode_qty * ($row->pro_ppet + ($row->pro_ppet *  $row->cus_coef / 100)));
-                                                $iTotalTTC = round($iTotalHT + ($iTotalHT * 0.2));
+                                                $iTotalHT = $row->ode_qty * ($row->pro_ppet + ($row->pro_ppet *  $row->cus_coef / 100));
+                                                $iTotalTTC = $iTotalHT + ($iTotalHT * 0.2);
                                             }
                                             $totalItemsHT = $totalItemsHT + $iTotalHT;
                                             $totalItemsTTC = $totalItemsTTC + $iTotalTTC;
@@ -160,11 +176,11 @@
                                                         {
                                                             if ($row->cus_type === "Particulier") 
                                                             {
-                                                                echo number_format(round($row->pro_ppet + ($row->pro_ppet *  $row->cus_coef / 100)) + (($row->pro_ppet + ($row->pro_ppet *  $row->cus_coef / 100)) * 0.2), 2, ',', ' ');
+                                                                echo number_format($row->pro_ppet + ($row->pro_ppet *  $row->cus_coef / 100) + (($row->pro_ppet + ($row->pro_ppet *  $row->cus_coef / 100)) * 0.2), 2, ',', ' ');
                                                             } 
                                                             else if ($row->cus_type === "Professionnel") 
                                                             {
-                                                                echo number_format(round($row->pro_ppet + ($row->pro_ppet *  $row->cus_coef / 100)), 2, ",", " ");
+                                                                echo number_format($row->pro_ppet + ($row->pro_ppet *  $row->cus_coef / 100), 2, ",", " ");
                                                             }
                                                         }
                                                 ?>
@@ -203,7 +219,7 @@
                     <div class="table-responsive">
                         <table class="table table-hover text-center">
                             <thead>
-                                <tr class="table-secondary" style="border-bottom: 1px solid black;">
+                                <tr class="table-secondary border-2 border-top-0 border-start-0 border-end-0 border-dark">
                                     <th colspan="2"><i>Récapitulatif</i></th>
                                 </tr>
                             </thead>
@@ -281,34 +297,38 @@
 
                                 <!-- Total global HT ou TTC selon profil client -->
                                 <tr class="table-light">
-                                <td class="col-6 text-end">Total <?php  if (isset($row->cus_type) && $row->cus_type == 'Particulier') 
-                                                                        {
-                                                                            echo 'TTC';
-                                                                        } else {
-                                                                            echo 'HT';
-                                                                        } 
-                                                                ?> :
-                                </td>
-                                <td class="col fw-bold text-danger"><?php   if (isset($row->cus_type) && $row->cus_type == 'Particulier') 
+                                    <td class="col-6 text-end">Total <?php  if (isset($row->cus_type) && $row->cus_type == 'Particulier') 
                                                                             {
-                                                                                echo number_format($totalItemsTTC + $delivery, 2, ',', ' ');
-                                                                            }
-                                                                            else if (isset($row->cus_type) && $row->cus_type == 'Professionnel') 
+                                                                                echo 'TTC';
+                                                                            } 
+                                                                            else 
                                                                             {
-                                                                                echo number_format($totalItemsHT + $delivery * 0.8, 2, ',', ' ');
-                                                                            }
-                                                                    ?> €
-                                </td>
-                            </tr>
+                                                                                echo 'HT';
+                                                                            } 
+                                                                    ?> :
+                                    </td>
+                                    <td class="col fw-bold text-danger"><?php   if (isset($row->cus_type) && $row->cus_type == 'Particulier') 
+                                                                                {
+                                                                                    echo number_format($totalItemsTTC + $delivery, 2, ',', ' ');
+                                                                                }
+                                                                                else if (isset($row->cus_type) && $row->cus_type == 'Professionnel') 
+                                                                                {
+                                                                                    echo number_format($totalItemsHT + $delivery * 0.8, 2, ',', ' ');
+                                                                                }
+                                                                        ?> €
+                                    </td>
+                                </tr>
 
                             </tbody>
                         </table>
                     </div>
                 </div>
             </div>
+
             <div class="row">
                 <img class="img-fluid mt-5 px-0" src="<?php echo base_url('assets/images/BODY/ESPACE_CLIENT/bas_de_page_pictos.png');?>" alt="Logos de nos partenaires Yamaha, Roland, Sennheiser et Behringer" title="Nos partenaires et services">
             </div>
         </div>
     </div>
 </section>
+<?php var_dump($order);?>

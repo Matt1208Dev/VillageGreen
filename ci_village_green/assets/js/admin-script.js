@@ -1,3 +1,4 @@
+
 $(document).ready(function()
 {
     // ProductList View / AJAX Category-selector

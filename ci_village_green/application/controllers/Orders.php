@@ -4,9 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Orders extends CI_Controller 
 {
     public function OrderList()
-    {
-        // Contrôle de la variable de session userId
-        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+    { 
         if (isset($this->session->com_username))
         {
             // $_POST ne contient pas de valeurs
@@ -126,8 +124,7 @@ class Orders extends CI_Controller
     }
 
     public function RunningOrder()
-    {
-        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+    { 
         if (isset($this->session->com_username))
         {
             $this->load->model('OrdersModel');
@@ -156,9 +153,7 @@ class Orders extends CI_Controller
     }
 
     public function AllOrders()
-    {
-        // Contrôle de la variable de session userId
-        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+    { 
         if (isset($this->session->com_username))
         {
             // On charge toutes les commandes
@@ -175,8 +170,7 @@ class Orders extends CI_Controller
     }
 
     public function OrderByMonthInterval($nb)
-    {
-        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+    { 
         if (isset($this->session->com_username))
         {
             $nb = $this->security->xss_clean($nb);
@@ -215,8 +209,7 @@ class Orders extends CI_Controller
     }
 
     public function OrderByDayInterval($nb)
-    {
-        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+    { 
         if (isset($this->session->com_username))
         {
             $nb = $this->security->xss_clean($nb);
@@ -255,8 +248,7 @@ class Orders extends CI_Controller
     }
 
     public function orderDetails($id)
-    {
-        // if (isset($this->session->userId) && $this->session->userId == 'Admin') 
+    { 
         if (isset($this->session->com_username))
         {
             $id = $this->security->xss_clean($id);

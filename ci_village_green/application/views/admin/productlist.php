@@ -82,7 +82,7 @@
                 </div>
                 <div class="col-sm-6 border-top border-4">
                     <h6 class="mb-0 mt-2 fw-bold product-card-title">FOURNISSEUR</h6>
-                    <p class="mb-2"><?php if(isset($product->sup_name)){echo $product->sup_name;} ?></p>
+                    <p class="mb-2 text-nowrap"><?php if(isset($product->sup_name)){echo $product->sup_name;} ?></p>
                 </div>
             </div>
             <div class="row">

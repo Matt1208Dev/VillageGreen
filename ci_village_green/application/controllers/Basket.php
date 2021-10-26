@@ -5,13 +5,6 @@ class Basket extends CI_Controller
 {
     public function viewBasket()
     {
-        if ($this->session->basket == null) 
-        { 
-            if(get_cookie('basket', true) !== null)
-            {
-                $_SESSION['basket'] = get_cookie('basket', true);
-            }
-        }
         // Affichage de la vue viewBasket
         $this->load->view('public/templates/header');
         $this->load->view('basket/viewBasket');
